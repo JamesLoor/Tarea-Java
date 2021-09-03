@@ -2,14 +2,17 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import gui.FondoBienvenida;
 
 public class VtnBienvenida extends JFrame{
 	private JPanel contentPane;
-	private JPanel pnlCenter;
+	private FondoBienvenida pnlCenter;
 	private JPanel pnlEast;
 	private JLabel lblCenter;
 	private JLabel lblEast;
@@ -32,11 +35,7 @@ public class VtnBienvenida extends JFrame{
 	}
 	
 	private void initPnlCenter() {
-		pnlCenter = new JPanel();
-		pnlCenter.setBackground(new Color(203, 235, 235));
-		lblCenter = new JLabel("Bienvenidos");
-		pnlCenter.add(lblCenter);
-		
+		pnlCenter = new FondoBienvenida();
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
@@ -44,6 +43,7 @@ public class VtnBienvenida extends JFrame{
 		pnlEast = new JPanel();
 		lblEast = new JLabel("Formulario");
 		pnlEast.add(lblEast);
+
 		
 		contentPane.add(pnlEast, BorderLayout.EAST);
 	}
