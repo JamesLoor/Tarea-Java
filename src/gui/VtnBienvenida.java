@@ -11,16 +11,23 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.Dimension;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import gui.FondoBienvenida;
 
 public class VtnBienvenida extends JFrame{
 	private JPanel contentPane;
-	private JPanel pnlCenter;
+	private FondoBienvenida pnlCenter;
 	private JPanel pnlEast;
 	private JPanel pnlForm;
 	private JPanel pnlFormNorth;
 	private JPanel pnlFormCenter;
 	private JPanel pnlFormSouth;
-	private JLabel lblCenter;
 	private JLabel lblNorthForm;
 	private JLabel lblNombreUsuario;
 	private JLabel lblContraseña;
@@ -38,19 +45,16 @@ public class VtnBienvenida extends JFrame{
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000,600);
+		setSize(1000, 600);
 		setLocationRelativeTo(null);
+		setMinimumSize(new Dimension(1000, 600));
 		
 		initPnlCenter();
 		initPnlEast();
 	}
 	
 	private void initPnlCenter() {
-		pnlCenter = new JPanel();
-		pnlCenter.setBackground(new Color(203, 235, 235));
-		lblCenter = new JLabel("Bienvenidos");
-		pnlCenter.add(lblCenter);
-		
+		pnlCenter = new FondoBienvenida();
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
@@ -58,6 +62,7 @@ public class VtnBienvenida extends JFrame{
 		pnlEast = new JPanel(new BorderLayout());
 		pnlEast.setBackground(new Color(255, 255, 255));
 		pnlEast.setBorder(new EmptyBorder(200, 0, 200, 0));
+		pnlEast = new JPanel();
 		
 		initPnlForm();
 		contentPane.add(pnlEast, BorderLayout.EAST);
