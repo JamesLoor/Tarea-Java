@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -27,8 +28,9 @@ public class VtnBienvenida extends JFrame{
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000,600);
+		setSize(1000, 600);
 		setLocationRelativeTo(null);
+		setMinimumSize(new Dimension(1000, 600));
 		
 		initPnlCenter();
 		initPnlEast();
