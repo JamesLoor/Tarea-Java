@@ -28,6 +28,7 @@ public class VtnBienvenida extends JFrame{
 	private JPanel pnlFormNorth;
 	private JPanel pnlFormCenter;
 	private JPanel pnlFormSouth;
+	private JLabel lblCenter;
 	private JLabel lblNorthForm;
 	private JLabel lblNombreUsuario;
 	private JLabel lblContraseña;
@@ -62,7 +63,6 @@ public class VtnBienvenida extends JFrame{
 		pnlEast = new JPanel(new BorderLayout());
 		pnlEast.setBackground(new Color(255, 255, 255));
 		pnlEast.setBorder(new EmptyBorder(200, 0, 200, 0));
-		pnlEast = new JPanel();
 		
 		initPnlForm();
 		contentPane.add(pnlEast, BorderLayout.EAST);
