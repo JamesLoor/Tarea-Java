@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.Image;
 
@@ -81,7 +82,8 @@ public class VtnBienvenida extends JFrame{
 		
 		//Panel Norte
 		pnlFormNorth = new JPanel();
-		lblNorthForm = new JLabel("Iniciar Sesion");
+		lblNorthForm = new JLabel("Iniciar Sesión");
+		lblNorthForm.setFont(new Font("", Font.PLAIN, 25));
 		pnlFormNorth.add(lblNorthForm);
 		pnlForm.add(pnlFormNorth, BorderLayout.NORTH);
 		
@@ -100,14 +102,15 @@ public class VtnBienvenida extends JFrame{
 		
 		//Panel Sur
 		pnlFormSouth = new JPanel();
-		btnIniciarSesion = new JButton("Iniciar Sesion");
+		btnIniciarSesion = new JButton("Iniciar Sesión");
+		btnIniciarSesion.setBackground(new Color(255, 255, 255));
 		pnlFormSouth.add(btnIniciarSesion);
 		pnlForm.add(pnlFormSouth, BorderLayout.SOUTH);
 		
 		//padding interno al cuadro de inicio de sesion
 		pnlFormNorth.setBorder(new EmptyBorder(20, 0, 0, 0));
 		pnlFormCenter.setBorder(new EmptyBorder(0, 20, 0, 20));
-		pnlFormSouth.setBorder(new EmptyBorder(0, 0, 20, 0));
+		pnlFormSouth.setBorder(new EmptyBorder(0, 20, 20, 20));
 		
 		//color de fondo del cuadro de inicio de sesion
 		pnlFormNorth.setBackground(Color.WHITE);
