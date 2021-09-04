@@ -11,7 +11,7 @@ public class FondoBienvenida extends JPanel{
 	@Override
 	public void paint(Graphics grafico) {
 		Dimension tamanoFondo = getSize();
-		ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/FondoTesting3.svg")); 
+		ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/FondoTesting2.jpg")); 
 		grafico.drawImage(Img.getImage(), 0, 0, tamanoFondo.width, tamanoFondo.height, this);
 		setOpaque(false);
 		super.paintComponent(grafico);
