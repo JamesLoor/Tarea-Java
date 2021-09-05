@@ -1,8 +1,15 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+/**
+ * Clase de la ventana de bienvenida
+ * 
+ * Creado el 2 de septiembre, 2021, 14:2
+ * 
+ * @Author James Mendoza, Derian Paez
+ * 
+ * @Version POO SOF-S-NO-2-5 - 2021
+ * 
+ */
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,17 +20,12 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
-
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import gui.FondoBienvenida;
+import listeners.LoginFormListener;
 
 public class VtnBienvenida extends JFrame{
 	private JPanel contentPane;
@@ -43,7 +45,11 @@ public class VtnBienvenida extends JFrame{
 	public VtnBienvenida() {
 		super("Sistema UG");
 		initComponents();
-//		addListeners();
+		addListeners();
+	}
+	
+	private void addListeners() {
+		btnIniciarSesion.addActionListener(new LoginFormListener(txtNombreUsuario, pwContraseña));
 	}
 	
 	private void initComponents() {
@@ -52,7 +58,7 @@ public class VtnBienvenida extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1000, 600);
 		setLocationRelativeTo(null);
-		setMinimumSize(new Dimension(1000, 600));
+		setResizable(false);
 		
 		initPnlCenter();
 		initPnlEast();
@@ -77,17 +83,29 @@ public class VtnBienvenida extends JFrame{
 	private void initPnlForm() {
 		pnlForm = new JPanel(new BorderLayout(0, 25));
 		pnlForm.setBackground(new Color(255, 255, 255));
-		pnlForm.setBorder(new BevelBorder(BevelBorder.RAISED));
-//		pnlForm.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(230, 230, 230), new Color(150, 150, 150)));
+//		pnlForm.setBorder(new BevelBorder(BevelBorder.RAISED));
+		pnlForm.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(230, 230, 230), new Color(150, 150, 150)));
 		
-		//Panel Norte
+		initPnlFormNorth();
+		initPnlFormCenter();
+		initPnlFormSouth();
+		
+		pnlEast.add(pnlForm, BorderLayout.CENTER);
+	}
+	
+	
+	private void initPnlFormNorth() {
 		pnlFormNorth = new JPanel();
 		lblNorthForm = new JLabel("Iniciar Sesión");
 		lblNorthForm.setFont(new Font("", Font.PLAIN, 25));
 		pnlFormNorth.add(lblNorthForm);
 		pnlForm.add(pnlFormNorth, BorderLayout.NORTH);
 		
-		//Panel Centro
+		pnlFormNorth.setBorder(new EmptyBorder(20, 0, 0, 0));
+		pnlFormNorth.setBackground(Color.WHITE);
+	}
+	
+	private void initPnlFormCenter() {
 		pnlFormCenter = new JPanel();
 		pnlFormCenter.setLayout(new GridLayout(4, 0, 0, 0));
 		lblNombreUsuario = new JLabel("Nombre de usuario");
@@ -100,24 +118,27 @@ public class VtnBienvenida extends JFrame{
 		pnlFormCenter.add(pwContraseña);
 		pnlForm.add(pnlFormCenter, BorderLayout.CENTER);
 		
-		//Panel Sur
+		pnlFormCenter.setBorder(new EmptyBorder(0, 20, 0, 20));
+		pnlFormCenter.setBackground(Color.WHITE);
+	}
+	
+	private void initPnlFormSouth() {
 		pnlFormSouth = new JPanel();
 		btnIniciarSesion = new JButton("Iniciar Sesión");
 		btnIniciarSesion.setBackground(new Color(255, 255, 255));
 		pnlFormSouth.add(btnIniciarSesion);
 		pnlForm.add(pnlFormSouth, BorderLayout.SOUTH);
 		
-		//padding interno al cuadro de inicio de sesion
-		pnlFormNorth.setBorder(new EmptyBorder(20, 0, 0, 0));
-		pnlFormCenter.setBorder(new EmptyBorder(0, 20, 0, 20));
 		pnlFormSouth.setBorder(new EmptyBorder(0, 20, 20, 20));
-		
-		//color de fondo del cuadro de inicio de sesion
-		pnlFormNorth.setBackground(Color.WHITE);
-		pnlFormCenter.setBackground(Color.WHITE);
 		pnlFormSouth.setBackground(Color.WHITE);
-		
-		pnlEast.add(pnlForm, BorderLayout.CENTER);
+	}
+
+	public JButton getBtnIniciarSesion() {
+		return btnIniciarSesion;
+	}
+
+	public void setBtnIniciarSesion(JButton btnIniciarSesion) {
+		this.btnIniciarSesion = btnIniciarSesion;
 	}
 	
 	
