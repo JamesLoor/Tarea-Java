@@ -29,8 +29,8 @@ import listeners.LoginFormListener;
 
 public class VtnBienvenida extends JFrame{
 	private JPanel contentPane;
-	private FondoBienvenida pnlCenter;
-	private JPanel pnlEast;
+	private FondoBienvenida pnlIzquierda;
+	private JPanel pnlDerecha;
 	private JPanel pnlForm;
 	private JPanel pnlFormNorth;
 	private JPanel pnlFormCenter;
@@ -60,24 +60,24 @@ public class VtnBienvenida extends JFrame{
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
-		initPnlCenter();
-		initPnlEast();
+		initPnlIzquierda();
+		initPnlDerecha();
 	}
 	
-	private void initPnlCenter() {
-		pnlCenter = new FondoBienvenida();
-		contentPane.add(pnlCenter);
+	private void initPnlIzquierda() {
+		pnlIzquierda = new FondoBienvenida();
+		contentPane.add(pnlIzquierda);
 	}
 	
-	private void initPnlEast() {
-		pnlEast = new JPanel(new BorderLayout());
-		pnlEast.setBackground(new Color(255, 255, 255));
+	private void initPnlDerecha() {
+		pnlDerecha = new JPanel(new BorderLayout());
+		pnlDerecha.setBackground(new Color(255, 255, 255));
 		
 		//Padding para centrar el cuadro de inicio de sesion
-		pnlEast.setBorder(new EmptyBorder(130, 85, 130, 85));
+		pnlDerecha.setBorder(new EmptyBorder(130, 85, 130, 85));
 		
 		initPnlForm();
-		contentPane.add(pnlEast, BorderLayout.EAST);
+		contentPane.add(pnlDerecha);
 	}
 	
 	private void initPnlForm() {
@@ -90,7 +90,7 @@ public class VtnBienvenida extends JFrame{
 		initPnlFormCenter();
 		initPnlFormSouth();
 		
-		pnlEast.add(pnlForm, BorderLayout.CENTER);
+		pnlDerecha.add(pnlForm, BorderLayout.CENTER);
 	}
 	
 	
