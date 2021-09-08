@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import gui.VtnCrearUsuario;
+import gui.VtnSistema;
+
 public class FrmUsuarioListener implements ActionListener {
 	private JFrame VtnSistema;
 	
@@ -16,6 +19,9 @@ public class FrmUsuarioListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Se abrira lo de crear otra ventana");
+		VtnCrearUsuario ventanaCrearUsuario = new VtnCrearUsuario();
+		ventanaCrearUsuario.setVisible(true);
+		// Se tiene que bloquear la ventana de Sistema mientras se esta creando el usuario.
+		// tnSistema.dispose();
 	}
 }
