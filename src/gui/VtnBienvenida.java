@@ -39,7 +39,7 @@ public class VtnBienvenida extends JFrame{
 	private JLabel lblNombreUsuario;
 	private JLabel lblContraseña;
 	private JTextField txtNombreUsuario;
-	private JPasswordField pwContraseña;
+	private JPasswordField pwContrasena;
 	private JButton btnIniciarSesion;
 	
 	public VtnBienvenida() {
@@ -49,7 +49,7 @@ public class VtnBienvenida extends JFrame{
 	}
 	
 	private void addListeners() {
-		btnIniciarSesion.addActionListener(new LoginFormListener(txtNombreUsuario, pwContraseña, this));
+		btnIniciarSesion.addActionListener(new LoginFormListener(txtNombreUsuario, pwContrasena, this));
 	}
 	
 	private void initComponents() {
@@ -111,11 +111,11 @@ public class VtnBienvenida extends JFrame{
 		lblNombreUsuario = new JLabel("Nombre de usuario");
 		txtNombreUsuario = new JTextField(10);
 		lblContraseña = new JLabel("Contraseña");
-		pwContraseña = new JPasswordField(10);
+		pwContrasena = new JPasswordField(10);
 		pnlFormCenter.add(lblNombreUsuario);
 		pnlFormCenter.add(txtNombreUsuario);
 		pnlFormCenter.add(lblContraseña);
-		pnlFormCenter.add(pwContraseña);
+		pnlFormCenter.add(pwContrasena);
 		pnlForm.add(pnlFormCenter, BorderLayout.CENTER);
 		
 		pnlFormCenter.setBorder(new EmptyBorder(0, 20, 0, 20));
