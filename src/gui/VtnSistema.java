@@ -16,7 +16,9 @@ public class VtnSistema extends JFrame{
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(238,171);
+		setSize(1000, 600);
 		setLocationRelativeTo(null);
+		setResizable(false);
+		dispose();
 	}
 }

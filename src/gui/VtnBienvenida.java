@@ -49,7 +49,7 @@ public class VtnBienvenida extends JFrame{
 	}
 	
 	private void addListeners() {
-		btnIniciarSesion.addActionListener(new LoginFormListener(txtNombreUsuario, pwContraseña));
+		btnIniciarSesion.addActionListener(new LoginFormListener(txtNombreUsuario, pwContraseña, this));
 	}
 	
 	private void initComponents() {
@@ -132,7 +132,7 @@ public class VtnBienvenida extends JFrame{
 		pnlFormSouth.setBorder(new EmptyBorder(0, 20, 20, 20));
 		pnlFormSouth.setBackground(Color.WHITE);
 	}
-
+	
 	public JButton getBtnIniciarSesion() {
 		return btnIniciarSesion;
 	}
@@ -140,6 +140,4 @@ public class VtnBienvenida extends JFrame{
 	public void setBtnIniciarSesion(JButton btnIniciarSesion) {
 		this.btnIniciarSesion = btnIniciarSesion;
 	}
-	
-	
 }
