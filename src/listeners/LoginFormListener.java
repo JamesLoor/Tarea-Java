@@ -29,9 +29,9 @@ public class LoginFormListener implements ActionListener {
 		try {
 			String nombreDeUsuario = txtNombreUsuario.getText();
 			String pwContraseña = pwContrasena.getText();
-			validarCredencial(nombreDeUsuario, pwContraseña);
+			Usuario usuario = validarCredencial(nombreDeUsuario, pwContraseña);
 			
-			VtnSistema sistema = new VtnSistema();
+			VtnSistema sistema = new VtnSistema(usuario);
 			sistema.setVisible(true);
 			ventanaBienvenida.dispose();
 		} catch (Exception error) {
@@ -41,7 +41,7 @@ public class LoginFormListener implements ActionListener {
 		}
 	}
 	
-	private void validarCredencial(String nombreDeUsuario, String pwContrasena) {
+	private Usuario validarCredencial(String nombreDeUsuario, String pwContrasena) {
 		if(nombreDeUsuario.isEmpty() && pwContrasena.isEmpty()) {
 			throw new RuntimeException("Debe ingresar nombre de usuario y contraseña.");
 		} else if(nombreDeUsuario.isEmpty()) {
@@ -56,12 +56,15 @@ public class LoginFormListener implements ActionListener {
 		for (Usuario usuario : lstUsuario) {
 			if(nombreDeUsuario.equals(usuario.getNombreUsuario()) && pwContrasena.equals(usuario.getPassword())) {
 				usuarioEncontrado = true;
+				return usuario;
 			}
 		}
 		
 		if(usuarioEncontrado == false) {
 			throw new RuntimeException("El usuario ingresado no esta registrado.");
 		}
+		
+		return null;
 	}
 	
 	private void limpiarFormulario() {

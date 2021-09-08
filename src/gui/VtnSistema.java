@@ -3,13 +3,16 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import modelo.Usuario;
+
 public class VtnSistema extends JFrame{
 	private JPanel contentPane;
 	
-	public VtnSistema() {
+	public VtnSistema() {}
+	
+	public VtnSistema(Usuario u) {
 		super("Sistema");
 		initComponents();
-//		addListeners();
 	}
 	
 	private void initComponents() {
