@@ -10,10 +10,13 @@
  */
 
 import gui.VtnBienvenida;
-import modelo.Usuario;
+import modelo.BaseDatos;
 
 public class Principal {
 	public static void main(String[] args) {
+		BaseDatos bd = new BaseDatos();
+		bd.crearAdminPredeterminado();
+		
 		new VtnBienvenida().setVisible(true);
 	}
 }

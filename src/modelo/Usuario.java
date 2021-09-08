@@ -13,26 +13,25 @@ import java.io.Serializable;
  * 
  */
 
-public class Usuario implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	protected String codigo;
+public abstract class Usuario implements Serializable{
+	protected final String CODIGO = generarCodigo();
 	protected String nombreUsuario;
 	protected String password;
 	
 	public Usuario() {}
 
-	public Usuario(String codigo, String nombreUsuario, String password) {
-		this.codigo = codigo;
+	public Usuario(String nombreUsuario, String password) {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
+	}
+	
+	private String generarCodigo() {
+		return String.valueOf((int) (100 + Math.random() * 900));
 	}
 
 	@Override
 	public String toString() {
-		return "Usuario [codigo=" + codigo + ", nombreUsuario=" + nombreUsuario + ", password=" + password + "]";
+		return "Usuario [codigo=" + CODIGO + ", nombreUsuario=" + nombreUsuario + ", password=" + password + "]";
 	}
 
 	@Override
@@ -47,11 +46,11 @@ public class Usuario implements Serializable{
 			return false;
 		}
 		Usuario other = (Usuario) obj;
-		if (codigo == null) {
-			if (other.codigo != null) {
+		if (CODIGO == null) {
+			if (other.CODIGO != null) {
 				return false;
 			}
-		} else if (!codigo.equals(other.codigo)) {
+		} else if (!CODIGO.equals(other.CODIGO)) {
 			return false;
 		}
 		if (nombreUsuario == null) {
@@ -72,11 +71,7 @@ public class Usuario implements Serializable{
 	}
 
 	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+		return CODIGO;
 	}
 
 	public String getNombreUsuario() {

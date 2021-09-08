@@ -13,5 +13,13 @@ public class BaseDatos {
 		listaUsuario.add(u);
 	}
 	
+	public void borrarUsuario(String codigoUsuario) {
+		
+	}
 	
+	public void crearAdminPredeterminado() {
+		Usuario admin = new Administrador("administrador", "admin123");
+		addUsuario(admin);
+		Serializacion.guardarListaUsuario(listaUsuario);
+	}
 }
