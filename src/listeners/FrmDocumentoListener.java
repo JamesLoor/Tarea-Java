@@ -3,22 +3,21 @@ package listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
-import gui.VtnCrearUsuario;
-import gui.VtnSistema;
+import gui.VtnCrearDocumento;
 
-public class FrmUsuarioListener implements ActionListener {
+public class FrmDocumentoListener implements ActionListener {
 	private JFrame VtnSistema;
 	
-	public FrmUsuarioListener() {}
+	public FrmDocumentoListener() {}
 	
-	public FrmUsuarioListener(JFrame VtnSistema) {
+	public FrmDocumentoListener(JFrame VtnSistema) {
 		this.VtnSistema = VtnSistema;
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		VtnCrearUsuario ventanaCrearUsuario = new VtnCrearUsuario();
-		ventanaCrearUsuario.setVisible(true);
+		VtnCrearDocumento ventanaCrearDocumento = new VtnCrearDocumento();
+		ventanaCrearDocumento.setVisible(true);
 		VtnSistema.setEnabled(false);
 		// Se tiene que bloquear la ventana de Sistema mientras se esta creando el usuario.
 		// tnSistema.dispose();

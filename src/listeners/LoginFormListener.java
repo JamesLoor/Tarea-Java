@@ -43,7 +43,7 @@ public class LoginFormListener implements ActionListener {
 	
 	private Usuario validarCredencial(String nombreDeUsuario, String pwContrasena) {
 		if(nombreDeUsuario.isEmpty() && pwContrasena.isEmpty()) {
-			throw new RuntimeException("Debe ingresar nombre de usuario y contraseña.");
+			throw new RuntimeException("Debe ingresar nombre de usuario y contrasena.");
 		} else if(nombreDeUsuario.isEmpty()) {
 			throw new RuntimeException("Debe ingresar nombre de usuario");
 		} else if(pwContrasena.isEmpty()) {
