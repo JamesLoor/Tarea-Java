@@ -6,6 +6,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import listeners.FrmUsuarioListener;
+import listeners.LoginFormListener;
 import modelo.Usuario;
 
 public class VtnSistema extends JFrame {
@@ -19,6 +21,11 @@ public class VtnSistema extends JFrame {
 	public VtnSistema(Usuario usuarioLogeado) {
 		super("Sistema");
 		initComponents();
+		addListeners();
+	}
+	
+	private void addListeners() {
+		menuCrearUsuario.addActionListener(new FrmUsuarioListener(this));
 	}
 	
 	private void initComponents() {
