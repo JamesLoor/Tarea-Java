@@ -13,7 +13,7 @@ public class VtnCrearUsuario extends JFrame {
 	private JPanel contentPane;
 	private JPanel pnlCenter;
 	private JPanel pnlForm;
-	private JLabel lblNombreUsario;
+	private JLabel lblNombreUsuario;
 	private JLabel lblContrasena;
 	private JLabel lblComprobarContrasena;
 	private JLabel lblRol;
@@ -41,24 +41,24 @@ public class VtnCrearUsuario extends JFrame {
 	}
 	
 	private void initPnlCenter() {
-		JPanel pnlCenter = new JPanel();
+		pnlCenter = new JPanel();
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 		
 		initPnlForm();
 	}
 	
 	private void initPnlForm() {
-		JPanel pnlForm = new JPanel();
+		pnlForm = new JPanel();
 		pnlCenter.add(pnlForm);
 		
-		JLabel lblNombreUsuario = new JLabel("Nombre de usuario");
-		JLabel lblContrasena = new JLabel("Contraseña");
-		JLabel lblComprobarContrasena = new JLabel("Contraseña");
-		JLabel lblRol = new JLabel("Rol");
-		JTextField txtNombreUsuario = new JTextField(10);
-		JTextField txtContrasena = new JTextField(10);
-		JTextField txtComprobarContrasena = new JTextField(10);
-		JTextField txtRol = new JTextField(10);
+		lblNombreUsuario = new JLabel("Nombre de usuario");
+		lblContrasena = new JLabel("Contraseña");
+		lblComprobarContrasena = new JLabel("Contraseña");
+		lblRol = new JLabel("Rol");
+		txtNombreUsuario = new JTextField(10);
+		txtContrasena = new JTextField(10);
+		txtComprobarContrasena = new JTextField(10);
+		txtRol = new JTextField(10);
 		
 		pnlForm.add(lblNombreUsuario);
 		pnlForm.add(txtNombreUsuario);
