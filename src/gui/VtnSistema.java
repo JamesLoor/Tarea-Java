@@ -15,7 +15,8 @@ public class VtnSistema extends JFrame {
 	private JMenuBar menuBarra;
 	private JMenu menuCrear;
 	private JMenuItem menuCrearUsuario;
-	
+	private JMenuItem menuCrearDocumento;
+
 	public VtnSistema() {}
 	
 	public VtnSistema(Usuario usuarioLogeado) {
@@ -26,6 +27,7 @@ public class VtnSistema extends JFrame {
 	
 	private void addListeners() {
 		menuCrearUsuario.addActionListener(new FrmUsuarioListener(this));
+		menuCrearDocumento.addActionListener(new FrmUsuarioListener(this));
 	}
 	
 	private void initComponents() {
@@ -45,8 +47,11 @@ public class VtnSistema extends JFrame {
 		
 		menuCrear = new JMenu("Crear");
 		menuCrearUsuario = new JMenuItem("Crear Usuario");
+		menuCrearDocumento = new JMenuItem("Crear Documento");
 		
 		menuCrear.add(menuCrearUsuario);
+		menuCrear.add(menuCrearDocumento);
+
 		menuBarra.add(menuCrear);
 		
 		setJMenuBar(menuBarra);
