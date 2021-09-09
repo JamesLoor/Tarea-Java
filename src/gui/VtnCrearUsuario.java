@@ -1,18 +1,17 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.*;
 
 public class VtnCrearUsuario extends JFrame {
 	private JPanel contentPane;
 	private JPanel pnlCenter;
-	private JPanel pnlForm;
+	private JPanel pnlFormCenter;
+	private JPanel pnlFormSouth;
 	private JLabel lblNombreUsuario;
 	private JLabel lblContrasena;
 	private JLabel lblComprobarContrasena;
@@ -20,12 +19,11 @@ public class VtnCrearUsuario extends JFrame {
 	private JTextField txtNombreUsuario;
 	private JTextField txtContrasena;
 	private JTextField txtComprobarContrasena;
-	private JTextField txtRol;
+	private JComboBox<String> ComboRol;
 	private JButton btnGuardar;
 	
 	
 	public VtnCrearUsuario() {
-		super("Crear Usuario");
 		initComponents();
 	}
 	
@@ -33,7 +31,7 @@ public class VtnCrearUsuario extends JFrame {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000, 600);
+		setSize(300, 400);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
@@ -41,32 +39,56 @@ public class VtnCrearUsuario extends JFrame {
 	}
 	
 	private void initPnlCenter() {
-		pnlCenter = new JPanel();
-		contentPane.add(pnlCenter, BorderLayout.CENTER);
+		pnlCenter = new JPanel(new BorderLayout());
 		
-		initPnlForm();
+		initPnlFormCenter();
+		initPnlFormSouth();
+		
+		contentPane.add(pnlCenter);
 	}
 	
-	private void initPnlForm() {
-		pnlForm = new JPanel();
-		pnlCenter.add(pnlForm);
+	private void initPnlFormCenter() {
+		pnlFormCenter = new JPanel(new GridLayout(8, 0));
 		
 		lblNombreUsuario = new JLabel("Nombre de usuario");
 		lblContrasena = new JLabel("Contraseña");
 		lblComprobarContrasena = new JLabel("Contraseña");
 		lblRol = new JLabel("Rol");
-		txtNombreUsuario = new JTextField(10);
-		txtContrasena = new JTextField(10);
-		txtComprobarContrasena = new JTextField(10);
-		txtRol = new JTextField(10);
 		
-		pnlForm.add(lblNombreUsuario);
-		pnlForm.add(txtNombreUsuario);
-		pnlForm.add(lblContrasena);
-		pnlForm.add(txtContrasena);
-		pnlForm.add(lblComprobarContrasena);
-		pnlForm.add(txtComprobarContrasena);
-		pnlForm.add(lblRol);
-		pnlForm.add(txtRol);
+		txtNombreUsuario = new JTextField(25);
+		txtContrasena = new JTextField(25);
+		txtComprobarContrasena = new JTextField(25);
+		
+		ComboRol = new JComboBox<String>();
+		ComboRol.setModel(new DefaultComboBoxModel<>(new String[]{"Administrador", "Jefe", "Subordinado"}));
+		
+		
+		pnlFormCenter.add(lblNombreUsuario);
+		pnlFormCenter.add(txtNombreUsuario);
+		pnlFormCenter.add(lblContrasena);
+		pnlFormCenter.add(txtContrasena);
+		pnlFormCenter.add(lblComprobarContrasena);
+		pnlFormCenter.add(txtComprobarContrasena);
+		pnlFormCenter.add(lblRol);
+		pnlFormCenter.add(ComboRol);
+		
+		pnlFormCenter.setBorder(new EmptyBorder(10, 20, 20, 20));
+		
+		pnlCenter.add(pnlFormCenter, BorderLayout.CENTER);
+	}
+	
+	private void initPnlFormSouth(){
+		pnlFormSouth = new JPanel();
+		
+		btnGuardar = new JButton("Guardar");
+		
+		btnGuardar.setBackground(Color.WHITE);
+		
+		pnlFormSouth.add(btnGuardar);
+		
+		pnlFormSouth.setBorder(new EmptyBorder(0, 0, 10, 0));
+		
+		pnlCenter.add(pnlFormSouth, BorderLayout.SOUTH);
+
 	}
 }

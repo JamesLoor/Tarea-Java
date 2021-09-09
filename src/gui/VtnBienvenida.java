@@ -108,18 +108,22 @@ public class VtnBienvenida extends JFrame{
 	private void initPnlFormCenter() {
 		pnlFormCenter = new JPanel();
 		pnlFormCenter.setLayout(new GridLayout(4, 0, 0, 0));
+		
 		lblNombreUsuario = new JLabel("Nombre de usuario");
-		txtNombreUsuario = new JTextField(10);
 		lblContraseña = new JLabel("Contraseña");
+		
+		txtNombreUsuario = new JTextField(10);
 		pwContrasena = new JPasswordField(10);
+		
 		pnlFormCenter.add(lblNombreUsuario);
 		pnlFormCenter.add(txtNombreUsuario);
 		pnlFormCenter.add(lblContraseña);
 		pnlFormCenter.add(pwContrasena);
-		pnlForm.add(pnlFormCenter, BorderLayout.CENTER);
 		
 		pnlFormCenter.setBorder(new EmptyBorder(0, 20, 0, 20));
 		pnlFormCenter.setBackground(Color.WHITE);
+		
+		pnlForm.add(pnlFormCenter, BorderLayout.CENTER);
 	}
 	
 	private void initPnlFormSouth() {
