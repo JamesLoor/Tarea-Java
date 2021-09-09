@@ -4,12 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class VtnCrearUsuario extends JFrame {
+public class VtnCrearUsuario extends JDialog {
 	private JPanel contentPane;
 	private JPanel pnlCenter;
 	private JPanel pnlForm;
@@ -23,16 +24,14 @@ public class VtnCrearUsuario extends JFrame {
 	private JTextField txtRol;
 	private JButton btnGuardar;
 	
-	
 	public VtnCrearUsuario() {
-		super("Crear Usuario");
 		initComponents();
 	}
 	
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setModal(true);
 		setSize(1000, 600);
 		setLocationRelativeTo(null);
 		setResizable(false);

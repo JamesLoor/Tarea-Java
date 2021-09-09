@@ -5,12 +5,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-
-import listeners.FrmUsuarioListener;
-import listeners.LoginFormListener;
+import listeners.MenuListener;
 import modelo.Usuario;
 
 public class VtnSistema extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JMenuBar menuBarra;
 	private JMenu menuCrear;
@@ -26,8 +28,8 @@ public class VtnSistema extends JFrame {
 	}
 	
 	private void addListeners() {
-		menuCrearUsuario.addActionListener(new FrmUsuarioListener(this));
-		menuCrearDocumento.addActionListener(new FrmUsuarioListener(this));
+		menuCrearUsuario.addActionListener(new MenuListener(this));
+		menuCrearDocumento.addActionListener(new MenuListener(this));
 	}
 	
 	private void initComponents() {
@@ -55,5 +57,21 @@ public class VtnSistema extends JFrame {
 		menuBarra.add(menuCrear);
 		
 		setJMenuBar(menuBarra);
+	}
+
+	public JMenuItem getMenuCrearUsuario() {
+		return menuCrearUsuario;
+	}
+
+	public void setMenuCrearUsuario(JMenuItem menuCrearUsuario) {
+		this.menuCrearUsuario = menuCrearUsuario;
+	}
+
+	public JMenuItem getMenuCrearDocumento() {
+		return menuCrearDocumento;
+	}
+
+	public void setMenuCrearDocumento(JMenuItem menuCrearDocumento) {
+		this.menuCrearDocumento = menuCrearDocumento;
 	}
 }
