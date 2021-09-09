@@ -12,6 +12,7 @@ public class VtnSistema extends JFrame {
 	private JPanel contentPane;
 	private JMenuBar menuBarra;
 	private JMenu menuCrear;
+	private JMenu menuCerrarSesion;
 	private JMenuItem menuCrearUsuario;
 	private JMenuItem menuCrearDocumento;
 
@@ -44,6 +45,7 @@ public class VtnSistema extends JFrame {
 		menuBarra = new JMenuBar();
 		
 		menuCrear = new JMenu("Crear");
+		menuCerrarSesion = new JMenu("Cerrar Sesion");
 		menuCrearUsuario = new JMenuItem("Crear Usuario");
 		menuCrearDocumento = new JMenuItem("Crear Documento");
 		
@@ -51,6 +53,7 @@ public class VtnSistema extends JFrame {
 		menuCrear.add(menuCrearDocumento);
 
 		menuBarra.add(menuCrear);
+		menuBarra.add(menuCerrarSesion);
 		
 		setJMenuBar(menuBarra);
 	}
