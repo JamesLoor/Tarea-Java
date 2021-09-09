@@ -9,6 +9,8 @@
  * 
  */
 
+import com.toedter.calendar.JCalendar;
+
 import gui.VtnBienvenida;
 import gui.VtnCrearDocumento;
 import modelo.BaseDatos;
