@@ -3,14 +3,10 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-<<<<<<< HEAD
-=======
-
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
->>>>>>> 8bb0f9a1cf1648856695da598b74d2be52afeafd
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

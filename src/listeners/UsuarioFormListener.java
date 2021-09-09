@@ -45,8 +45,6 @@ public class UsuarioFormListener implements ActionListener {
 			ventanaCrearUsuario.dispose();
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		} finally {
-			limpiarFormulario();
 		}
 	}
 	
@@ -68,11 +66,5 @@ public class UsuarioFormListener implements ActionListener {
 		if(BaseDatos.buscarUsuarioPorNombre(nombreDeUsuario) != null) {
 			throw new RuntimeException("El nombre de usuario ya ah sido escogido, intente con otro nombre");
 		}
-	}
-	
-	private void limpiarFormulario() {
-		txtNombreUsuario.setText("");
-		txtContrasena.setText("");
-		txtComprobarContrasena.setText("");
 	}
 }
