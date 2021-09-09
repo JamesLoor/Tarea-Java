@@ -9,10 +9,6 @@ import listeners.MenuListener;
 import modelo.Usuario;
 
 public class VtnSistema extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JMenuBar menuBarra;
 	private JMenu menuCrear;
@@ -22,7 +18,7 @@ public class VtnSistema extends JFrame {
 	public VtnSistema() {}
 	
 	public VtnSistema(Usuario usuarioLogeado) {
-		super("Sistema");
+		super("Sistema -" + usuarioLogeado.getNombreUsuario());
 		initComponents();
 		addListeners();
 	}

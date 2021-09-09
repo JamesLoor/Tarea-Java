@@ -25,7 +25,7 @@ public abstract class Usuario implements Serializable{
 		this.password = password;
 	}
 	
-	private String generarCodigo() {
+	private static String generarCodigo() {
 		return String.valueOf((int) (100 + Math.random() * 900));
 	}
 

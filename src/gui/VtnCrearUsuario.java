@@ -3,6 +3,9 @@ package gui;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import listeners.LoginFormListener;
+import listeners.UsuarioFormListener;
+
 import java.awt.*;
 
 import javax.swing.JButton;
@@ -28,6 +31,11 @@ public class VtnCrearUsuario extends JDialog {
 	
 	public VtnCrearUsuario() {
 		initComponents();
+		addListeners();
+	}
+	
+	private void addListeners() {
+		btnGuardar.addActionListener(new UsuarioFormListener(txtNombreUsuario, txtContrasena, txtComprobarContrasena, ComboRol, this));
 	}
 	
 	private void initComponents() {

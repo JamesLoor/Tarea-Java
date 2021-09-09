@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.GridLayout;
-
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
@@ -25,6 +24,4 @@ public class VtnCrearDocumento extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
     }
-
-    
 }

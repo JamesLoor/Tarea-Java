@@ -11,12 +11,15 @@
 
 import gui.VtnBienvenida;
 import modelo.BaseDatos;
+import modelo.Serializacion;
+import modelo.Usuario;
 
 public class Principal {
 	public static void main(String[] args) {
 		BaseDatos bd = new BaseDatos();
-		bd.crearAdminPredeterminado();
-		
+		if(BaseDatos.buscarUsuario("ad", "ad") == null) bd.crearAdminPredeterminado();
+		bd.imprimirLstUsuario();
 		new VtnBienvenida().setVisible(true);
+		
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import gui.VtnSistema;
+import modelo.BaseDatos;
 import modelo.Serializacion;
 import modelo.Usuario;
 
@@ -50,21 +51,12 @@ public class LoginFormListener implements ActionListener {
 			throw new RuntimeException("Debe ingresar contraseña");
 		}
 		
-		List<Usuario> lstUsuario = Serializacion.leerListaUsuario();
-		boolean usuarioEncontrado = false;
-		
-		for (Usuario usuario : lstUsuario) {
-			if(nombreDeUsuario.equals(usuario.getNombreUsuario()) && pwContrasena.equals(usuario.getPassword())) {
-				usuarioEncontrado = true;
-				return usuario;
-			}
-		}
-		
-		if(usuarioEncontrado == false) {
+		boolean usuarioEncontrado = (BaseDatos.buscarUsuario(nombreDeUsuario, pwContrasena) != null);
+		if(!usuarioEncontrado) {
 			throw new RuntimeException("El usuario ingresado no esta registrado.");
+		} else {
+			return BaseDatos.buscarUsuario(nombreDeUsuario, pwContrasena);
 		}
-		
-		return null;
 	}
 	
 	private void limpiarFormulario() {

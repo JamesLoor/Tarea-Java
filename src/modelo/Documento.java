@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class Documento {
-	private String codigo;
+	private String codigo; // Se autogenera
 	private String[] palabrasClaves;
-	private String title;
+	private String title; 
 	private String descripcion;
 	private Usuario emisor;
 	private Usuario receptor;
