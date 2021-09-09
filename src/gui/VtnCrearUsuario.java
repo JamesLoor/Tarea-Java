@@ -5,9 +5,18 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
+<<<<<<< HEAD
 import java.awt.*;
+=======
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+>>>>>>> 963f4f574199dd6ea347be72cab7c61bb4e86151
 
-public class VtnCrearUsuario extends JFrame {
+public class VtnCrearUsuario extends JDialog {
 	private JPanel contentPane;
 	private JPanel pnlCenter;
 	private JPanel pnlFormCenter;
@@ -22,7 +31,6 @@ public class VtnCrearUsuario extends JFrame {
 	private JComboBox<String> ComboRol;
 	private JButton btnGuardar;
 	
-	
 	public VtnCrearUsuario() {
 		initComponents();
 	}
@@ -30,8 +38,13 @@ public class VtnCrearUsuario extends JFrame {
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
+<<<<<<< HEAD
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(300, 400);
+=======
+		setModal(true);
+		setSize(1000, 600);
+>>>>>>> 963f4f574199dd6ea347be72cab7c61bb4e86151
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
