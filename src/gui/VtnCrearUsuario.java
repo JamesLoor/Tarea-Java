@@ -47,7 +47,7 @@ public class VtnCrearUsuario extends JDialog {
 		initPnlFormCenter();
 		initPnlFormSouth();
 		
-		contentPane.add(pnlCenter);
+		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
 	private void initPnlFormCenter() {

@@ -10,6 +10,7 @@
  */
 
 import gui.VtnBienvenida;
+import gui.VtnCrearDocumento;
 import modelo.BaseDatos;
 
 public class Principal {
