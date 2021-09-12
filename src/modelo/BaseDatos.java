@@ -5,6 +5,7 @@ import java.util.List;
 
 public class BaseDatos {
 	private static List<Usuario> lstUsuario = Serializacion.leerListaUsuario();
+	private static Usuario usuarioLogeado;
 	
 	public BaseDatos() {}
 	
@@ -17,17 +18,14 @@ public class BaseDatos {
 		switch (tipo) {
 		case "Administrador": {
 			addUsuario(new Administrador(nombreDeUsuario, contrasena));
-			System.out.println("Se creo usuario Administrador");
 			break;
 		}
 		case "Jefe": {
 			addUsuario(new Jefe(nombreDeUsuario, contrasena));
-			System.out.println("Se creo usuario Jefe");
 			break;
 		}
 		case "Empleado": {
 			addUsuario(new Empleado(nombreDeUsuario, contrasena));
-			System.out.println("Se creo usuario Empleado");
 			break;
 		}
 		default:
@@ -37,8 +35,18 @@ public class BaseDatos {
 		Serializacion.guardarListaUsuario(lstUsuario);
 	}
 	
-	public void borrarUsuario(String codigoUsuario) {
+	public static boolean eliminarUsuario(String nombreUsuario) {
+		if(lstUsuario != null) {
+			for (Usuario usuario : lstUsuario) {
+				if(nombreUsuario.equals(usuario.getNombreUsuario())) {
+					lstUsuario.remove(usuario);
+					Serializacion.guardarListaUsuario(lstUsuario);
+					return true;
+				}
+			}
+		}
 		
+		return false;
 	}
 	
 	public static Usuario buscarUsuario(String nombreDeUsuario, String contrasena) {
@@ -66,15 +74,31 @@ public class BaseDatos {
 	}
 	
 	public void crearAdminPredeterminado() {
-		addUsuario(new Administrador("ad", "ad"));
+		addUsuario(new Administrador("administrador", "admin"));
 		Serializacion.guardarListaUsuario(lstUsuario);
 	}
 	
-	public void imprimirLstUsuario() {
+	public static void imprimirLstUsuario() {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
 				System.out.println(usuario);
 			}
 		}
+	}
+
+	public static List<Usuario> getLstUsuario() {
+		return lstUsuario;
+	}
+
+	public static void setLstUsuario(List<Usuario> lstUsuario) {
+		BaseDatos.lstUsuario = lstUsuario;
+	}
+
+	public static Usuario getUsuarioLogeado() {
+		return usuarioLogeado;
+	}
+
+	public static void setUsuarioLogeado(Usuario usuarioLogeado) {
+		BaseDatos.usuarioLogeado = usuarioLogeado;
 	}
 }

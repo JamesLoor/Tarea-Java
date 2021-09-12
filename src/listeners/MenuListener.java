@@ -5,33 +5,49 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import gui.VtnBienvenida;
 import gui.VtnCrearDocumento;
 import gui.VtnCrearUsuario;
+import gui.VtnEliminarDocumento;
+import gui.VtnEliminarUsuario;
 import gui.VtnSistema;
 
 public class MenuListener implements ActionListener {
-	private VtnSistema vtn;
+	private VtnSistema vtnSistema;
 	
 	public MenuListener() {}
 	
 	public MenuListener(VtnSistema vtn) {
-		this.vtn = vtn;
+		this.vtnSistema = vtn;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		
-		if(obj == vtn.getMenuCrearDocumento()) {
-			VtnCrearDocumento vtnNuevoDocumento = new VtnCrearDocumento();
-			vtnNuevoDocumento.setVisible(true);
-			vtnNuevoDocumento.setModal(true);
+		if(obj == vtnSistema.getMenuCrearDocumento()) {
+			VtnCrearDocumento ventana = new VtnCrearDocumento();
+			ventana.setVisible(true);
 		}
 		
-		if(obj == vtn.getMenuCrearUsuario()) {
-			VtnCrearUsuario vtnNuevoUsuario = new VtnCrearUsuario();
-			vtnNuevoUsuario.setVisible(true);
-			vtnNuevoUsuario.setModal(true);
+		if(obj == vtnSistema.getMenuCrearUsuario()) {
+			VtnCrearUsuario ventana = new VtnCrearUsuario(vtnSistema);
+			ventana.setVisible(true);
+		}
+		
+		if(obj == vtnSistema.getMenuUsuarioCerrarSesion()) {
+			vtnSistema.dispose();
+			new VtnBienvenida().setVisible(true);
+		}
+		
+		if(obj == vtnSistema.getMenuEliminarUsuario()) {
+			VtnEliminarUsuario ventana = new VtnEliminarUsuario(vtnSistema);
+			ventana.setVisible(true);
+		}
+		
+		if(obj == vtnSistema.getMenuEliminarDocumento()) {
+			VtnEliminarDocumento ventana = new VtnEliminarDocumento();
+			ventana.setVisible(true);
 		}
 	}
 }

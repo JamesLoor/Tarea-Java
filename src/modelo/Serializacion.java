@@ -11,7 +11,7 @@ public class Serializacion {
 	
 	public static void guardarListaUsuario(List<Usuario> lstUsuario) {
 		try {
-			ObjectOutputStream objSalida = new ObjectOutputStream(new FileOutputStream("src/usuarios.txt"));
+			ObjectOutputStream objSalida = new ObjectOutputStream(new FileOutputStream("src/usuarios.dat"));
 			objSalida.writeObject(lstUsuario);
 			objSalida.close();
 		} catch(IOException e) {e.printStackTrace();}
@@ -20,7 +20,7 @@ public class Serializacion {
 	public static List<Usuario> leerListaUsuario() {
 		List<Usuario> lstUsuario = null;
 		try {
-			ObjectInputStream objEntrada = new ObjectInputStream(new FileInputStream("src/usuarios.txt"));
+			ObjectInputStream objEntrada = new ObjectInputStream(new FileInputStream("src/usuarios.dat"));
 			lstUsuario = (List<Usuario>) objEntrada.readObject();
 			objEntrada.close();
 		} catch (IOException e){e.printStackTrace();}

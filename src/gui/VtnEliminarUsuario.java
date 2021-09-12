@@ -1,46 +1,37 @@
 package gui;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
-import listeners.LoginFormListener;
-import listeners.UsuarioFormListener;
-
-import java.awt.*;
-
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import listeners.EliminarUsuarioFormListener;
 
-public class VtnCrearUsuario extends JDialog {
+public class VtnEliminarUsuario extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel pnlCenter;
 	private JPanel pnlFormCenter;
 	private JPanel pnlFormSouth;
+	private JLabel lblCodigo;
 	private JLabel lblNombreUsuario;
-	private JLabel lblContrasena;
-	private JLabel lblComprobarContrasena;
-	private JLabel lblRol;
+	private JTextField txtCodigo;
 	private JTextField txtNombreUsuario;
-	private JTextField txtContrasena;
-	private JTextField txtComprobarContrasena;
-	private JComboBox<String> ComboRol;
-	private JButton btnGuardar;
+	private JButton btnEliminar;
 	private VtnSistema vtnSistema;
 	
-	public VtnCrearUsuario() {}
-	
-	public VtnCrearUsuario(VtnSistema vtnSistema) {
+	public VtnEliminarUsuario(VtnSistema vtnSistema) {
 		this.vtnSistema = vtnSistema;
 		initComponents();
 		addListeners();
 	}
 	
 	private void addListeners() {
-		btnGuardar.addActionListener(new UsuarioFormListener(txtNombreUsuario, txtContrasena, txtComprobarContrasena, ComboRol, this, vtnSistema));
+		btnEliminar.addActionListener(new EliminarUsuarioFormListener(txtCodigo, txtNombreUsuario, this, vtnSistema));
 	}
 	
 	private void initComponents() {
@@ -64,45 +55,32 @@ public class VtnCrearUsuario extends JDialog {
 	}
 	
 	private void initPnlFormCenter() {
-		pnlFormCenter = new JPanel(new GridLayout(8, 0));
+		pnlFormCenter = new JPanel(new GridLayout(4, 1));
 		
+		lblCodigo = new JLabel("Codigo");
 		lblNombreUsuario = new JLabel("Nombre de usuario");
-		lblContrasena = new JLabel("Contraseña");
-		lblComprobarContrasena = new JLabel("Contraseña");
-		lblRol = new JLabel("Rol");
 		
+		txtCodigo = new JTextField(25);
 		txtNombreUsuario = new JTextField(25);
-		txtContrasena = new JTextField(25);
-		txtComprobarContrasena = new JTextField(25);
 		
-		ComboRol = new JComboBox<String>();
-		ComboRol.setModel(new DefaultComboBoxModel<>(new String[]{"Administrador", "Jefe", "Empleado"}));
-		
-		
+		pnlFormCenter.add(lblCodigo);
+		pnlFormCenter.add(txtCodigo);
 		pnlFormCenter.add(lblNombreUsuario);
 		pnlFormCenter.add(txtNombreUsuario);
-		pnlFormCenter.add(lblContrasena);
-		pnlFormCenter.add(txtContrasena);
-		pnlFormCenter.add(lblComprobarContrasena);
-		pnlFormCenter.add(txtComprobarContrasena);
-		pnlFormCenter.add(lblRol);
-		pnlFormCenter.add(ComboRol);
 		
 		pnlFormCenter.setBorder(new EmptyBorder(10, 20, 20, 20));
-		
 		pnlCenter.add(pnlFormCenter, BorderLayout.CENTER);
 	}
 	
-	private void initPnlFormSouth(){
+	private void initPnlFormSouth() {
 		pnlFormSouth = new JPanel();
 		
-		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBackground(Color.WHITE);
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBackground(Color.WHITE);
 		
-		pnlFormSouth.add(btnGuardar);
+		pnlFormSouth.add(btnEliminar);
 		pnlFormSouth.setBorder(new EmptyBorder(0, 0, 10, 0));
 		
 		pnlCenter.add(pnlFormSouth, BorderLayout.SOUTH);
-
 	}
 }

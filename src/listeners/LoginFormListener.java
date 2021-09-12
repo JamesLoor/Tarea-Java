@@ -31,8 +31,8 @@ public class LoginFormListener implements ActionListener {
 			String nombreDeUsuario = txtNombreUsuario.getText();
 			String pwContraseña = pwContrasena.getText();
 			Usuario usuario = validarCredencial(nombreDeUsuario, pwContraseña);
-			
-			VtnSistema sistema = new VtnSistema(usuario);
+			BaseDatos.setUsuarioLogeado(usuario);
+			VtnSistema sistema = new VtnSistema();
 			sistema.setVisible(true);
 			ventanaBienvenida.dispose();
 		} catch (Exception error) {

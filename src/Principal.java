@@ -9,10 +9,9 @@
  * 
  */
 
-import com.toedter.calendar.JCalendar;
-
 import gui.VtnBienvenida;
 import gui.VtnCrearDocumento;
+import gui.VtnEliminarUsuario;
 import modelo.BaseDatos;
 import modelo.Serializacion;
 import modelo.Usuario;
@@ -20,9 +19,7 @@ import modelo.Usuario;
 public class Principal {
 	public static void main(String[] args) {
 		BaseDatos bd = new BaseDatos();
-		if(BaseDatos.buscarUsuario("ad", "ad") == null) bd.crearAdminPredeterminado();
-		bd.imprimirLstUsuario();
+		if(BaseDatos.buscarUsuario("administrador", "admin") == null) bd.crearAdminPredeterminado();
 		new VtnBienvenida().setVisible(true);
-		
 	}
 }

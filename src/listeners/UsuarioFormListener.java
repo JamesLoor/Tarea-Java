@@ -19,16 +19,18 @@ public class UsuarioFormListener implements ActionListener {
 	private JTextField txtComprobarContrasena;
 	private JComboBox<String> ComboRol;
 	private JDialog ventanaCrearUsuario;
+	private VtnSistema vtnSistema;
 	
 	public UsuarioFormListener() {}
 	
 	public UsuarioFormListener(JTextField txtNombreUsuario, JTextField txtContrasena, 
-			JTextField txtComprobarContrasena, JComboBox<String> ComboRol, JDialog ventanaCrearUsuario) {
+			JTextField txtComprobarContrasena, JComboBox<String> ComboRol, JDialog ventanaCrearUsuario, VtnSistema vtnSistema) {
 		this.txtNombreUsuario = txtNombreUsuario;
 		this.txtContrasena = txtContrasena;
 		this.txtComprobarContrasena = txtComprobarContrasena;
 		this.ComboRol = ComboRol;
 		this.ventanaCrearUsuario = ventanaCrearUsuario;
+		this.vtnSistema = vtnSistema;
 	}
 	
 	@Override
@@ -42,6 +44,7 @@ public class UsuarioFormListener implements ActionListener {
 			validarFormUsuario(nombreDeUsuario, contrasena, comprobarContrasena, rol);
 			
 			BaseDatos.crearUsuario(rol, nombreDeUsuario, contrasena);
+			vtnSistema.getTablaUsuario().cargarTabla();
 			ventanaCrearUsuario.dispose();
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
