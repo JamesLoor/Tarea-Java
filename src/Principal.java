@@ -18,8 +18,7 @@ import modelo.Usuario;
 
 public class Principal {
 	public static void main(String[] args) {
-		BaseDatos bd = new BaseDatos();
-		if(BaseDatos.buscarUsuario("administrador", "admin") == null) bd.crearAdminPredeterminado();
+		if(BaseDatos.buscarUsuario("administrador", "admin") == null) BaseDatos.crearAdminPredeterminado();
 		new VtnBienvenida().setVisible(true);
 	}
 }

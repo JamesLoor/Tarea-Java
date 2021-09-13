@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class Documento {
-	private String codigo; // Se autogenera
+	private String codigo = "001-001";
 	private String[] palabrasClaves;
-	private String title; 
+	private String titulo; 
 	private String descripcion;
 	private Usuario emisor;
 	private Usuario receptor;
@@ -17,12 +17,12 @@ public class Documento {
 	
 	public Documento() {}
 		
-	public Documento(String codigo, String[] palabrasClaves, String title, String descripcion, Usuario emisor,
+	public Documento(String codigo, String[] palabrasClaves, String titulo, String descripcion, Usuario emisor,
 			Usuario receptor, Date fechaCreacion, Date fechaCaducidad, EstadoDocumento estado, TipoDocumento tipo) {
 		super();
 		this.codigo = codigo;
 		this.palabrasClaves = palabrasClaves;
-		this.title = title;
+		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.emisor = emisor;
 		this.receptor = receptor;
@@ -42,8 +42,8 @@ public class Documento {
 
 	@Override
 	public String toString() {
-		return "Documento [codigo=" + codigo + ", palabrasClaves=" + Arrays.toString(palabrasClaves) + ", title="
-				+ title + ", descripcion=" + descripcion + ", emisor=" + emisor + ", receptor=" + receptor
+		return "Documento [codigo=" + codigo + ", palabrasClaves=" + Arrays.toString(palabrasClaves) + ", titulo="
+				+ titulo + ", descripcion=" + descripcion + ", emisor=" + emisor + ", receptor=" + receptor
 				+ ", fechaCreacion=" + fechaCreacion + ", fechaCaducidad=" + fechaCaducidad + ", estado=" + estado
 				+ ", tipo=" + tipo + "]";
 	}
@@ -64,12 +64,12 @@ public class Documento {
 		this.palabrasClaves = palabrasClaves;
 	}
 
-	public String getTitle() {
-		return title;
+	public String gettitulo() {
+		return titulo;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void settitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public String getDescripcion() {

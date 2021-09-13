@@ -5,13 +5,24 @@ import java.util.List;
 
 public class BaseDatos {
 	private static List<Usuario> lstUsuario = Serializacion.leerListaUsuario();
+	private static List<Documento> lstDocumento = Serializacion.leerListaDocumento();
 	private static Usuario usuarioLogeado;
 	
 	public BaseDatos() {}
 	
+	public static void addDocumento(Documento d) {
+		if(lstDocumento == null) lstDocumento = new ArrayList<Documento>();
+		lstDocumento.add(d);
+	}
+	
 	public static void addUsuario(Usuario u) {
 		if(lstUsuario == null) lstUsuario = new ArrayList<Usuario>();
 		lstUsuario.add(u);
+	}
+	
+	public static void crearDocumento() {
+		addDocumento(new Documento());
+		Serializacion.guardarListaDocumento(lstDocumento);
 	}
 	
 	public static void crearUsuario(String tipo, String nombreDeUsuario, String contrasena) {
@@ -29,7 +40,7 @@ public class BaseDatos {
 			break;
 		}
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + tipo);
+			throw new IllegalArgumentException("Tipo de usuario inesperado: " + tipo);
 		}
 		
 		Serializacion.guardarListaUsuario(lstUsuario);
@@ -73,7 +84,7 @@ public class BaseDatos {
 		return null;
 	}
 	
-	public void crearAdminPredeterminado() {
+	public static void crearAdminPredeterminado() {
 		addUsuario(new Administrador("administrador", "admin"));
 		Serializacion.guardarListaUsuario(lstUsuario);
 	}
@@ -84,6 +95,17 @@ public class BaseDatos {
 				System.out.println(usuario);
 			}
 		}
+	}
+	
+	
+	
+
+	public static List<Documento> getLstDocumento() {
+		return lstDocumento;
+	}
+
+	public static void setLstDocumento(List<Documento> lstDocumento) {
+		BaseDatos.lstDocumento = lstDocumento;
 	}
 
 	public static List<Usuario> getLstUsuario() {

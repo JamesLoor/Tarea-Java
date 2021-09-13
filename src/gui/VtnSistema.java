@@ -14,25 +14,16 @@ import listeners.MenuListener;
 import modelo.BaseDatos;
 
 public class VtnSistema extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel pnlNorth;
 	private JLabel lblTablaUsuarios;
+	private JLabel lblTablaDocumentos;
 	private JPanel pnlCenter;
-	private JMenuBar menuBarra;
-	private JMenu menuUsuario;
-	private JMenu menuCrear;
-	private JMenu menuEliminar;
-	private JMenuItem menuUsuarioCerrarSesion;
-	private JMenuItem menuCrearUsuario;
-	private JMenuItem menuCrearDocumento;
-	private JMenuItem menuEliminarUsuario;
-	private JMenuItem menuEliminarDocumento;
-	private String rolLogeado;
+	private MenuBarra menuBarra;
 	private TablaUsuario tablaUsuario;
+	private TablaDocumento tablaDocumento;
+	private String rolLogeado;
 	
 	public VtnSistema() {
 		super("Sistema -" + BaseDatos.getUsuarioLogeado().getNombreUsuario());
@@ -49,102 +40,38 @@ public class VtnSistema extends JFrame {
 		setResizable(false);
 		dispose();
 		
+		menuBarra = new MenuBarra(this);
+		setJMenuBar(menuBarra);
+		
 		switch (rolLogeado) {
 			case "Administrador":
-				addMenuAdministrador();
-				addListenersAdministrador();
+				initTablaDocumento();
 				initTablaUsuario();
 				break;
 			case "Jefe":
-				addMenuJefe();
-				addListenersJefe();
 				break;
 			case "Empleado":
-				addMenuEmpleado();
-				addListenersEmpleado();
 				break;
 			default:
 				break;
-			}
+		}
 	}
 	
-	private void addListenersAdministrador() {
-		menuUsuarioCerrarSesion.addActionListener(new MenuListener(this));
-		menuCrearUsuario.addActionListener(new MenuListener(this));
-		menuCrearDocumento.addActionListener(new MenuListener(this));
-		menuEliminarUsuario.addActionListener(new MenuListener(this));
-		menuEliminarDocumento.addActionListener(new MenuListener(this));
-	}
-	
-	private void addMenuAdministrador() {
-		menuBarra = new JMenuBar();
+	private void initTablaDocumento() {
+		pnlNorth = new JPanel(new BorderLayout());
+		lblTablaDocumentos = new JLabel("Lista de documentos");
+		lblTablaDocumentos.setFont(new Font("Arial", Font.BOLD, 24));
+		pnlNorth.setBorder(new EmptyBorder(20, 25, 0, 0));
+		pnlNorth.add(lblTablaDocumentos, BorderLayout.WEST);
 		
-		menuUsuario = new JMenu("Usuario");
-		menuUsuarioCerrarSesion = new JMenuItem("Cerrar Sesion");
-		menuUsuario.add(menuUsuarioCerrarSesion);
+		pnlCenter = new JPanel(new BorderLayout());
 		
-		menuCrear = new JMenu("Crear");
-		menuCrearUsuario = new JMenuItem("Crear Usuario");
-		menuCrearDocumento = new JMenuItem("Crear Documento");
-		menuCrear.add(menuCrearUsuario);
-		menuCrear.add(menuCrearDocumento);
-		
-		menuEliminar = new JMenu("Eliminar");
-		menuEliminarUsuario = new JMenuItem("Eliminar Usuario");
-		menuEliminarDocumento = new JMenuItem("Eliminar Documento");
-		menuEliminar.add(menuEliminarUsuario);
-		menuEliminar.add(menuEliminarDocumento);
-
-		menuBarra.add(menuUsuario);
-		menuBarra.add(menuCrear);
-		menuBarra.add(menuEliminar);
-		
-		setJMenuBar(menuBarra);
-	}
-	
-	private void addListenersJefe() {
-		menuUsuarioCerrarSesion.addActionListener(new MenuListener(this));
-		menuCrearDocumento.addActionListener(new MenuListener(this));
-	}
-	
-	private void addMenuJefe() {
-		menuBarra = new JMenuBar();
-		
-		menuUsuario = new JMenu("Usuario");
-		menuUsuarioCerrarSesion = new JMenuItem("Cerrar Sesion");
-		menuUsuario.add(menuUsuarioCerrarSesion);
-		
-		menuCrear = new JMenu("Crear");
-		menuCrearDocumento = new JMenuItem("Crear Documento");
-		menuCrear.add(menuCrearDocumento);
-
-		menuBarra.add(menuUsuario);
-		menuBarra.add(menuCrear);
-		
-		
-		setJMenuBar(menuBarra);
-	}
-	
-	private void addListenersEmpleado() {
-		menuUsuarioCerrarSesion.addActionListener(new MenuListener(this));
-		menuCrearDocumento.addActionListener(new MenuListener(this));
-	}
-	
-	private void addMenuEmpleado() {
-		menuBarra = new JMenuBar();
-		
-		menuUsuario = new JMenu("Usuario");
-		menuUsuarioCerrarSesion = new JMenuItem("Cerrar Sesion");
-		menuUsuario.add(menuUsuarioCerrarSesion);
-		
-		menuCrear = new JMenu("Crear");
-		menuCrearDocumento = new JMenuItem("Crear Documento");
-		menuCrear.add(menuCrearDocumento);
-
-		menuBarra.add(menuUsuario);
-		menuBarra.add(menuCrear);
-		
-		setJMenuBar(menuBarra);
+		tablaDocumento = new TablaDocumento();
+		JScrollPane scroll = new JScrollPane(tablaDocumento);
+		pnlCenter.setBorder(new EmptyBorder(10, 25, 25, 25));
+		pnlCenter.add(scroll);
+		contentPane.add(pnlNorth, BorderLayout.NORTH);
+		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
 	private void initTablaUsuario() {
@@ -164,52 +91,64 @@ public class VtnSistema extends JFrame {
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
+	public void cleanPnlNorth() {
+		pnlNorth.removeAll();
+		pnlNorth.revalidate();
+		pnlNorth.validate();
+	}
 	
+	public void cleanPnlCenter() {
+		pnlCenter.removeAll();
+		pnlCenter.revalidate();
+		pnlCenter.validate();
+	}
+	
+	
+	public JLabel getLblTablaUsuarios() {
+		return lblTablaUsuarios;
+	}
+
+	public void setLblTablaUsuarios(JLabel lblTablaUsuarios) {
+		this.lblTablaUsuarios = lblTablaUsuarios;
+	}
+
+	public JLabel getLblTablaDocumentos() {
+		return lblTablaDocumentos;
+	}
+
+	public void setLblTablaDocumentos(JLabel lblTablaDocumentos) {
+		this.lblTablaDocumentos = lblTablaDocumentos;
+	}
+
+	public JPanel getPnlNorth() {
+		return pnlNorth;
+	}
+
+	public void setPnlNorth(JPanel pnlNorth) {
+		this.pnlNorth = pnlNorth;
+	}
+
+	public JPanel getPnlCenter() {
+		return pnlCenter;
+	}
+
+	public void setPnlCenter(JPanel pnlCenter) {
+		this.pnlCenter = pnlCenter;
+	}
+	
+	public TablaDocumento getTablaDocumento() {
+		return tablaDocumento;
+	}
+
+	public void setTablaDocumento(TablaDocumento tablaDocumento) {
+		this.tablaDocumento = tablaDocumento;
+	}
+
 	public TablaUsuario getTablaUsuario() {
 		return tablaUsuario;
 	}
 
 	public void setTablaUsuario(TablaUsuario tablaUsuario) {
 		this.tablaUsuario = tablaUsuario;
-	}
-
-	public JMenuItem getMenuCrearUsuario() {
-		return menuCrearUsuario;
-	}
-
-	public void setMenuCrearUsuario(JMenuItem menuCrearUsuario) {
-		this.menuCrearUsuario = menuCrearUsuario;
-	}
-
-	public JMenuItem getMenuCrearDocumento() {
-		return menuCrearDocumento;
-	}
-
-	public void setMenuCrearDocumento(JMenuItem menuCrearDocumento) {
-		this.menuCrearDocumento = menuCrearDocumento;
-	}
-
-	public JMenuItem getMenuUsuarioCerrarSesion() {
-		return menuUsuarioCerrarSesion;
-	}
-
-	public void setMenuUsuarioCerrarSesion(JMenuItem menuUsuarioCerrarSesion) {
-		this.menuUsuarioCerrarSesion = menuUsuarioCerrarSesion;
-	}
-
-	public JMenuItem getMenuEliminarUsuario() {
-		return menuEliminarUsuario;
-	}
-
-	public void setMenuEliminarUsuario(JMenuItem menuEliminarUsuario) {
-		this.menuEliminarUsuario = menuEliminarUsuario;
-	}
-
-	public JMenuItem getMenuEliminarDocumento() {
-		return menuEliminarDocumento;
-	}
-
-	public void setMenuEliminarDocumento(JMenuItem menuEliminarDocumento) {
-		this.menuEliminarDocumento = menuEliminarDocumento;
 	}
 }

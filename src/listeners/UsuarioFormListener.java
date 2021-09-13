@@ -45,6 +45,7 @@ public class UsuarioFormListener implements ActionListener {
 			
 			BaseDatos.crearUsuario(rol, nombreDeUsuario, contrasena);
 			vtnSistema.getTablaUsuario().cargarTabla();
+			vtnSistema.getTablaDocumento().cargarTabla();
 			ventanaCrearUsuario.dispose();
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

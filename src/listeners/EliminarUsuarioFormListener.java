@@ -36,6 +36,8 @@ public class EliminarUsuarioFormListener implements ActionListener {
 			
 			BaseDatos.eliminarUsuario(nombreDeUsuario);
 			vtnSistema.getTablaUsuario().cargarTabla();
+			vtnSistema.getTablaDocumento().cargarTabla();
+			System.out.println("Hey");
 			ventanaEliminarUsuario.dispose();
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

@@ -1,15 +1,13 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.util.List;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import modelo.Serializacion;
 import modelo.Usuario;
 
 public class TablaUsuario extends JTable {
+	private static final long serialVersionUID = 1L;
 	private String cabecera[] = {"ID", "Nombre", "Contraseña", "Rol"};
 	private Object data[][];
 	private DefaultTableModel modelo;
