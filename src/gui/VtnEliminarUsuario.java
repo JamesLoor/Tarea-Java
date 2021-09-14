@@ -37,10 +37,11 @@ public class VtnEliminarUsuario extends JDialog {
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
-		setSize(300, 400);
+		setSize(300, 300);
 		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setTitle("Eliminar Usuario");
 		
 		initPnlCenter();
 	}
