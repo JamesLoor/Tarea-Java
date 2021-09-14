@@ -54,7 +54,7 @@ public class MenuListener implements ActionListener {
 		}
 		
 		if(obj == menuBarra.getMenuEliminarDocumento()) {
-			VtnEliminarDocumento ventana = new VtnEliminarDocumento();
+			VtnEliminarDocumento ventana = new VtnEliminarDocumento(vtnSistema);
 			ventana.setVisible(true);
 		}
 		

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import listeners.EliminarUsuarioFormListener;
+import listeners.EliminarDocumentoFormListener;
 
 public class VtnEliminarDocumento extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -24,14 +24,16 @@ public class VtnEliminarDocumento extends JDialog {
 	private JTextField txtCodigo;
 	private JTextField txtTitulo;
 	private JButton btnEliminar;
+	private VtnSistema vtnSistema;
 	
-	public VtnEliminarDocumento() {
+	public VtnEliminarDocumento(VtnSistema vtnSistema) {
+		this.vtnSistema = vtnSistema;
 		initComponents();
 		addListeners();
 	}
 	
 	private void addListeners() {
-//		btnEliminar.addActionListener(new EliminarUsuarioFormListener(txtCodigo, txtNombreUsuario, this, vtnSistema));
+		btnEliminar.addActionListener(new EliminarDocumentoFormListener(txtCodigo, txtTitulo, this, vtnSistema));
 	}
 	
 	private void initComponents() {
