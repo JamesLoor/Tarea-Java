@@ -15,8 +15,11 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 public class VtnCrearDocumento extends JDialog {
     private JPanel contentPane;
+    private VtnSistema vtnSistema;
     private JPanel pnlCenter;
     private JPanel pnlFormCenter;
     private JPanel pnlFormSouth;
@@ -29,7 +32,8 @@ public class VtnCrearDocumento extends JDialog {
     private JTextField txtPalabrasClaves;
     private JTextField txtTitulo;
     private JTextField txtReceptor;
-    private JTextField txtFechaCaducidad;
+    
+    private JDateChooser fechaCaducidad;
     private JTextArea txtAreaDescripcion;
     private JComboBox<String> ComboTipoDocumento;
     private JButton btnGuardarDocumento;
@@ -38,9 +42,15 @@ public class VtnCrearDocumento extends JDialog {
         initComponents();
         addListeners();
     }
+    
+    public VtnCrearDocumento(VtnSistema vtnSistema) {
+    	this.vtnSistema = vtnSistema;
+        initComponents();
+        addListeners();
+    }
 
     private void addListeners() {
-        
+    
     }
     
     private void initComponents() {
@@ -76,7 +86,9 @@ public class VtnCrearDocumento extends JDialog {
         txtPalabrasClaves = new JTextField(20);
         txtTitulo = new JTextField(20);
         txtReceptor = new JTextField(20);
-        txtFechaCaducidad = new JTextField(20);
+        
+        fechaCaducidad = new JDateChooser();
+        fechaCaducidad.setDateFormatString("dd/MM/yyyy");
         
         txtAreaDescripcion = new JTextArea();
         
@@ -93,7 +105,7 @@ public class VtnCrearDocumento extends JDialog {
 		pnlFormCenter.add(txtReceptor);
 		pnlFormCenter.add(lblFechaCaducidad);
 		pnlFormCenter.add(lblTipoDocumento);
-		pnlFormCenter.add(txtFechaCaducidad);
+		pnlFormCenter.add(fechaCaducidad);
 		pnlFormCenter.add(ComboTipoDocumento);
 		
 		Border border = BorderFactory.createLineBorder(new Color(135, 140, 150));

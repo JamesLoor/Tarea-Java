@@ -2,12 +2,8 @@ package gui;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-import listeners.LoginFormListener;
 import listeners.UsuarioFormListener;
-
 import java.awt.*;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;

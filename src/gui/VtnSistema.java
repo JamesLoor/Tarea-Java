@@ -4,13 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import listeners.MenuListener;
 import modelo.BaseDatos;
 
 public class VtnSistema extends JFrame {
