@@ -11,6 +11,7 @@
 
 import gui.VtnBienvenida;
 import gui.VtnCrearDocumento;
+import gui.VtnDocumento;
 import gui.VtnEliminarUsuario;
 import modelo.BaseDatos;
 import modelo.Serializacion;
@@ -19,7 +20,7 @@ import modelo.Usuario;
 public class Principal {
 	public static void main(String[] args) {
 		if(BaseDatos.buscarUsuario("administrador", "admin") == null) BaseDatos.crearAdminPredeterminado();
-		new VtnBienvenida().setVisible(true);
-		
+//		new VtnBienvenida().setVisible(true);
+		new VtnDocumento().setVisible(true);
 	}
 }
