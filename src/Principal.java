@@ -10,11 +10,8 @@
  */
 
 import gui.VtnBienvenida;
-import gui.VtnCrearDocumento;
-import gui.VtnEliminarUsuario;
 import modelo.BaseDatos;
-import modelo.Serializacion;
-import modelo.Usuario;
+import gui.VtnCrearDocumento;
 
 public class Principal {
 	public static void main(String[] args) {

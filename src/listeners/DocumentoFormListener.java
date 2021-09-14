@@ -22,6 +22,7 @@ public class DocumentoFormListener implements ActionListener {
 	private VtnCrearDocumento ventanaCrearDocumento;
 	private JTextField txtTitulo;
 	private JTextArea txtAreaDescripcion;
+	private String emisor;
 	private JTextField txtReceptor;
 	private JDateChooser fechaCaducidad;
 	private JTextField txtPalabrasClaves;
@@ -52,7 +53,7 @@ public class DocumentoFormListener implements ActionListener {
 		try {
 			String titulo = txtTitulo.getText();
 			String descripcion = txtAreaDescripcion.getText();
-			String emisor =  BaseDatos.getUsuarioLogeado().getNombreUsuario();
+			emisor =  BaseDatos.getUsuarioLogeado().getNombreUsuario();
 			String receptor = txtReceptor.getText();
 			
 			DateTimeFormatter fechaFormato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -65,8 +66,6 @@ public class DocumentoFormListener implements ActionListener {
 			} else {
 				fechaCaducidadString = "";
 			}
-			
-			
 			
 			String palabrasClaves = txtPalabrasClaves.getText();
 			estado = EstadoDocumento.ENVIADO;
@@ -111,24 +110,21 @@ public class DocumentoFormListener implements ActionListener {
 			throw new RuntimeException("Debe ingresar palabras claves del documento");
 		}
 		
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-		System.out.println(fechaCreacion);
-		System.out.println(fechaCaducidad);
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		
 		Date fechaCreacionDate = formato.parse(fechaCreacion);
 		Date fechaCaducidadDate = formato.parse(fechaCaducidad);
-		System.out.println("=========");
 		
-		System.out.println(fechaCreacionDate);
-		System.out.println(fechaCaducidadDate);
-		
-		if(fechaCaducidadDate.before(fechaCreacionDate)){
-			new RuntimeException("Fecha de caducidad es menor a la fecha de creacion, ingrese de nuevo la fecha.");
+		if(fechaCreacionDate.after(fechaCaducidadDate)){
+			throw new RuntimeException("Fecha de caducidad es menor a la fecha de creacion, ingrese de nuevo la fecha.");
         } 
 		
-		if(BaseDatos.buscarUsuarioPorNombre(receptor) == null) {
-			 new RuntimeException("El usuario a receptar el documento no existe, ingrese de nuevo el receptor.");
+		if(emisor.equals(receptor)) {
+			throw new RuntimeException("No se puede enviar un documento a usted mismo, ingrese otro receptor");
 		}
-
+		
+		if(BaseDatos.buscarUsuarioPorNombre(receptor) == null) {
+			throw new RuntimeException("El usuario a receptar el documento no existe, ingrese de nuevo el receptor.");
+		}
 	}
 }

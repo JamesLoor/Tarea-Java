@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
@@ -19,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import listeners.DocumentoFormListener;
+import listeners.SubirDocumentoListener;
 
 public class VtnCrearDocumento extends JDialog {
     private JPanel contentPane;
@@ -32,6 +34,9 @@ public class VtnCrearDocumento extends JDialog {
     private JLabel lblReceptor;
     private JLabel lblFechaCaducidad;
     private JLabel lblTipoDocumento;
+    private JLabel lblUbicacionArchivo;
+    private JLabel lblSubirDocumento;
+    private JTextField txtUbicacionArchivo;
     private JTextField txtPalabrasClaves;
     private JTextField txtTitulo;
     private JTextField txtReceptor;
@@ -54,6 +59,7 @@ public class VtnCrearDocumento extends JDialog {
 
     private void addListeners() {
     	btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtReceptor, fechaCaducidad, txtPalabrasClaves, comboTipoDocumento, this, vtnSistema));
+    	btnAdjuntarDocumento.addActionListener(new SubirDocumentoListener(txtUbicacionArchivo));
     }
     
     private void initComponents() {
@@ -77,7 +83,7 @@ public class VtnCrearDocumento extends JDialog {
     }
     
     public void initPnlFormCenter() {
-    	pnlFormCenter = new JPanel(new GridLayout(6, 2, 40, 0));
+    	pnlFormCenter = new JPanel(new GridLayout(8, 2, 40, 0));
         
         lblPalabrasClaves = new JLabel("Palabras claves (Palabras separadas por coma)");
         lblTitulo = new JLabel("Titulo");
@@ -85,6 +91,11 @@ public class VtnCrearDocumento extends JDialog {
         lblReceptor = new JLabel("Receptor");
         lblFechaCaducidad = new JLabel("Fecha de caducidad");
         lblTipoDocumento = new JLabel("Tipo de documento");
+        lblUbicacionArchivo = new JLabel("Ruta del documento");
+        lblSubirDocumento = new JLabel("Subir documento");
+        
+        txtUbicacionArchivo = new JTextField(20);
+        txtUbicacionArchivo.setEditable(false);
         
         txtPalabrasClaves = new JTextField(20);
         txtTitulo = new JTextField(20);
@@ -94,9 +105,15 @@ public class VtnCrearDocumento extends JDialog {
         fechaCaducidad.setDateFormatString("dd/MM/yyyy");
         
         txtAreaDescripcion = new JTextArea();
+        txtAreaDescripcion.setLineWrap(true);
+        txtAreaDescripcion.setWrapStyleWord(true);
+        JScrollPane scrollTextArea = new JScrollPane(txtAreaDescripcion);
         
         comboTipoDocumento = new JComboBox<String>();
 		comboTipoDocumento.setModel(new DefaultComboBoxModel<>(new String[]{"Oficio", "Informativo"}));
+		
+		btnAdjuntarDocumento = new JButton("Adjuntar Documento");
+		btnAdjuntarDocumento.setBackground(Color.WHITE);
 		
 		pnlFormCenter.add(lblPalabrasClaves);
 		pnlFormCenter.add(lblTitulo);
@@ -104,12 +121,16 @@ public class VtnCrearDocumento extends JDialog {
 		pnlFormCenter.add(txtTitulo);
 		pnlFormCenter.add(lblDescripcion);
 		pnlFormCenter.add(lblReceptor);
-		pnlFormCenter.add(txtAreaDescripcion);
+		pnlFormCenter.add(scrollTextArea);
 		pnlFormCenter.add(txtReceptor);
 		pnlFormCenter.add(lblFechaCaducidad);
 		pnlFormCenter.add(lblTipoDocumento);
 		pnlFormCenter.add(fechaCaducidad);
 		pnlFormCenter.add(comboTipoDocumento);
+		pnlFormCenter.add(lblUbicacionArchivo);
+		pnlFormCenter.add(lblSubirDocumento);
+		pnlFormCenter.add(txtUbicacionArchivo);
+		pnlFormCenter.add(btnAdjuntarDocumento);
 		
 		Border border = BorderFactory.createLineBorder(new Color(135, 140, 150));
 	    txtAreaDescripcion.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -125,11 +146,7 @@ public class VtnCrearDocumento extends JDialog {
 		btnGuardarDocumento = new JButton("Guardar Documento");
 		btnGuardarDocumento.setBackground(Color.WHITE);
 		
-		btnAdjuntarDocumento = new JButton("Adjuntar Documento");
-		btnAdjuntarDocumento.setBackground(Color.WHITE);
-		
 		pnlFormSouth.add(btnGuardarDocumento);
-		pnlFormSouth.add(btnAdjuntarDocumento);
 		pnlFormSouth.setBorder(new EmptyBorder(0, 0, 10, 0));
 		
 		pnlCenter.add(pnlFormSouth, BorderLayout.SOUTH);
