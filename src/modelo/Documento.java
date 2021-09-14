@@ -6,14 +6,14 @@ import java.util.Date;
 public class Documento {
 	private String codigo = "001-001";
 	private String[] palabrasClaves;
-	private String titulo; 
-	private String descripcion;
-	private Usuario emisor;
-	private Usuario receptor;
-	private Date fechaCreacion;
-	private Date fechaCaducidad;
-	private EstadoDocumento estado;
-	private TipoDocumento tipo;
+	private String titulo; //
+	private String descripcion; //
+	private Usuario emisor; //
+	private Usuario receptor; // 
+	private Date fechaCreacion; // 
+	private Date fechaCaducidad; //
+	private EstadoDocumento estado; 
+	private TipoDocumento tipo; 
 	
 	public Documento() {}
 		

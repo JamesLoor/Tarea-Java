@@ -20,5 +20,6 @@ public class Principal {
 	public static void main(String[] args) {
 		if(BaseDatos.buscarUsuario("administrador", "admin") == null) BaseDatos.crearAdminPredeterminado();
 		new VtnBienvenida().setVisible(true);
+		
 	}
 }
