@@ -34,7 +34,7 @@ public class MenuListener implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == menuBarra.getMenuCrearDocumento()) {
-			VtnCrearDocumento ventana = new VtnCrearDocumento();
+			VtnCrearDocumento ventana = new VtnCrearDocumento(vtnSistema);
 			ventana.setVisible(true);
 		}
 		
@@ -74,11 +74,11 @@ public class MenuListener implements ActionListener {
 			vtnSistema.getPnlCenter().add(scroll);
 		}
 		
-		if(obj == menuBarra.getMenuVerListaDocumentoRecibido()) {
+		if(obj == menuBarra.getMenuVerBandejaEntrada()) {
 			vtnSistema.cleanPnlCenter();
 			vtnSistema.cleanPnlNorth();
 			
-			JLabel lblTablaDocumentos = new JLabel("Lista de documentos");
+			JLabel lblTablaDocumentos = new JLabel("Bandeja de entrada");
 			lblTablaDocumentos.setFont(new Font("Arial", Font.BOLD, 24));
 			vtnSistema.getPnlNorth().add(lblTablaDocumentos);
 			

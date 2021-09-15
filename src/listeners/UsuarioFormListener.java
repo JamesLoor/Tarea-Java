@@ -41,7 +41,7 @@ public class UsuarioFormListener implements ActionListener {
 			String comprobarContrasena = txtComprobarContrasena.getText();
 			String rol = (String) ComboRol.getSelectedItem();
 			
-			validarFormUsuario(nombreDeUsuario, contrasena, comprobarContrasena, rol);
+			validarFormUsuario(nombreDeUsuario, contrasena, comprobarContrasena);
 			
 			BaseDatos.crearUsuario(rol, nombreDeUsuario, contrasena);
 			vtnSistema.getTablaUsuario().cargarTabla();
@@ -52,7 +52,7 @@ public class UsuarioFormListener implements ActionListener {
 		}
 	}
 	
-	private void validarFormUsuario(String nombreDeUsuario, String contrasena, String comprobarContrasena, String rol) {
+	private void validarFormUsuario(String nombreDeUsuario, String contrasena, String comprobarContrasena) {
 		if(nombreDeUsuario.isEmpty() && contrasena.isEmpty() && comprobarContrasena.isEmpty()) {
 			throw new RuntimeException("Debe ingresar nombre de usuario, contrasena y contrasena de comprobacion.");
 		} else if(nombreDeUsuario.isEmpty()) {

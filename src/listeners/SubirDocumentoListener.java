@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class SubirDocumentoListener implements ActionListener {
 	private File archivo;
 	private String rutaArchivo;
+	private String extensionArchivo;
 	private JTextField txtUbicacionArchivo;
 	
 	public SubirDocumentoListener() {}
@@ -27,23 +28,42 @@ public class SubirDocumentoListener implements ActionListener {
 			vtnSeleccionarArchivo.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 			FileNameExtensionFilter imgFilter = new FileNameExtensionFilter("PDF & JPG Images", "pdf", "jpg");
 			vtnSeleccionarArchivo.setFileFilter(imgFilter);
-			
+			int result = vtnSeleccionarArchivo.showOpenDialog(null);
 			archivo = vtnSeleccionarArchivo.getSelectedFile();
-			System.out.println("Hellouda");
-//			rutaArchivo = archivo.getAbsolutePath();
+			
 
-//			System.out.println(rutaArchivo);
-//			int result = vtnSeleccionarArchivo.showOpenDialog(this);
-//		    if (result != JFileChooser.CANCEL_OPTION) {
-//		        if ((fileName == null) || (fileName.getName().equals(""))) {
-//		            txt.setText("...");
-//		        } else {
-//		            txt.setText(fileName.getAbsolutePath());
-//		        }
-//		    }
+		    if (result != JFileChooser.CANCEL_OPTION) {
+		        if ((archivo == null) || (archivo.getName().equals(""))) {
+		        	txtUbicacionArchivo.setText("");
+		        } else {
+		        	rutaArchivo = archivo.getPath();
+		        	extensionArchivo = obtenerExtensionArchivo(rutaArchivo);
+		        	validarArchivo();
+		        	txtUbicacionArchivo.setText(rutaArchivo);
+		        }
+		    }
 		    
-		} catch (Exception e2) {
-			JOptionPane.showMessageDialog(null, e2.getStackTrace(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (RuntimeException error) {
+			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception errorRaro) {
+			JOptionPane.showMessageDialog(null, errorRaro.getStackTrace(), "Error", JOptionPane.ERROR_MESSAGE);
+		} 
+	}
+	
+	private String obtenerExtensionArchivo(String ruta) {
+		String extension = "";
+		int i = ruta.lastIndexOf('.');
+		int p = Math.max(ruta.lastIndexOf('/'), ruta.lastIndexOf('\\'));
+		if (i > p) {
+		    extension = ruta.substring(i+1);
+		}
+		return extension;
+	}
+	
+	private void validarArchivo() {
+		String extension = extensionArchivo.toLowerCase();
+		if(!extension.equals("pdf") && !extension.equals("jpg")) {
+			throw new RuntimeException("Debe seleccionar archivos con extension .jpg o .pdf");
 		}
 	}
 }

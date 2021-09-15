@@ -17,11 +17,16 @@ public class MenuBarra extends JMenuBar {
 	private JMenu menuEliminar;
 	private JMenuItem menuUsuarioCerrarSesion;
 	private JMenuItem menuVerListaUsuario;
-	private JMenuItem menuVerListaDocumentoRecibido;
+	private JMenuItem menuVerBandejaEntrada;
 	private JMenuItem menuCrearUsuario;
 	private JMenuItem menuCrearDocumento;
 	private JMenuItem menuEliminarUsuario;
 	private JMenuItem menuEliminarDocumento;
+	
+	public MenuBarra() {
+		this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
+		initComponents();
+	}
 	
 	public MenuBarra(VtnSistema vtnSistema) {
 		this.vtnSistema = vtnSistema;
@@ -35,20 +40,17 @@ public class MenuBarra extends JMenuBar {
 				addMenuUsuario();
 				addMenuVer();
 				addMenuVerListaUsuario();
-				addMenuVerListaDocumentoRecibido();
 				addMenuCrear();
 				addMenuCrearUsuario();
-				addMenuCrearDocumento();
 				addMenuEliminar();
 				addMenuEliminarUsuario();
-				addMenuEliminarDocumento();
 				
 				addListenerAdministrador();
 				break;
 			case "Jefe":
 				addMenuUsuario();
 				addMenuVer();
-				addMenuVerListaDocumentoRecibido();
+				addMenuVerBandejaEntrada();
 				addMenuCrear();
 				addMenuCrearDocumento();
 				addMenuEliminar();
@@ -59,7 +61,7 @@ public class MenuBarra extends JMenuBar {
 			case "Empleado":
 				addMenuUsuario();
 				addMenuVer();
-				addMenuVerListaDocumentoRecibido();
+				addMenuVerBandejaEntrada();
 				addMenuCrear();
 				addMenuCrearDocumento();
 				addMenuEliminar();
@@ -75,24 +77,20 @@ public class MenuBarra extends JMenuBar {
 	private void addListenerAdministrador() {
 		menuUsuarioCerrarSesion.addActionListener(new MenuListener(vtnSistema, this));
 		menuVerListaUsuario.addActionListener(new MenuListener(vtnSistema, this));
-		menuVerListaDocumentoRecibido.addActionListener(new MenuListener(vtnSistema, this));
 		menuCrearUsuario.addActionListener(new MenuListener(vtnSistema, this));
-		menuCrearDocumento.addActionListener(new MenuListener(vtnSistema, this));
 		menuEliminarUsuario.addActionListener(new MenuListener(vtnSistema, this));
-		menuEliminarDocumento.addActionListener(new MenuListener(vtnSistema, this));
-		
 	}
 	
 	private void addlListenerJefe() {
 		menuUsuarioCerrarSesion.addActionListener(new MenuListener(vtnSistema, this));
-		menuVerListaDocumentoRecibido.addActionListener(new MenuListener(vtnSistema, this));
+		menuVerBandejaEntrada.addActionListener(new MenuListener(vtnSistema, this));
 		menuCrearDocumento.addActionListener(new MenuListener(vtnSistema, this));
 		menuEliminarDocumento.addActionListener(new MenuListener(vtnSistema, this));
 	}
 	
 	private void addListenerEmpleado() {
 		menuUsuarioCerrarSesion.addActionListener(new MenuListener(vtnSistema, this));
-		menuVerListaDocumentoRecibido.addActionListener(new MenuListener(vtnSistema, this));
+		menuVerBandejaEntrada.addActionListener(new MenuListener(vtnSistema, this));
 		menuCrearDocumento.addActionListener(new MenuListener(vtnSistema, this));
 		menuEliminarDocumento.addActionListener(new MenuListener(vtnSistema, this));
 	}
@@ -115,9 +113,9 @@ public class MenuBarra extends JMenuBar {
 		menuVer.add(menuVerListaUsuario);
 	}
 	
-	private void addMenuVerListaDocumentoRecibido() {
-		menuVerListaDocumentoRecibido = new JMenuItem("Lista de documentos recibidos");
-		menuVer.add(menuVerListaDocumentoRecibido);
+	private void addMenuVerBandejaEntrada() {
+		menuVerBandejaEntrada = new JMenuItem("Bandeja De Entrada");
+		menuVer.add(menuVerBandejaEntrada);
 	}
 	
 	private void addMenuCrear() {
@@ -131,7 +129,7 @@ public class MenuBarra extends JMenuBar {
 	}
 	
 	private void addMenuCrearDocumento() {
-		menuCrearDocumento = new JMenuItem("Crear Documento");
+		menuCrearDocumento = new JMenuItem("Crear Documento " + (rolLogeado.equals("Empleado") ? "De Oficio" : "Informativo"));
 		menuCrear.add(menuCrearDocumento);
 	}
 	
@@ -161,12 +159,12 @@ public class MenuBarra extends JMenuBar {
 		this.menuVerListaUsuario = menuVerListaUsuario;
 	}
 
-	public JMenuItem getMenuVerListaDocumentoRecibido() {
-		return menuVerListaDocumentoRecibido;
+	public JMenuItem getMenuVerBandejaEntrada() {
+		return menuVerBandejaEntrada;
 	}
 
-	public void setMenuVerListaDocumentoRecibido(JMenuItem menuVerListaDocumentoRecibido) {
-		this.menuVerListaDocumentoRecibido = menuVerListaDocumentoRecibido;
+	public void setMenuVerBandejaEntrada(JMenuItem menuVerBandejaEntrada) {
+		this.menuVerBandejaEntrada = menuVerBandejaEntrada;
 	}
 
 	public VtnSistema getVtnSistema() {

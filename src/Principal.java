@@ -9,13 +9,12 @@
  * 
  */
 
-import gui.VtnDocumento;
+import gui.VtnBienvenida;
 import modelo.BaseDatos;
 
 public class Principal {
 	public static void main(String[] args) {
 		if(BaseDatos.buscarUsuario("administrador", "admin") == null) BaseDatos.crearAdminPredeterminado();
-//		new VtnBienvenida().setVisible(true);
-		new VtnDocumento().setVisible(true);
+		new VtnBienvenida().setVisible(true);
 	}
 }

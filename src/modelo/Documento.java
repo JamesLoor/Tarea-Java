@@ -9,11 +9,15 @@ public class Documento {
 	private String titulo; //
 	private String descripcion; //
 	private Usuario emisor; //
-	private Usuario receptor; // 
 	private Date fechaCreacion; // 
 	private Date fechaCaducidad; //
-	private EstadoDocumento estado; 
 	private TipoDocumento tipo; 
+	
+	private Usuario receptor; // Oficio
+	private EstadoDocumento estado; // Oficio
+	
+	private String RolReceptor = "Empleado"; // Informativo
+	
 	
 	public Documento() {}
 		

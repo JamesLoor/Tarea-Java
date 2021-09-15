@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -16,15 +15,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-
 import com.toedter.calendar.JDateChooser;
-
 import listeners.DocumentoFormListener;
 import listeners.SubirDocumentoListener;
+import modelo.BaseDatos;
 
 public class VtnCrearDocumento extends JDialog {
     private JPanel contentPane;
     private VtnSistema vtnSistema;
+    private String rolLogeado;
     private JPanel pnlCenter;
     private JPanel pnlFormCenter;
     private JPanel pnlFormSouth;
@@ -42,23 +41,34 @@ public class VtnCrearDocumento extends JDialog {
     private JTextField txtReceptor;
     private JDateChooser fechaCaducidad;
     private JTextArea txtAreaDescripcion;
-    private JComboBox<String> comboTipoDocumento;
+    private JTextField txtTipoDocumento;
     private JButton btnAdjuntarDocumento;
     private JButton btnGuardarDocumento;
     
     public VtnCrearDocumento() {
+    	this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
         initComponents();
         addListeners();
     }
     
     public VtnCrearDocumento(VtnSistema vtnSistema) {
     	this.vtnSistema = vtnSistema;
+    	this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
         initComponents();
         addListeners();
     }
 
     private void addListeners() {
-    	btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtReceptor, fechaCaducidad, txtPalabrasClaves, comboTipoDocumento, this, vtnSistema));
+    	switch (rolLogeado) {
+		case "Jefe":
+//			btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtReceptor, fechaCaducidad, txtPalabrasClaves, txtTipoDocumento, txtUbicacionArchivo, this, vtnSistema));
+			break;
+		case "Empleado":
+			btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtReceptor, fechaCaducidad, txtPalabrasClaves, txtTipoDocumento, txtUbicacionArchivo, this, vtnSistema));
+			break;
+		default:
+			break;
+		}
     	btnAdjuntarDocumento.addActionListener(new SubirDocumentoListener(txtUbicacionArchivo));
     }
     
@@ -88,7 +98,7 @@ public class VtnCrearDocumento extends JDialog {
         lblPalabrasClaves = new JLabel("Palabras claves (Palabras separadas por coma)");
         lblTitulo = new JLabel("Titulo");
         lblDescripcion = new JLabel("Descripcion");
-        lblReceptor = new JLabel("Receptor");
+        lblReceptor = new JLabel((rolLogeado.equals("Empleado") ? "Receptor" : "Rol Receptor"));
         lblFechaCaducidad = new JLabel("Fecha de caducidad");
         lblTipoDocumento = new JLabel("Tipo de documento");
         lblUbicacionArchivo = new JLabel("Ruta del documento");
@@ -109,8 +119,9 @@ public class VtnCrearDocumento extends JDialog {
         txtAreaDescripcion.setWrapStyleWord(true);
         JScrollPane scrollTextArea = new JScrollPane(txtAreaDescripcion);
         
-        comboTipoDocumento = new JComboBox<String>();
-		comboTipoDocumento.setModel(new DefaultComboBoxModel<>(new String[]{"Oficio", "Informativo"}));
+        txtTipoDocumento = new JTextField(20);
+        txtTipoDocumento.setText((rolLogeado.equals("Empleado")) ? "Oficio" : "Informativo");
+        txtTipoDocumento.setEditable(false);
 		
 		btnAdjuntarDocumento = new JButton("Adjuntar Documento");
 		btnAdjuntarDocumento.setBackground(Color.WHITE);
@@ -126,7 +137,7 @@ public class VtnCrearDocumento extends JDialog {
 		pnlFormCenter.add(lblFechaCaducidad);
 		pnlFormCenter.add(lblTipoDocumento);
 		pnlFormCenter.add(fechaCaducidad);
-		pnlFormCenter.add(comboTipoDocumento);
+		pnlFormCenter.add(txtTipoDocumento);
 		pnlFormCenter.add(lblUbicacionArchivo);
 		pnlFormCenter.add(lblSubirDocumento);
 		pnlFormCenter.add(txtUbicacionArchivo);
@@ -137,7 +148,6 @@ public class VtnCrearDocumento extends JDialog {
 		
 		pnlFormCenter.setBorder(new EmptyBorder(10, 20, 20, 20));
         pnlCenter.add(pnlFormCenter, BorderLayout.CENTER);
-        
     }
     
     public void initPnlFormSouth() {

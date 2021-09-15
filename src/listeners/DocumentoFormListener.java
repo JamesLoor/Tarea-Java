@@ -27,25 +27,29 @@ public class DocumentoFormListener implements ActionListener {
 	private JDateChooser fechaCaducidad;
 	private JTextField txtPalabrasClaves;
 	private String fechaCaducidadString;
-	private JComboBox<String> comboTipoDocumento;
+	private JTextField txtUbicacionArchivo;
+	private JTextField txtTipoDocumento;
 	private EstadoDocumento estado;
 	private TipoDocumento tipo; 
 	private VtnSistema vtnSistema;
+	private String rolLogeado;
 	
 	public DocumentoFormListener() {}
 	
 	public DocumentoFormListener(JTextField txtTitulo, JTextArea txtAreaDescripcion, 
 			JTextField txtReceptor, JDateChooser fechaCaducidad, JTextField txtPalabrasClaves, 
-			JComboBox<String> comboTipoDocumento, VtnCrearDocumento ventanaCrearDocumento, 
+			JTextField txtTipoDocumento, JTextField txtUbicacionArchivo, VtnCrearDocumento ventanaCrearDocumento, 
 			VtnSistema vtnSistema) {
 		this.txtTitulo = txtTitulo;
 		this.txtAreaDescripcion = txtAreaDescripcion;
 		this.txtReceptor = txtReceptor;
 		this.fechaCaducidad = fechaCaducidad;
 		this.txtPalabrasClaves = txtPalabrasClaves; 
-		this.comboTipoDocumento = comboTipoDocumento;
+		this.txtTipoDocumento = txtTipoDocumento;
+		this.txtUbicacionArchivo = txtUbicacionArchivo;
 		this.ventanaCrearDocumento = ventanaCrearDocumento;
 		this.vtnSistema = vtnSistema;
+		this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
 	}
 
 	@Override
@@ -70,26 +74,35 @@ public class DocumentoFormListener implements ActionListener {
 			String palabrasClaves = txtPalabrasClaves.getText();
 			estado = EstadoDocumento.ENVIADO;
 			
-			String tipoDocumentoString = (String) comboTipoDocumento.getSelectedItem();
-			
+			String rutaArchivo = txtUbicacionArchivo.getText();
+			String tipoDocumentoString = txtTipoDocumento.getText();
 			if(tipoDocumentoString.equals("Oficio")) {
 				tipo = TipoDocumento.OFICIO;
 			} else if(tipoDocumentoString.equals("Informativo")) {
 				tipo = TipoDocumento.INFORMATIVO;
 			}
 			
-			validarFormDocumento(titulo, descripcion, receptor, fechaCreacionString, fechaCaducidadString, palabrasClaves, tipo);
+			switch (rolLogeado) {
+			case "Empleado":
+				validarFormDocumentoOficio(titulo, descripcion, receptor, fechaCreacionString, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo);
+				// BaseDatos.crearDocumentoOficio();
+				break;
+			case "Jefe":
+//				validarFormDocumentoInformativo();Emple
+				// BaseDatos.crearDocumentoInformativo();
+				break;
+			default:
+				break;
+			}
 			
-//			BaseDatos.crearUsuario(rol, nombreDeUuario, contrasena);
-//			vtnSistema.getTablaUsuario().cargarTabla();
-//			vtnSistema.getTablaDocumento().cargarTabla();
+			vtnSistema.getTablaDocumento().cargarTabla();
 			ventanaCrearDocumento.dispose();
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
-	private void validarFormDocumento(String titulo, String descripcion, String receptor, String fechaCreacion, String fechaCaducidad, String palabrasClaves, TipoDocumento tipo) throws ParseException{
+	private void validarFormDocumentoOficio(String titulo, String descripcion, String receptor, String fechaCreacion, String fechaCaducidad, String palabrasClaves, String rutaArchivo, TipoDocumento tipo) throws ParseException{
 		if(titulo.isEmpty() && descripcion.isEmpty() && receptor.isEmpty() && fechaCaducidad.isEmpty() && palabrasClaves.isEmpty()) {
 			throw new RuntimeException("Debe ingresar la informacion del documento a registrar.");
 		} else if(titulo.isEmpty() && descripcion.isEmpty() && receptor.isEmpty() && fechaCaducidad.isEmpty()) {
@@ -110,6 +123,20 @@ public class DocumentoFormListener implements ActionListener {
 			throw new RuntimeException("Debe ingresar palabras claves del documento");
 		}
 		
+		if(palabrasClaves.contains(" ")) {
+			throw new RuntimeException("Las palabras claves deben estar separadas por una coma sin espacios(,) Ejemplo: Palabra1,Palabra2,Palabra3  o Palabra1");
+		}
+		
+		if(palabrasClaves.contains(",")) {
+			String palabrasClavesArray[] = palabrasClaves.split(",");
+			for (String palabra : palabrasClavesArray) {
+				if(palabra.contains("")) {
+					System.out.println("nada");
+					throw new RuntimeException("Debe escribir las palabras despues de cada coma (,) Ejemeplo: Palabra1,Palabra2,Palabra3");
+				}
+			}
+		}
+		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		
 		Date fechaCreacionDate = formato.parse(fechaCreacion);
@@ -119,6 +146,12 @@ public class DocumentoFormListener implements ActionListener {
 			throw new RuntimeException("Fecha de caducidad es menor a la fecha de creacion, ingrese de nuevo la fecha.");
         } 
 		
+		String archivo = obtenerExtensionArchivo(rutaArchivo);
+		String extension = archivo.toLowerCase();
+		if(!extension.equals("pdf") && !extension.equals("jpg")) {
+			throw new RuntimeException("Debe seleccionar archivos con extension .jpg o .pdf");
+		}
+		
 		if(emisor.equals(receptor)) {
 			throw new RuntimeException("No se puede enviar un documento a usted mismo, ingrese otro receptor");
 		}
@@ -126,5 +159,31 @@ public class DocumentoFormListener implements ActionListener {
 		if(BaseDatos.buscarUsuarioPorNombre(receptor) == null) {
 			throw new RuntimeException("El usuario a receptar el documento no existe, ingrese de nuevo el receptor.");
 		}
+		
+		if(!(BaseDatos.buscarUsuarioPorNombre(receptor).getClass().getSimpleName().equals("Jefe"))) {
+			throw new RuntimeException("El usuario a receptar el documento debe ser Jefe, ingrese de nuevo el receptor.");
+		}
 	}
+	
+	private String obtenerExtensionArchivo(String ruta) {
+		String extension = "";
+		int i = ruta.lastIndexOf('.');
+		int p = Math.max(ruta.lastIndexOf('/'), ruta.lastIndexOf('\\'));
+		if (i > p) {
+		    extension = ruta.substring(i+1);
+		}
+		return extension;
+	}
+	
+    public int contarCaracteres(String cadena, char caracter) {
+        int posicion;
+        int contador = 0;
+        
+        posicion = cadena.indexOf(caracter);
+        while (posicion != -1) {
+            contador++;
+            posicion = cadena.indexOf(caracter, posicion + 1);
+        }
+        return contador;
+    }
 }

@@ -68,7 +68,6 @@ public class BaseDatos {
 				}
 			}
 		}
-		
 		return null;
 	}
 	
@@ -80,7 +79,6 @@ public class BaseDatos {
 				}
 			}
 		}
-		
 		return null;
 	}
 	
@@ -96,7 +94,6 @@ public class BaseDatos {
 			}
 		}
 	}
-	
 	
 	
 

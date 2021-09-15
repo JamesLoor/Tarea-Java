@@ -45,8 +45,10 @@ public class VtnSistema extends JFrame {
 				initTablaUsuario();
 				break;
 			case "Jefe":
+				initTablaDocumento();
 				break;
 			case "Empleado":
+				initTablaDocumento();
 				break;
 			default:
 				break;
@@ -55,7 +57,7 @@ public class VtnSistema extends JFrame {
 	
 	private void initTablaDocumento() {
 		pnlNorth = new JPanel(new BorderLayout());
-		lblTablaDocumentos = new JLabel("Lista de documentos");
+		lblTablaDocumentos = new JLabel("Bandeja de entrada");
 		lblTablaDocumentos.setFont(new Font("Arial", Font.BOLD, 24));
 		pnlNorth.setBorder(new EmptyBorder(20, 25, 0, 0));
 		pnlNorth.add(lblTablaDocumentos, BorderLayout.WEST);
