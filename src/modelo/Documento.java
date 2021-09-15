@@ -5,35 +5,28 @@ import java.util.Date;
 
 public abstract class Documento {
 	protected String codigo = "001-001";
+	protected String titulo;
+	protected String descripcion;
 	protected String[] palabrasClaves;
-	protected String titulo; //
-	protected String descripcion; //
-	protected Usuario emisor; //
-	protected Date fechaCreacion; // 
-	protected Date fechaCaducidad; //
-	protected TipoDocumento tipo; 
-	
-	private String RolReceptor = "Empleado"; // Informativo
-	
+	protected Usuario emisor;
+	protected Date fechaCreacion;
+	protected Date fechaCaducidad;
+	protected TipoDocumento tipo;
 	
 	public Documento() {}
 		
-	public Documento(String codigo, String[] palabrasClaves, String titulo, String descripcion, Usuario emisor,
-			Date fechaCreacion, Date fechaCaducidad, TipoDocumento tipo) {
+	public Documento(String codigo, String titulo, String descripcion, String[] palabrasClaves, Date fechaCreacion, Date fechaCaducidad, 
+			Usuario emisor, TipoDocumento tipo) {
 		this.codigo = codigo;
-		this.palabrasClaves = palabrasClaves;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
-		this.emisor = emisor;
+		this.palabrasClaves = palabrasClaves;
 		this.fechaCreacion = fechaCreacion;
 		this.fechaCaducidad = fechaCaducidad;
+		this.emisor = emisor;
 		this.tipo = tipo;
 	}
 
-	public void registrarDocumento() {
-		
-	}
-	
 	public void cambiarEstado() {
 		
 	}
@@ -42,7 +35,7 @@ public abstract class Documento {
 	public String toString() {
 		return "Documento [codigo=" + codigo + ", palabrasClaves=" + Arrays.toString(palabrasClaves) + ", titulo="
 				+ titulo + ", descripcion=" + descripcion + ", emisor=" + emisor + ", fechaCreacion=" + fechaCreacion
-				+ ", fechaCaducidad=" + fechaCaducidad + ", tipo=" + tipo + ", RolReceptor=" + RolReceptor + "]";
+				+ ", fechaCaducidad=" + fechaCaducidad + ", tipo=" + tipo + "]";
 	}
 
 	public String getCodigo() {

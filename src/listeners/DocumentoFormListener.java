@@ -15,6 +15,7 @@ import com.toedter.calendar.JDateChooser;
 import gui.VtnCrearDocumento;
 import gui.VtnSistema;
 import modelo.BaseDatos;
+import modelo.DocumentoOficio;
 import modelo.EstadoDocumento;
 import modelo.TipoDocumento;
 
@@ -85,6 +86,7 @@ public class DocumentoFormListener implements ActionListener {
 			switch (rolLogeado) {
 			case "Empleado":
 				validarFormDocumentoOficio(titulo, descripcion, receptor, fechaCreacionString, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo);
+//				System.out.println(new DocumentoOficio(titulo, descripcion, receptor, fechaCreacionString, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo));
 				// BaseDatos.crearDocumentoOficio();
 				break;
 			case "Jefe":
