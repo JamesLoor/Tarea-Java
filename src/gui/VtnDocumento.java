@@ -5,13 +5,16 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class VtnDocumento extends JFrame{
@@ -85,7 +88,7 @@ public class VtnDocumento extends JFrame{
 	
 	private void initPnlInfoCenter() {
 		pnlInfoCenter = new JPanel(new BorderLayout());
-		pnlInfoCenter.setBorder(new EmptyBorder(30, 0, 30, 0));
+		pnlInfoCenter.setBorder(new EmptyBorder(30, 0, 10, 0));
 		
 		txtAreaDescripcion = new JTextArea();
 
@@ -94,6 +97,9 @@ public class VtnDocumento extends JFrame{
 		JScrollPane scrollTextArea = new JScrollPane(txtAreaDescripcion);
 		txtAreaDescripcion.setEditable(false);
 		txtAreaDescripcion.setText("Descripcion: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		
+		Border border = BorderFactory.createLineBorder(new Color(135, 140, 150));
+		txtAreaDescripcion.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 		
 		pnlInfoCenter.add(scrollTextArea, BorderLayout.CENTER);
 		
@@ -128,6 +134,10 @@ public class VtnDocumento extends JFrame{
 		btnVolver = new JButton("Volver");
 		btnAceptar = new JButton("Aceptar");
 		btnRechazar = new JButton("Rechazar");
+		
+		btnVolver.setBackground(new Color(255, 255, 255));
+		btnAceptar.setBackground(new Color(255, 255, 255));
+		btnRechazar.setBackground(new Color(255, 255, 255));
 		
 		pnlSouthWest.add(btnVolver);
 		pnlSouthEast.add(btnAceptar);
