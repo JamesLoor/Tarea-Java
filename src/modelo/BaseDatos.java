@@ -21,7 +21,7 @@ public class BaseDatos {
 	}
 	
 	public static void crearDocumento() {
-		addDocumento(new Documento());
+//		addDocumento(new Documento());
 		Serializacion.guardarListaDocumento(lstDocumento);
 	}
 	
