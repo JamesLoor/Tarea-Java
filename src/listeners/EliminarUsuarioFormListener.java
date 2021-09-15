@@ -36,8 +36,6 @@ public class EliminarUsuarioFormListener implements ActionListener {
 			
 			BaseDatos.eliminarUsuario(nombreDeUsuario);
 			vtnSistema.getTablaUsuario().cargarTabla();
-			vtnSistema.getTablaDocumento().cargarTabla();
-			System.out.println("Hey");
 			ventanaEliminarUsuario.dispose();
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -63,6 +61,10 @@ public class EliminarUsuarioFormListener implements ActionListener {
 		
 		if(BaseDatos.buscarUsuarioPorNombre(nombreDeUsuario) == null) {
 			throw new RuntimeException("El usuario a eliminar no existe, porfavor ingrese un usuario ya registrado.");
+		}
+		
+		if(!BaseDatos.buscarUsuarioPorNombre(nombreDeUsuario).getCodigo().equals(codigo)) {
+			throw new RuntimeException("El codigo de usuario a eliminar no existe, porfavor ingrese un codigo de usuario ya registrado.");
 		}
 	}
 	

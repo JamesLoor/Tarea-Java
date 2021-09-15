@@ -95,7 +95,7 @@ public class VtnCrearDocumento extends JDialog {
     public void initPnlFormCenter() {
     	pnlFormCenter = new JPanel(new GridLayout(8, 2, 40, 0));
         
-        lblPalabrasClaves = new JLabel("Palabras claves (Palabras separadas por coma)");
+        lblPalabrasClaves = new JLabel("Palabras claves (Palabras separadas por coma y sin espacios)");
         lblTitulo = new JLabel("Titulo");
         lblDescripcion = new JLabel("Descripcion");
         lblReceptor = new JLabel((rolLogeado.equals("Empleado") ? "Receptor" : "Rol Receptor"));

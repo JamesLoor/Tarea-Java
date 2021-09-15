@@ -123,15 +123,19 @@ public class DocumentoFormListener implements ActionListener {
 			throw new RuntimeException("Debe ingresar palabras claves del documento");
 		}
 		
+		
+        if(palabrasClaves.substring(palabrasClaves.length() - 1).equals(",")) {
+        	throw new RuntimeException("Las palabras claves deben estar separadas por una coma sin espacios(,) Ejemplo: Palabra1,Palabra2,Palabra3  o Palabra1");
+        }
+		
 		if(palabrasClaves.contains(" ")) {
 			throw new RuntimeException("Las palabras claves deben estar separadas por una coma sin espacios(,) Ejemplo: Palabra1,Palabra2,Palabra3  o Palabra1");
 		}
 		
 		if(palabrasClaves.contains(",")) {
 			String palabrasClavesArray[] = palabrasClaves.split(",");
-			for (String palabra : palabrasClavesArray) {
-				if(palabra.contains("")) {
-					System.out.println("nada");
+			for(int i = 0; i < palabrasClavesArray.length; i++) {
+				if(palabrasClavesArray[i].isBlank()) {
 					throw new RuntimeException("Debe escribir las palabras despues de cada coma (,) Ejemeplo: Palabra1,Palabra2,Palabra3");
 				}
 			}

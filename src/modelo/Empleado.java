@@ -29,15 +29,13 @@ public class Empleado extends Usuario {
 			return false;
 		}
 		Empleado other = (Empleado) obj;
-		if (rol == null) {
-			if (other.rol != null) {
-				return false;
-			}
-		} else if (!rol.equals(other.rol)) {
+		if (!rol.equals(other.rol)) {
 			return false;
 		}
 		return true;
 	}
 
-	
+	public String getRol() {
+		return rol;
+	}
 }
