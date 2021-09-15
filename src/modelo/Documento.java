@@ -1,23 +1,24 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 
-public abstract class Documento {
+public abstract class Documento implements Serializable{
 	protected String codigo = "001-001";
 	protected String titulo;
 	protected String descripcion;
 	protected String[] palabrasClaves;
+	protected String fechaCreacion;
+	protected String fechaCaducidad;
 	protected Usuario emisor;
-	protected Date fechaCreacion;
-	protected Date fechaCaducidad;
 	protected TipoDocumento tipo;
+	protected String ruta;
 	
 	public Documento() {}
 		
-	public Documento(String codigo, String titulo, String descripcion, String[] palabrasClaves, Date fechaCreacion, Date fechaCaducidad, 
-			Usuario emisor, TipoDocumento tipo) {
-		this.codigo = codigo;
+	public Documento(String titulo, String descripcion, String[] palabrasClaves, 
+			Date fechaCreacion, Date fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.palabrasClaves = palabrasClaves;
@@ -25,17 +26,14 @@ public abstract class Documento {
 		this.fechaCaducidad = fechaCaducidad;
 		this.emisor = emisor;
 		this.tipo = tipo;
-	}
-
-	public void cambiarEstado() {
-		
+		this.ruta = ruta;
 	}
 
 	@Override
 	public String toString() {
 		return "Documento [codigo=" + codigo + ", palabrasClaves=" + Arrays.toString(palabrasClaves) + ", titulo="
 				+ titulo + ", descripcion=" + descripcion + ", emisor=" + emisor + ", fechaCreacion=" + fechaCreacion
-				+ ", fechaCaducidad=" + fechaCaducidad + ", tipo=" + tipo + "]";
+				+ ", fechaCaducidad=" + fechaCaducidad + ", tipo=" + tipo + ", ruta=" + ruta + "]";
 	}
 
 	public String getCodigo() {
@@ -45,6 +43,14 @@ public abstract class Documento {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+	
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
 	public String[] getPalabrasClaves() {
 		return palabrasClaves;
@@ -52,14 +58,6 @@ public abstract class Documento {
 
 	public void setPalabrasClaves(String[] palabrasClaves) {
 		this.palabrasClaves = palabrasClaves;
-	}
-
-	public String gettitulo() {
-		return titulo;
-	}
-
-	public void settitulo(String titulo) {
-		this.titulo = titulo;
 	}
 
 	public String getDescripcion() {
@@ -100,5 +98,13 @@ public abstract class Documento {
 
 	public void setTipo(TipoDocumento tipo) {
 		this.tipo = tipo;
+	}
+
+	public String getRuta() {
+		return ruta;
+	}
+
+	public void setRuta(String ruta) {
+		this.ruta = ruta;
 	}
 }

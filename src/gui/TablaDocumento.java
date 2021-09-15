@@ -5,8 +5,13 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import modelo.BaseDatos;
 import modelo.Documento;
+import modelo.DocumentoInformativo;
+import modelo.DocumentoOficio;
 import modelo.Serializacion;
+import modelo.TipoDocumento;
+import modelo.Usuario;
 
 public class TablaDocumento extends JTable {
 	private static final long serialVersionUID = 1L;
@@ -33,9 +38,24 @@ public class TablaDocumento extends JTable {
 		List<Documento> lstDocumento = Serializacion.leerListaDocumento();
 		if(lstDocumento != null) {
 			for(int i = 0; i < lstDocumento.size(); i++) {
-				Documento documento = lstDocumento.get(i);
-				modelo.addRow(data);
-				modelo.setValueAt(documento.getCodigo(), i, 0);
+				if(lstDocumento.get(i).getTipo().equals(TipoDocumento.OFICIO) && BaseDatos.getUsuarioLogeado().getClass().getSimpleName().equals("Jefe")) {
+					DocumentoOficio documento = (DocumentoOficio) lstDocumento.get(i);
+					if(BaseDatos.getUsuarioLogeado().getNombreUsuario().equals(documento.getReceptor().getNombreUsuario())) {
+						modelo.addRow(data);
+						modelo.setValueAt(documento.getCodigo(), i, 0);
+						modelo.setValueAt(documento.getTitulo(), i, 1);
+						modelo.setValueAt(documento.getEmisor().getNombreUsuario(), i, 2);
+						modelo.setValueAt(documento.getReceptor().getNombreUsuario(), i, 3);
+						modelo.setValueAt(documento.getFechaCreacion(), i, 4);
+						modelo.setValueAt(documento.getFechaCaducidad(), i, 5);
+						modelo.setValueAt(documento.getEstado(), i, 6);
+					}
+				} else if(lstDocumento.get(i).getTipo().equals(TipoDocumento.INFORMATIVO) && BaseDatos.getUsuarioLogeado().getClass().getSimpleName().equals("Empleado")) {
+					DocumentoInformativo documento = (DocumentoInformativo) lstDocumento.get(i);
+					modelo.addRow(data);
+					modelo.setValueAt(documento.getCodigo(), i, 0);
+					modelo.setValueAt(documento.getTitulo(), i, 1);
+				}
 			}
 		} 
 	}

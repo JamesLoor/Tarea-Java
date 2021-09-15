@@ -18,28 +18,33 @@ import modelo.BaseDatos;
 import modelo.DocumentoOficio;
 import modelo.EstadoDocumento;
 import modelo.TipoDocumento;
+import modelo.Usuario;
 
 public class DocumentoFormListener implements ActionListener {
 	private VtnCrearDocumento ventanaCrearDocumento;
-	private JTextField txtTitulo;
-	private JTextArea txtAreaDescripcion;
-	private String emisor;
-	private JTextField txtReceptor;
-	private JDateChooser fechaCaducidad;
-	private JTextField txtPalabrasClaves;
-	private String fechaCaducidadString;
-	private JTextField txtUbicacionArchivo;
-	private JTextField txtTipoDocumento;
-	private EstadoDocumento estado;
-	private TipoDocumento tipo; 
 	private VtnSistema vtnSistema;
 	private String rolLogeado;
+	
+	private JTextField txtTitulo;
+	private JTextArea txtAreaDescripcion;
+	private JTextField txtPalabrasClaves;
+	private String fechaCreacion;
+	private Date fechaCreacionDate;
+	private Date fechaCaducidadDate;
+	private JDateChooser fechaCaducidad;
+	private String fechaCaducidadString;
+	private String emisor;
+	private JTextField txtReceptor;
+	private JTextField txtTipoDocumento;
+	private JTextField txtRutaArchivo;
+	private EstadoDocumento estado;
+	private TipoDocumento tipo;
 	
 	public DocumentoFormListener() {}
 	
 	public DocumentoFormListener(JTextField txtTitulo, JTextArea txtAreaDescripcion, 
-			JTextField txtReceptor, JDateChooser fechaCaducidad, JTextField txtPalabrasClaves, 
-			JTextField txtTipoDocumento, JTextField txtUbicacionArchivo, VtnCrearDocumento ventanaCrearDocumento, 
+			JTextField txtPalabrasClaves, JDateChooser fechaCaducidad, JTextField txtReceptor, 
+			JTextField txtTipoDocumento, JTextField txtRutaArchivo, VtnCrearDocumento ventanaCrearDocumento, 
 			VtnSistema vtnSistema) {
 		this.txtTitulo = txtTitulo;
 		this.txtAreaDescripcion = txtAreaDescripcion;
@@ -47,7 +52,7 @@ public class DocumentoFormListener implements ActionListener {
 		this.fechaCaducidad = fechaCaducidad;
 		this.txtPalabrasClaves = txtPalabrasClaves; 
 		this.txtTipoDocumento = txtTipoDocumento;
-		this.txtUbicacionArchivo = txtUbicacionArchivo;
+		this.txtRutaArchivo = txtRutaArchivo;
 		this.ventanaCrearDocumento = ventanaCrearDocumento;
 		this.vtnSistema = vtnSistema;
 		this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
@@ -62,7 +67,7 @@ public class DocumentoFormListener implements ActionListener {
 			String receptor = txtReceptor.getText();
 			
 			DateTimeFormatter fechaFormato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			String fechaCreacionString = fechaFormato.format(LocalDateTime.now());
+			fechaCreacion = fechaFormato.format(LocalDateTime.now());
 			
 			if(fechaCaducidad.getDate() != null) {
 				Date fecha = fechaCaducidad.getDate();
@@ -75,7 +80,7 @@ public class DocumentoFormListener implements ActionListener {
 			String palabrasClaves = txtPalabrasClaves.getText();
 			estado = EstadoDocumento.ENVIADO;
 			
-			String rutaArchivo = txtUbicacionArchivo.getText();
+			String rutaArchivo = txtRutaArchivo.getText();
 			String tipoDocumentoString = txtTipoDocumento.getText();
 			if(tipoDocumentoString.equals("Oficio")) {
 				tipo = TipoDocumento.OFICIO;
@@ -85,15 +90,18 @@ public class DocumentoFormListener implements ActionListener {
 			
 			switch (rolLogeado) {
 			case "Empleado":
-				validarFormDocumentoOficio(titulo, descripcion, receptor, fechaCreacionString, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo);
-//				System.out.println(new DocumentoOficio(titulo, descripcion, receptor, fechaCreacionString, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo));
-				// BaseDatos.crearDocumentoOficio();
+				validarFormDocumentoOficio(titulo, descripcion, receptor, fechaCreacion, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo);
+				DocumentoOficio documento = new DocumentoOficio(titulo, descripcion, palabrasClaves.split(","), 
+						fechaCreacionDate, fechaCaducidadDate, BaseDatos.buscarUsuarioPorNombre(emisor), 
+						BaseDatos.buscarUsuarioPorNombre(receptor), tipo, rutaArchivo, estado);
+				BaseDatos.crearDocumento(documento);
 				break;
 			case "Jefe":
 //				validarFormDocumentoInformativo();Emple
 				// BaseDatos.crearDocumentoInformativo();
 				break;
 			default:
+//				throw new RuntimeException("Hubo un error al crear el documento.");
 				break;
 			}
 			
@@ -125,7 +133,6 @@ public class DocumentoFormListener implements ActionListener {
 			throw new RuntimeException("Debe ingresar palabras claves del documento");
 		}
 		
-		
         if(palabrasClaves.substring(palabrasClaves.length() - 1).equals(",")) {
         	throw new RuntimeException("Las palabras claves deben estar separadas por una coma sin espacios(,) Ejemplo: Palabra1,Palabra2,Palabra3  o Palabra1");
         }
@@ -145,8 +152,8 @@ public class DocumentoFormListener implements ActionListener {
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		
-		Date fechaCreacionDate = formato.parse(fechaCreacion);
-		Date fechaCaducidadDate = formato.parse(fechaCaducidad);
+		fechaCreacionDate = formato.parse(fechaCreacion);
+		fechaCaducidadDate = formato.parse(fechaCaducidad);
 		
 		if(fechaCreacionDate.after(fechaCaducidadDate)){
 			throw new RuntimeException("Fecha de caducidad es menor a la fecha de creacion, ingrese de nuevo la fecha.");

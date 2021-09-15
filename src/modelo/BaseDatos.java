@@ -10,7 +10,12 @@ public class BaseDatos {
 	
 	public BaseDatos() {}
 	
-	public static void addDocumento(Documento d) {
+	public static void addDocumento(DocumentoOficio d) {
+		if(lstDocumento == null) lstDocumento = new ArrayList<Documento>();
+		lstDocumento.add(d);
+	}
+	
+	public static void addDocumento(DocumentoInformativo d) {
 		if(lstDocumento == null) lstDocumento = new ArrayList<Documento>();
 		lstDocumento.add(d);
 	}
@@ -20,8 +25,15 @@ public class BaseDatos {
 		lstUsuario.add(u);
 	}
 	
-	public static void crearDocumento() {
-//		addDocumento(new Documento());
+	public static void crearDocumento(DocumentoOficio documento) {
+		System.out.println(documento);
+		addDocumento(documento);
+		Serializacion.guardarListaDocumento(lstDocumento);
+	}
+	
+	public static void crearDocumento(DocumentoInformativo documento) {
+		System.out.println(documento);
+		addDocumento(documento);
 		Serializacion.guardarListaDocumento(lstDocumento);
 	}
 	

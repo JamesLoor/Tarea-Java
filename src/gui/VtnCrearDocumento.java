@@ -22,26 +22,29 @@ import modelo.BaseDatos;
 
 public class VtnCrearDocumento extends JDialog {
     private JPanel contentPane;
-    private VtnSistema vtnSistema;
-    private String rolLogeado;
     private JPanel pnlCenter;
     private JPanel pnlFormCenter;
     private JPanel pnlFormSouth;
-    private JLabel lblPalabrasClaves;
+    private String rolLogeado;
+    private VtnSistema vtnSistema;
+    
     private JLabel lblTitulo;
     private JLabel lblDescripcion;
+    private JLabel lblPalabrasClaves;
     private JLabel lblReceptor;
     private JLabel lblFechaCaducidad;
     private JLabel lblTipoDocumento;
-    private JLabel lblUbicacionArchivo;
+    private JLabel lblRutaArchivo;
     private JLabel lblSubirDocumento;
-    private JTextField txtUbicacionArchivo;
-    private JTextField txtPalabrasClaves;
+    
     private JTextField txtTitulo;
+    private JTextArea txtAreaDescripcion;
+    private JTextField txtPalabrasClaves;
     private JTextField txtReceptor;
     private JDateChooser fechaCaducidad;
-    private JTextArea txtAreaDescripcion;
     private JTextField txtTipoDocumento;
+    private JTextField txtRutaArchivo;
+    
     private JButton btnAdjuntarDocumento;
     private JButton btnGuardarDocumento;
     
@@ -50,7 +53,7 @@ public class VtnCrearDocumento extends JDialog {
         initComponents();
         addListeners();
     }
-    
+   
     public VtnCrearDocumento(VtnSistema vtnSistema) {
     	this.vtnSistema = vtnSistema;
     	this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
@@ -64,12 +67,12 @@ public class VtnCrearDocumento extends JDialog {
 //			btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtReceptor, fechaCaducidad, txtPalabrasClaves, txtTipoDocumento, txtUbicacionArchivo, this, vtnSistema));
 			break;
 		case "Empleado":
-			btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtReceptor, fechaCaducidad, txtPalabrasClaves, txtTipoDocumento, txtUbicacionArchivo, this, vtnSistema));
+			btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtPalabrasClaves, fechaCaducidad, txtReceptor, txtTipoDocumento, txtRutaArchivo, this, vtnSistema));
 			break;
 		default:
 			break;
 		}
-    	btnAdjuntarDocumento.addActionListener(new SubirDocumentoListener(txtUbicacionArchivo));
+    	btnAdjuntarDocumento.addActionListener(new SubirDocumentoListener(txtRutaArchivo));
     }
     
     private void initComponents() {
@@ -101,11 +104,11 @@ public class VtnCrearDocumento extends JDialog {
         lblReceptor = new JLabel((rolLogeado.equals("Empleado") ? "Receptor" : "Rol Receptor"));
         lblFechaCaducidad = new JLabel("Fecha de caducidad");
         lblTipoDocumento = new JLabel("Tipo de documento");
-        lblUbicacionArchivo = new JLabel("Ruta del documento");
+        lblRutaArchivo = new JLabel("Ruta del documento");
         lblSubirDocumento = new JLabel("Subir documento");
         
-        txtUbicacionArchivo = new JTextField(20);
-        txtUbicacionArchivo.setEditable(false);
+        txtRutaArchivo = new JTextField(20);
+        txtRutaArchivo.setEditable(false);
         
         txtPalabrasClaves = new JTextField(20);
         txtTitulo = new JTextField(20);
@@ -138,9 +141,9 @@ public class VtnCrearDocumento extends JDialog {
 		pnlFormCenter.add(lblTipoDocumento);
 		pnlFormCenter.add(fechaCaducidad);
 		pnlFormCenter.add(txtTipoDocumento);
-		pnlFormCenter.add(lblUbicacionArchivo);
+		pnlFormCenter.add(lblRutaArchivo);
 		pnlFormCenter.add(lblSubirDocumento);
-		pnlFormCenter.add(txtUbicacionArchivo);
+		pnlFormCenter.add(txtRutaArchivo);
 		pnlFormCenter.add(btnAdjuntarDocumento);
 		
 		Border border = BorderFactory.createLineBorder(new Color(135, 140, 150));

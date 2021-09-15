@@ -4,32 +4,32 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class DocumentoInformativo extends Documento {
-	private String RolReceptor = "Empleado";
+	private String rolReceptor = "Empleado";
 	
 	public DocumentoInformativo() {
 		super();
 	}
 
-	public DocumentoInformativo(String codigo, String[] palabrasClaves, String titulo, String descripcion,
-			Usuario emisor, Date fechaCreacion, Date fechaCaducidad, TipoDocumento tipo, String RolReceptor) {
-		super(codigo, palabrasClaves, titulo, descripcion, emisor, fechaCreacion, fechaCaducidad, tipo);
-		this.RolReceptor = RolReceptor;
+	public DocumentoInformativo(String titulo, String descripcion, String[] palabrasClaves,
+			Date fechaCreacion, Date fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta, String RolReceptor) {
+		super(titulo, descripcion, palabrasClaves, fechaCreacion, fechaCaducidad, emisor, tipo, ruta);
+		this.rolReceptor = RolReceptor;
 	}
 
 	public String getRolReceptor() {
-		return RolReceptor;
+		return rolReceptor;
 	}
 
 	public void setRolReceptor(String rolReceptor) {
-		RolReceptor = rolReceptor;
+		this.rolReceptor = rolReceptor;
 	}
 
 	@Override
 	public String toString() {
-		return "DocumentoInformativo [RolReceptor=" + RolReceptor + ", codigo=" + codigo + ", palabrasClaves="
-				+ Arrays.toString(palabrasClaves) + ", titulo=" + titulo + ", descripcion=" + descripcion + ", emisor="
-				+ emisor + ", fechaCreacion=" + fechaCreacion + ", fechaCaducidad=" + fechaCaducidad + ", tipo=" + tipo
-				+ "]";
+		return "DocumentoInformativo [rolReceptor=" + rolReceptor + ", codigo=" + codigo + ", titulo=" + titulo
+				+ ", descripcion=" + descripcion + ", palabrasClaves=" + Arrays.toString(palabrasClaves)
+				+ ", fechaCreacion=" + fechaCreacion + ", fechaCaducidad=" + fechaCaducidad + ", emisor=" + emisor
+				+ ", tipo=" + tipo + ", ruta=" + ruta + "]";
 	}
 
 	@Override
@@ -41,10 +41,10 @@ public class DocumentoInformativo extends Documento {
 		if (getClass() != obj.getClass())
 			return false;
 		DocumentoInformativo other = (DocumentoInformativo) obj;
-		if (RolReceptor == null) {
-			if (other.RolReceptor != null)
+		if (rolReceptor == null) {
+			if (other.rolReceptor != null)
 				return false;
-		} else if (!RolReceptor.equals(other.RolReceptor))
+		} else if (!rolReceptor.equals(other.rolReceptor))
 			return false;
 		return true;
 	}

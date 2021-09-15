@@ -13,7 +13,7 @@ import java.io.Serializable;
  * 
  */
 
-public abstract class Usuario implements Serializable{
+public abstract class Usuario implements Serializable {
 	protected final String CODIGO = generarCodigo();
 	protected String nombreUsuario;
 	protected String password;

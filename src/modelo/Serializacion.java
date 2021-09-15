@@ -15,7 +15,8 @@ public class Serializacion {
 			objSalida.writeObject(lstDocumento);
 			objSalida.close();
 		} catch(IOException e) {
-			System.out.println("El archivo documentos.dat no fue encontrado, se creara.");
+//			System.out.println("El archivo documentos.dat no fue encontrado, se creara.");
+			e.printStackTrace();
 		}
 	}
 	
@@ -30,7 +31,6 @@ public class Serializacion {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		return lstDocumento;
 	}
 	
