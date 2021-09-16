@@ -99,7 +99,7 @@ public class BaseDatos {
 	/**
 	 * elimina usuario
 	 * @param nombreUsuario recibe nombre de usuario
-	 * @return false
+	 * @return boolean
 	 */
 	public static boolean eliminarUsuario(String nombreUsuario) {
 		if(lstUsuario != null) {
@@ -119,7 +119,27 @@ public class BaseDatos {
 	 * Busca ususario
 	 * @param nombreDeUsuario recibe nombre de usuario
 	 * @param contrasena recibe contrasña
-	 * @return null
+	 * @return documento
+	 */
+	public static boolean eliminarDocumento(String ID) {
+		if(lstUsuario != null) {
+			for (Documento doc : lstDocumento) {
+				if(doc.getCodigo().equals(ID)) {
+					lstDocumento.remove(doc);
+					Serializacion.guardarListaDocumento(lstDocumento);
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * busca usuario
+	 * @param nombreDeUsuario nombre de usuario
+	 * @param contrasena contraseña
+	 * @return usuario
 	 */
 	public static Usuario buscarUsuario(String nombreDeUsuario, String contrasena) {
 		if(lstUsuario != null) {
@@ -135,7 +155,23 @@ public class BaseDatos {
 	/**
 	 * Busca documento de oficio por id
 	 * @param ID recibe id
-	 * @return null
+	 * @return documento
+	 */
+	public static Documento buscarDocumentoPorID(String ID) {
+		if(lstDocumento != null) {
+			for (Documento d : lstDocumento) {
+				if(d.getCodigo().equals(ID)) {
+					return d;
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Busca documento de oficio por id
+	 * @param ID id
+	 * @return  documento oficio
 	 */
 	public static DocumentoOficio buscarDocumentoOficioPorID(String ID) {
 		if(lstDocumento != null) {
@@ -151,7 +187,7 @@ public class BaseDatos {
 	/**
 	 * Busca documento informativo por id
 	 * @param ID recibe id
-	 * @return null
+	 * @return documento informativo
 	 */
 	public static DocumentoInformativo buscarDocumentoInformativoPorID(String ID) {
 		if(lstDocumento != null) {
@@ -167,7 +203,7 @@ public class BaseDatos {
 	/**
 	 * Busca ususario pro nombre
 	 * @param nombreDeUsuario recibe nombre de usuario
-	 * @return null
+	 * @return usuario
 	 */
 	public static Usuario buscarUsuarioPorNombre(String nombreDeUsuario) {
 		if(lstUsuario != null) {
