@@ -26,13 +26,11 @@ public class BaseDatos {
 	}
 	
 	public static void crearDocumento(DocumentoOficio documento) {
-		System.out.println(documento);
 		addDocumento(documento);
 		Serializacion.guardarListaDocumento(lstDocumento);
 	}
 	
 	public static void crearDocumento(DocumentoInformativo documento) {
-		System.out.println(documento);
 		addDocumento(documento);
 		Serializacion.guardarListaDocumento(lstDocumento);
 	}
@@ -83,6 +81,29 @@ public class BaseDatos {
 		return null;
 	}
 	
+	public static DocumentoOficio buscarDocumentoOficioPorID(String ID) {
+		if(lstDocumento != null) {
+			for (Documento d : lstDocumento) {
+				if(d.getCodigo().equals(ID)) {
+					return ((DocumentoOficio) d);
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static DocumentoInformativo buscarDocumentoInformativoPorID(String ID) {
+		if(lstDocumento != null) {
+			for (Documento d : lstDocumento) {
+				if(d.getCodigo().equals(ID)) {
+					return ((DocumentoInformativo) d);
+				}
+			}
+		}
+		return null;
+	}
+	
+	
 	public static Usuario buscarUsuarioPorNombre(String nombreDeUsuario) {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
@@ -103,6 +124,14 @@ public class BaseDatos {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
 				System.out.println(usuario);
+			}
+		}
+	}
+	
+	public static void imprimirLstDocumento() {
+		if(lstDocumento != null) {
+			for (Documento documento : lstDocumento) {
+				System.out.println(documento);
 			}
 		}
 	}

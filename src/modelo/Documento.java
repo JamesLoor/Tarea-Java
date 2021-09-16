@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 public abstract class Documento implements Serializable{
-	protected String codigo = "001-001";
+	protected String codigo = generarCodigo();
 	protected String titulo;
 	protected String descripcion;
 	protected String[] palabrasClaves;
@@ -18,7 +18,7 @@ public abstract class Documento implements Serializable{
 	public Documento() {}
 		
 	public Documento(String titulo, String descripcion, String[] palabrasClaves, 
-			Date fechaCreacion, Date fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta) {
+			String fechaCreacion, String fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.palabrasClaves = palabrasClaves;
@@ -27,6 +27,10 @@ public abstract class Documento implements Serializable{
 		this.emisor = emisor;
 		this.tipo = tipo;
 		this.ruta = ruta;
+	}
+	
+	private static String generarCodigo() {
+		return String.valueOf((int) (100 + Math.random() * 900));
 	}
 
 	@Override
@@ -76,19 +80,19 @@ public abstract class Documento implements Serializable{
 		this.emisor = emisor;
 	}
 
-	public Date getFechaCreacion() {
+	public String getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public Date getFechaCaducidad() {
+	public String getFechaCaducidad() {
 		return fechaCaducidad;
 	}
 
-	public void setFechaCaducidad(Date fechaCaducidad) {
+	public void setFechaCaducidad(String fechaCaducidad) {
 		this.fechaCaducidad = fechaCaducidad;
 	}
 

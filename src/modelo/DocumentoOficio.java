@@ -11,8 +11,8 @@ public class DocumentoOficio extends Documento {
 		super();
 	}
 
-	public DocumentoOficio(String titulo, String descripcion, String palabrasClaves[], Date fechaCreacion,
-			Date fechaCaducidad, Usuario emisor, Usuario receptor, TipoDocumento tipo, String ruta, EstadoDocumento estado) {
+	public DocumentoOficio(String titulo, String descripcion, String palabrasClaves[], String fechaCreacion,
+			String fechaCaducidad, Usuario emisor, Usuario receptor, TipoDocumento tipo, String ruta, EstadoDocumento estado) {
 		super(titulo, descripcion, palabrasClaves, fechaCreacion, fechaCaducidad, emisor, tipo, ruta);
 		this.receptor = receptor;
 		this.estado = estado;

@@ -11,7 +11,7 @@ public class DocumentoInformativo extends Documento {
 	}
 
 	public DocumentoInformativo(String titulo, String descripcion, String[] palabrasClaves,
-			Date fechaCreacion, Date fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta, String RolReceptor) {
+			String fechaCreacion, String fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta, String RolReceptor) {
 		super(titulo, descripcion, palabrasClaves, fechaCreacion, fechaCaducidad, emisor, tipo, ruta);
 		this.rolReceptor = RolReceptor;
 	}

@@ -36,7 +36,7 @@ public class LoginFormListener implements ActionListener {
 			sistema.setVisible(true);
 			ventanaBienvenida.dispose();
 		} catch (Exception error) {
-			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, error.getMessage() , "Error", JOptionPane.ERROR_MESSAGE);
 		} finally {
 			limpiarFormulario();
 		}

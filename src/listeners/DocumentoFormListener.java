@@ -15,6 +15,7 @@ import com.toedter.calendar.JDateChooser;
 import gui.VtnCrearDocumento;
 import gui.VtnSistema;
 import modelo.BaseDatos;
+import modelo.DocumentoInformativo;
 import modelo.DocumentoOficio;
 import modelo.EstadoDocumento;
 import modelo.TipoDocumento;
@@ -92,23 +93,25 @@ public class DocumentoFormListener implements ActionListener {
 			case "Empleado":
 				validarFormDocumentoOficio(titulo, descripcion, receptor, fechaCreacion, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo);
 				DocumentoOficio documento = new DocumentoOficio(titulo, descripcion, palabrasClaves.split(","), 
-						fechaCreacionDate, fechaCaducidadDate, BaseDatos.buscarUsuarioPorNombre(emisor), 
+						fechaCreacion, fechaCaducidadString, BaseDatos.buscarUsuarioPorNombre(emisor), 
 						BaseDatos.buscarUsuarioPorNombre(receptor), tipo, rutaArchivo, estado);
 				BaseDatos.crearDocumento(documento);
+				vtnSistema.getTablaDocumento().cargarTabla();
 				break;
 			case "Jefe":
-//				validarFormDocumentoInformativo();Emple
-				// BaseDatos.crearDocumentoInformativo();
+				validarFormDocumentoInformativo(titulo, descripcion, fechaCreacion, fechaCaducidadString, palabrasClaves, rutaArchivo, tipo);
+				DocumentoInformativo documentoInformativo = new DocumentoInformativo(titulo, descripcion, palabrasClaves.split(","), 
+						fechaCreacion, fechaCaducidadString, BaseDatos.buscarUsuarioPorNombre(emisor), tipo, rutaArchivo, receptor);
+				BaseDatos.crearDocumento(documentoInformativo);
+				vtnSistema.getTablaDocumento().cargarTabla();
 				break;
 			default:
-//				throw new RuntimeException("Hubo un error al crear el documento.");
-				break;
+				throw new RuntimeException("Hubo un error al crear el documento.");
 			}
 			
-			vtnSistema.getTablaDocumento().cargarTabla();
 			ventanaCrearDocumento.dispose();
 		} catch (Exception error) {
-			JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, error.getMessage() + error.getStackTrace(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -175,6 +178,58 @@ public class DocumentoFormListener implements ActionListener {
 		
 		if(!(BaseDatos.buscarUsuarioPorNombre(receptor).getClass().getSimpleName().equals("Jefe"))) {
 			throw new RuntimeException("El usuario a receptar el documento debe ser Jefe, ingrese de nuevo el receptor.");
+		}
+	}
+	
+	private void validarFormDocumentoInformativo(String titulo, String descripcion, String fechaCreacion, String fechaCaducidad, String palabrasClaves, String rutaArchivo, TipoDocumento tipo) throws ParseException{
+		if(titulo.isEmpty() && descripcion.isEmpty() && fechaCaducidad.isEmpty() && palabrasClaves.isEmpty()) {
+			throw new RuntimeException("Debe ingresar la informacion del documento a registrar.");
+		} else if(titulo.isEmpty() && descripcion.isEmpty() && fechaCaducidad.isEmpty()) {
+			throw new RuntimeException("Debe ingresar titulo, descripcion, receptor y fecha de caducidad del documento");
+		} else if(titulo.isEmpty() && descripcion.isEmpty()) {
+			throw new RuntimeException("Debe ingresar titulo, descripcion y receptor del documento");
+		} else if(titulo.isEmpty() && descripcion.isEmpty()) {
+			throw new RuntimeException("Debe ingresar titulo y descripcion");
+		} else if(titulo.isEmpty()) {
+			throw new RuntimeException("Debe ingresar titulo del documento");
+		} else if(descripcion.isEmpty()) {
+			throw new RuntimeException("Debe ingresar descripcion del documento");
+		} else if(fechaCaducidad.isEmpty()) {
+			throw new RuntimeException("Debe ingresar fecha de caducidad del documento");
+		} else if(palabrasClaves.isEmpty()) {
+			throw new RuntimeException("Debe ingresar palabras claves del documento");
+		}
+		
+        if(palabrasClaves.substring(palabrasClaves.length() - 1).equals(",")) {
+        	throw new RuntimeException("Las palabras claves deben estar separadas por una coma sin espacios(,) Ejemplo: Palabra1,Palabra2,Palabra3  o Palabra1");
+        }
+		
+		if(palabrasClaves.contains(" ")) {
+			throw new RuntimeException("Las palabras claves deben estar separadas por una coma sin espacios(,) Ejemplo: Palabra1,Palabra2,Palabra3  o Palabra1");
+		}
+		
+		if(palabrasClaves.contains(",")) {
+			String palabrasClavesArray[] = palabrasClaves.split(",");
+			for(int i = 0; i < palabrasClavesArray.length; i++) {
+				if(palabrasClavesArray[i].isBlank()) {
+					throw new RuntimeException("Debe escribir las palabras despues de cada coma (,) Ejemeplo: Palabra1,Palabra2,Palabra3");
+				}
+			}
+		}
+		
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		
+		fechaCreacionDate = formato.parse(fechaCreacion);
+		fechaCaducidadDate = formato.parse(fechaCaducidad);
+		
+		if(fechaCreacionDate.after(fechaCaducidadDate)){
+			throw new RuntimeException("Fecha de caducidad es menor a la fecha de creacion, ingrese de nuevo la fecha.");
+        } 
+		
+		String archivo = obtenerExtensionArchivo(rutaArchivo);
+		String extension = archivo.toLowerCase();
+		if(!extension.equals("pdf") && !extension.equals("jpg")) {
+			throw new RuntimeException("Debe seleccionar archivos con extension .jpg o .pdf");
 		}
 	}
 	

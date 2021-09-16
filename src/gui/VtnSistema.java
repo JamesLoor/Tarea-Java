@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import listeners.TablaDocumentoListener;
 import modelo.BaseDatos;
 
 public class VtnSistema extends JFrame {
@@ -25,6 +26,11 @@ public class VtnSistema extends JFrame {
 		super("Sistema -" + BaseDatos.getUsuarioLogeado().getNombreUsuario());
 		this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
 		initComponents();
+		addListeners();
+	}
+	
+	private void addListeners() {
+		tablaDocumento.addMouseListener(new TablaDocumentoListener(tablaDocumento));
 	}
 	
 	private void initComponents() {

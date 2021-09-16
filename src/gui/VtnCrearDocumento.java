@@ -62,16 +62,7 @@ public class VtnCrearDocumento extends JDialog {
     }
 
     private void addListeners() {
-    	switch (rolLogeado) {
-		case "Jefe":
-//			btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtReceptor, fechaCaducidad, txtPalabrasClaves, txtTipoDocumento, txtUbicacionArchivo, this, vtnSistema));
-			break;
-		case "Empleado":
-			btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtPalabrasClaves, fechaCaducidad, txtReceptor, txtTipoDocumento, txtRutaArchivo, this, vtnSistema));
-			break;
-		default:
-			break;
-		}
+    	btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtPalabrasClaves, fechaCaducidad, txtReceptor, txtTipoDocumento, txtRutaArchivo, this, vtnSistema));
     	btnAdjuntarDocumento.addActionListener(new SubirDocumentoListener(txtRutaArchivo));
     }
     
@@ -112,7 +103,12 @@ public class VtnCrearDocumento extends JDialog {
         
         txtPalabrasClaves = new JTextField(20);
         txtTitulo = new JTextField(20);
+        
         txtReceptor = new JTextField(20);
+        if(rolLogeado.equals("Jefe")) {
+        	txtReceptor.setEditable(false);
+        	txtReceptor.setText("Empleado");
+        }
         
         fechaCaducidad = new JDateChooser();
         fechaCaducidad.setDateFormatString("dd/MM/yyyy");
