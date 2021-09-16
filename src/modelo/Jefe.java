@@ -14,10 +14,18 @@ package modelo;
 public class Jefe extends Usuario{
 	private final String rol = "Jefe";
 
+	/**
+	 * Constructor por defecto
+	 */
 	public Jefe() {
 		super();
 	}
 
+	/**
+	 * Constructor de jefe
+	 * @param nombreUsuario nombre de usuario
+	 * @param password contraseña
+	 */
 	public Jefe(String nombreUsuario, String password) {
 		super(nombreUsuario, password);
 	}

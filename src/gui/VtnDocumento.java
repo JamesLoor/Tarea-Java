@@ -11,7 +11,6 @@
 
 package gui;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -59,6 +58,9 @@ public class VtnDocumento extends JDialog {
 	private JButton btnAceptar;
 	private JButton btnRechazar;
 	
+	/**
+	 * Constructor de la ventana de Documento
+	 */
 	private DocumentoOficio documentoOficio;
 	private DocumentoInformativo documentoInformativo;
 	private String documentoPresentar;
@@ -91,6 +93,9 @@ public class VtnDocumento extends JDialog {
 		btnVolver.addActionListener(new DocumentoListener(this));
 	}
 	
+	/**
+	 * Inicializa la ventana de documento
+	 */
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
@@ -108,6 +113,9 @@ public class VtnDocumento extends JDialog {
 		}
 	}
 	
+	/**
+	 * Incializa el panel del centro
+	 */
 	private void initPnlCenter() {
 		pnlCenter = new JPanel(new BorderLayout());
 		initPnlInfoNorth();
@@ -118,6 +126,9 @@ public class VtnDocumento extends JDialog {
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa el panel norte de la informacion
+	 */
 	private void initPnlInfoNorth() {
 		pnlInfoNorth = new JPanel(new GridLayout(1, 2));
 		
@@ -133,6 +144,9 @@ public class VtnDocumento extends JDialog {
 		pnlCenter.add(pnlInfoNorth, BorderLayout.NORTH);
 	}
 	
+	/**
+	 * Inicializa el panel centro de la informacion
+	 */
 	private void initPnlInfoCenter() {
 		pnlInfoCenter = new JPanel(new BorderLayout());
 		pnlInfoCenter.setBorder(new EmptyBorder(30, 0, 10, 0));
@@ -153,6 +167,9 @@ public class VtnDocumento extends JDialog {
 		pnlCenter.add(pnlInfoCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Incializa el panel sur de la informacion
+	 */
 	private void initPnlInfoSouth() {
 		pnlInfoSouth = new JPanel(new GridLayout(6, 1));
 		
@@ -175,6 +192,9 @@ public class VtnDocumento extends JDialog {
 		pnlCenter.add(pnlInfoSouth, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Inicializa el panel sur de oficio
+	 */
 	private void initPnlSouthOficio() {
 		pnlSouth = new JPanel(new GridLayout(1, 2));
 		pnlSouthWest = new JPanel();
@@ -200,6 +220,9 @@ public class VtnDocumento extends JDialog {
 		contentPane.add(pnlSouth, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Inicializa el panel sur de informativo
+	 */
 	private void initPnlSouthInformativo() {
 		pnlSouth = new JPanel(new GridLayout(1, 1));
 		pnlSouthWest = new JPanel();

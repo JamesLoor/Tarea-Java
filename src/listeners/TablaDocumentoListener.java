@@ -11,8 +11,15 @@ import modelo.DocumentoOficio;
 public class TablaDocumentoListener implements MouseListener {
 	private TablaDocumento tabla;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public TablaDocumentoListener() {}
 	
+	/**
+	 * Constructor del escuchador de la tabla de documento
+	 * @param tabla
+	 */
 	public TablaDocumentoListener(TablaDocumento tabla) {
 		this.tabla = tabla;
 	}

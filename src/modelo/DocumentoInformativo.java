@@ -17,10 +17,25 @@ import java.util.Date;
 public class DocumentoInformativo extends Documento {
 	private String rolReceptor = "Empleado";
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public DocumentoInformativo() {
 		super();
 	}
 
+	/**
+	 * Constructor de documento informativo
+	 * @param titulo titulo 
+	 * @param descripcion descripcion 
+	 * @param palabrasClaves palabras claves
+	 * @param fechaCreacion fecha de creaion
+	 * @param fechaCaducidad fcha de caducidad
+	 * @param emisor emisor
+	 * @param tipo tipo 
+	 * @param ruta ruta
+	 * @param RolReceptor rol receptor
+	 */
 	public DocumentoInformativo(String titulo, String descripcion, String[] palabrasClaves,
 			String fechaCreacion, String fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta, String RolReceptor) {
 		super(titulo, descripcion, palabrasClaves, fechaCreacion, fechaCaducidad, emisor, tipo, ruta);

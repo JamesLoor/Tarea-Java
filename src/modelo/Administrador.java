@@ -14,10 +14,18 @@ package modelo;
 public class Administrador extends Usuario {
 	private final String rol = "Administrador";
 
+	/**
+	 * Constructor por defecto
+	 */
 	public Administrador() {
 		super();
 	}
 
+	/**
+	 * Constructor de administrador
+	 * @param nombreUsuario nombre de ususario 
+	 * @param password contraseña
+	 */
 	public Administrador(String nombreUsuario, String password) {
 		super(nombreUsuario, password);
 	}

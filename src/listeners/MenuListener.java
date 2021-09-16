@@ -32,8 +32,16 @@ public class MenuListener implements ActionListener {
 	private VtnSistema vtnSistema;
 	private MenuBarra menuBarra;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public MenuListener() {}
 	
+	/**
+	 * Constructor del esuchador del menu
+	 * @param vtn vetana
+	 * @param menuBarra menu barra
+	 */
 	public MenuListener(VtnSistema vtn, MenuBarra menuBarra) {
 		this.vtnSistema = vtn;
 		this.menuBarra = menuBarra;

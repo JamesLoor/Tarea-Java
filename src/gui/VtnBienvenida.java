@@ -42,16 +42,25 @@ public class VtnBienvenida extends JFrame{
 	private JPasswordField pwContrasena;
 	private JButton btnIniciarSesion;
 	
+	/**
+	 * Constructor de la ventana de bienvenida
+	 */
 	public VtnBienvenida() {
-		super("Sistema UG");
+		super("UG Mail");
 		initComponents();
 		addListeners();
 	}
 	
+	/**
+	 * Evento escuchador
+	 */
 	private void addListeners() {
 		btnIniciarSesion.addActionListener(new LoginFormListener(txtNombreUsuario, pwContrasena, this));
 	}
 	
+	/**
+	 * Inicializa la ventana de bienvenida
+	 */
 	private void initComponents() {
 		contentPane = new JPanel(new GridLayout());
 		setContentPane(contentPane);
@@ -64,26 +73,33 @@ public class VtnBienvenida extends JFrame{
 		initPnlDerecha();
 	}
 	
+	/**
+	 * Inicializa el panel de la izquierda
+	 */
 	private void initPnlIzquierda() {
 		pnlIzquierda = new FondoBienvenida();
 		contentPane.add(pnlIzquierda);
 	}
 	
+	/**
+	 * Inicializa el panel de la derecha
+	 */
 	private void initPnlDerecha() {
 		pnlDerecha = new JPanel(new BorderLayout());
 		pnlDerecha.setBackground(new Color(255, 255, 255));
 		
-		//Padding para centrar el cuadro de inicio de sesion
 		pnlDerecha.setBorder(new EmptyBorder(130, 85, 130, 85));
 		
 		initPnlForm();
 		contentPane.add(pnlDerecha);
 	}
 	
+	/**
+	 * Inicializa el panel del formulario
+	 */
 	private void initPnlForm() {
 		pnlForm = new JPanel(new BorderLayout(0, 25));
 		pnlForm.setBackground(new Color(255, 255, 255));
-//		pnlForm.setBorder(new BevelBorder(BevelBorder.RAISED));
 		pnlForm.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(230, 230, 230), new Color(150, 150, 150)));
 		
 		initPnlFormNorth();
@@ -93,7 +109,9 @@ public class VtnBienvenida extends JFrame{
 		pnlDerecha.add(pnlForm, BorderLayout.CENTER);
 	}
 	
-	
+	/**
+	 * Inicializa el panel norte del formulario
+	 */
 	private void initPnlFormNorth() {
 		pnlFormNorth = new JPanel();
 		lblNorthForm = new JLabel("Iniciar Sesión");
@@ -105,6 +123,9 @@ public class VtnBienvenida extends JFrame{
 		pnlFormNorth.setBackground(Color.WHITE);
 	}
 	
+	/**
+	 * Inicializa el panel centro del formulario
+	 */
 	private void initPnlFormCenter() {
 		pnlFormCenter = new JPanel();
 		pnlFormCenter.setLayout(new GridLayout(4, 0, 0, 0));
@@ -126,6 +147,9 @@ public class VtnBienvenida extends JFrame{
 		pnlForm.add(pnlFormCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa el panel sur del formulario
+	 */
 	private void initPnlFormSouth() {
 		pnlFormSouth = new JPanel();
 		btnIniciarSesion = new JButton("Iniciar Sesión");

@@ -11,11 +11,16 @@
 
 package gui;
 
-import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import listeners.UsuarioFormListener;
-import java.awt.*;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,18 +42,31 @@ public class VtnCrearUsuario extends JDialog {
 	private JButton btnGuardar;
 	private VtnSistema vtnSistema;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public VtnCrearUsuario() {}
 	
+	/**
+	 * Constructor de la ventana de crear ususario que recibe vtnSistema
+	 * @param vtnSistema
+	 */
 	public VtnCrearUsuario(VtnSistema vtnSistema) {
 		this.vtnSistema = vtnSistema;
 		initComponents();
 		addListeners();
 	}
 	
+	/**
+	 * Evento escuchador
+	 */
 	private void addListeners() {
 		btnGuardar.addActionListener(new UsuarioFormListener(txtNombreUsuario, txtContrasena, txtComprobarContrasena, ComboRol, this, vtnSistema));
 	}
 	
+	/**
+	 * Inicializa la ventana de crear usuario
+	 */
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
@@ -60,6 +78,9 @@ public class VtnCrearUsuario extends JDialog {
 		initPnlCenter();
 	}
 	
+	/**
+	 * Inicializa el panel del centro
+	 */
 	private void initPnlCenter() {
 		pnlCenter = new JPanel(new BorderLayout());
 		
@@ -69,6 +90,9 @@ public class VtnCrearUsuario extends JDialog {
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa el panel centro del formulario
+	 */
 	private void initPnlFormCenter() {
 		pnlFormCenter = new JPanel(new GridLayout(8, 0));
 		
@@ -84,7 +108,6 @@ public class VtnCrearUsuario extends JDialog {
 		ComboRol = new JComboBox<String>();
 		ComboRol.setModel(new DefaultComboBoxModel<>(new String[]{"Administrador", "Jefe", "Empleado"}));
 		
-		
 		pnlFormCenter.add(lblNombreUsuario);
 		pnlFormCenter.add(txtNombreUsuario);
 		pnlFormCenter.add(lblContrasena);
@@ -99,6 +122,9 @@ public class VtnCrearUsuario extends JDialog {
 		pnlCenter.add(pnlFormCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Incializa el panel sur del formulario
+	 */
 	private void initPnlFormSouth(){
 		pnlFormSouth = new JPanel();
 		

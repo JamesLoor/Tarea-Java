@@ -33,17 +33,26 @@ public class MenuBarra extends JMenuBar {
 	private JMenuItem menuEliminarUsuario;
 	private JMenuItem menuEliminarDocumento;
 	
+	/*
+	 * Constructor de la barra de menu que no recibe parametros
+	 */
 	public MenuBarra() {
 		this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
 		initComponents();
 	}
 	
+	/*
+	 * Constructor de la barra de menu que recibe vtnSistema
+	 */
 	public MenuBarra(VtnSistema vtnSistema) {
 		this.vtnSistema = vtnSistema;
 		this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
 		initComponents();
 	}
-
+	
+	/**
+	 * Inicializa el menu principal
+	 */
 	private void initComponents() {
 		switch (rolLogeado) {
 			case "Administrador":
@@ -84,6 +93,9 @@ public class MenuBarra extends JMenuBar {
 		}
 	}
 	
+	/**
+	 * Evento escuchador de administrador
+	 */
 	private void addListenerAdministrador() {
 		menuUsuarioCerrarSesion.addActionListener(new MenuListener(vtnSistema, this));
 		menuVerListaUsuario.addActionListener(new MenuListener(vtnSistema, this));
@@ -91,6 +103,9 @@ public class MenuBarra extends JMenuBar {
 		menuEliminarUsuario.addActionListener(new MenuListener(vtnSistema, this));
 	}
 	
+	/**
+	 * Evento escuchador de jefe
+	 */
 	private void addlListenerJefe() {
 		menuUsuarioCerrarSesion.addActionListener(new MenuListener(vtnSistema, this));
 		menuVerBandejaEntrada.addActionListener(new MenuListener(vtnSistema, this));
@@ -98,6 +113,9 @@ public class MenuBarra extends JMenuBar {
 		menuEliminarDocumento.addActionListener(new MenuListener(vtnSistema, this));
 	}
 	
+	/*
+	 * Evento escuchador de empleado
+	 */
 	private void addListenerEmpleado() {
 		menuUsuarioCerrarSesion.addActionListener(new MenuListener(vtnSistema, this));
 		menuVerBandejaEntrada.addActionListener(new MenuListener(vtnSistema, this));
@@ -105,6 +123,9 @@ public class MenuBarra extends JMenuBar {
 		menuEliminarDocumento.addActionListener(new MenuListener(vtnSistema, this));
 	}
 	
+	/**
+	 * Añade el menu de ususario
+	 */
 	private void addMenuUsuario() {
 		menuUsuario = new JMenu("Usuario");
 		menuUsuarioCerrarSesion = new JMenuItem("Cerrar Sesion");
@@ -113,46 +134,73 @@ public class MenuBarra extends JMenuBar {
 		this.add(menuUsuario);
 	}
 	
+	/**
+	 * Añade el item menu ver
+	 */
 	private void addMenuVer() {
 		menuVer = new JMenu("Ver");
 		this.add(menuVer);
 	}
 	
+	/**
+	 * Añade el item menu ver lista de ususario
+	 */
 	private void addMenuVerListaUsuario() {
 		menuVerListaUsuario = new JMenuItem("Lista de usuarios");
 		menuVer.add(menuVerListaUsuario);
 	}
 	
+	/**
+	 * Añade el item menu ver bandeja de entrada
+	 */
 	private void addMenuVerBandejaEntrada() {
 		menuVerBandejaEntrada = new JMenuItem("Bandeja De Entrada");
 		menuVer.add(menuVerBandejaEntrada);
 	}
 	
+	/**
+	 * Añade el item menu crear
+	 */
 	private void addMenuCrear() {
 		menuCrear = new JMenu("Crear");
 		this.add(menuCrear);
 	}
 	
+	/**
+	 * Añade el item menu crear usuario
+	 */
 	private void addMenuCrearUsuario() {
 		menuCrearUsuario = new JMenuItem("Crear Usuario");
 		menuCrear.add(menuCrearUsuario);
 	}
 	
+	/** 
+	 * Añade el item menu crear documento
+	 */
 	private void addMenuCrearDocumento() {
 		menuCrearDocumento = new JMenuItem("Crear Documento " + (rolLogeado.equals("Empleado") ? "De Oficio" : "Informativo"));
 		menuCrear.add(menuCrearDocumento);
 	}
 	
+	/**
+	 * Añade el item menu eliminar
+	 */
 	private void addMenuEliminar() {
 		menuEliminar = new JMenu("Eliminar");
 		this.add(menuEliminar);
 	}
 	
+	/**
+	 * Añade el item menu eliminar ususario
+	 */
 	private void addMenuEliminarUsuario() {
 		menuEliminarUsuario = new JMenuItem("Eliminar Usuario");
 		menuEliminar.add(menuEliminarUsuario);
 	}
 	
+	/**
+	 * Añade el item menu eliminar documento
+	 */
 	private void addMenuEliminarDocumento() {
 		menuEliminarDocumento = new JMenuItem("Eliminar Documento");
 		menuEliminar.add(menuEliminarDocumento);

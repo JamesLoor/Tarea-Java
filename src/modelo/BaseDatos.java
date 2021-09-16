@@ -19,33 +19,62 @@ public class BaseDatos {
 	private static List<Documento> lstDocumento = Serializacion.leerListaDocumento();
 	private static Usuario usuarioLogeado;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public BaseDatos() {}
 	
+	/**
+	 * Añadir documento de oficio
+	 * @param d recibe documento
+	 */
 	public static void addDocumento(DocumentoOficio d) {
 		if(lstDocumento == null) lstDocumento = new ArrayList<Documento>();
 		lstDocumento.add(d);
 	}
 	
+	/**
+	 * Añadir documento informativo
+	 * @param d recibe documento
+	 */
 	public static void addDocumento(DocumentoInformativo d) {
 		if(lstDocumento == null) lstDocumento = new ArrayList<Documento>();
 		lstDocumento.add(d);
 	}
 	
+	/**
+	 * Añadir usuario
+	 * @param u recibe usuario
+	 */
 	public static void addUsuario(Usuario u) {
 		if(lstUsuario == null) lstUsuario = new ArrayList<Usuario>();
 		lstUsuario.add(u);
 	}
 	
+	/**
+	 * Crea documento de oficio
+	 * @param documento recibe documento
+	 */
 	public static void crearDocumento(DocumentoOficio documento) {
 		addDocumento(documento);
 		Serializacion.guardarListaDocumento(lstDocumento);
 	}
 	
+	/**
+	 * Crea docuento informativo
+	 * @param documento recibe documento
+	 */
 	public static void crearDocumento(DocumentoInformativo documento) {
 		addDocumento(documento);
 		Serializacion.guardarListaDocumento(lstDocumento);
 	}
 	
+	/**
+	 * Crea usuario
+	 * @param tipo recibe tipo
+	 * @param nombreDeUsuario recibe nombre de usuario
+	 * @param contrasena recibe contraseña
+	 */
 	public static void crearUsuario(String tipo, String nombreDeUsuario, String contrasena) {
 		switch (tipo) {
 		case "Administrador": {
@@ -67,6 +96,11 @@ public class BaseDatos {
 		Serializacion.guardarListaUsuario(lstUsuario);
 	}
 	
+	/**
+	 * elimina usuario
+	 * @param nombreUsuario recibe nombre de usuario
+	 * @return boolean
+	 */
 	public static boolean eliminarUsuario(String nombreUsuario) {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
@@ -81,6 +115,12 @@ public class BaseDatos {
 		return false;
 	}
 	
+	/**
+	 * Busca ususario
+	 * @param nombreDeUsuario recibe nombre de usuario
+	 * @param contrasena recibe contrasña
+	 * @return documento
+	 */
 	public static boolean eliminarDocumento(String ID) {
 		if(lstUsuario != null) {
 			for (Documento doc : lstDocumento) {
@@ -95,6 +135,12 @@ public class BaseDatos {
 		return false;
 	}
 	
+	/**
+	 * busca usuario
+	 * @param nombreDeUsuario nombre de usuario
+	 * @param contrasena contraseña
+	 * @return usuario
+	 */
 	public static Usuario buscarUsuario(String nombreDeUsuario, String contrasena) {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
@@ -106,6 +152,11 @@ public class BaseDatos {
 		return null;
 	}
 	
+	/**
+	 * Busca documento de oficio por id
+	 * @param ID recibe id
+	 * @return documento
+	 */
 	public static Documento buscarDocumentoPorID(String ID) {
 		if(lstDocumento != null) {
 			for (Documento d : lstDocumento) {
@@ -117,6 +168,11 @@ public class BaseDatos {
 		return null;
 	}
 	
+	/**
+	 * Busca documento de oficio por id
+	 * @param ID id
+	 * @return  documento oficio
+	 */
 	public static DocumentoOficio buscarDocumentoOficioPorID(String ID) {
 		if(lstDocumento != null) {
 			for (Documento d : lstDocumento) {
@@ -128,6 +184,11 @@ public class BaseDatos {
 		return null;
 	}
 	
+	/**
+	 * Busca documento informativo por id
+	 * @param ID recibe id
+	 * @return documento informativo
+	 */
 	public static DocumentoInformativo buscarDocumentoInformativoPorID(String ID) {
 		if(lstDocumento != null) {
 			for (Documento d : lstDocumento) {
@@ -139,6 +200,11 @@ public class BaseDatos {
 		return null;
 	}
 	
+	/**
+	 * Busca ususario pro nombre
+	 * @param nombreDeUsuario recibe nombre de usuario
+	 * @return usuario
+	 */
 	public static Usuario buscarUsuarioPorNombre(String nombreDeUsuario) {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
@@ -150,11 +216,17 @@ public class BaseDatos {
 		return null;
 	}
 	
+	/**
+	 * Crea el admin predeterminado
+	 */
 	public static void crearAdminPredeterminado() {
 		addUsuario(new Administrador("administrador", "admin"));
 		Serializacion.guardarListaUsuario(lstUsuario);
 	}
 	
+	/**
+	 * Imprime la lista de usuario
+	 */
 	public static void imprimirLstUsuario() {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
@@ -163,6 +235,9 @@ public class BaseDatos {
 		}
 	}
 	
+	/**
+	 * Imprime la lista de documento
+	 */
 	public static void imprimirLstDocumento() {
 		if(lstDocumento != null) {
 			for (Documento documento : lstDocumento) {

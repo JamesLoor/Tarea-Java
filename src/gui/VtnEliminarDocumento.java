@@ -36,16 +36,27 @@ public class VtnEliminarDocumento extends JDialog {
 	private JButton btnEliminar;
 	private VtnSistema vtnSistema;
 	
+	/**
+	 * Constructor por defecto
+	 */
+	public VtnEliminarDocumento() {}
+	
 	public VtnEliminarDocumento(VtnSistema vtnSistema) {
 		this.vtnSistema = vtnSistema;
 		initComponents();
 		addListeners();
 	}
 	
+	/**
+	 * Evento escuchador
+	 */
 	private void addListeners() {
 		btnEliminar.addActionListener(new EliminarDocumentoFormListener(txtCodigo, txtTitulo, this, vtnSistema));
 	}
 	
+	/**
+	 * Inicializa la ventana elimanar decumento
+	 */
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
@@ -58,6 +69,9 @@ public class VtnEliminarDocumento extends JDialog {
 		initPnlCenter();
 	}
 	
+	/**
+	 * Inicializa el panel del centro
+	 */
 	private void initPnlCenter() {
 		pnlCenter = new JPanel(new BorderLayout());
 		
@@ -67,6 +81,9 @@ public class VtnEliminarDocumento extends JDialog {
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa el panel centro del formulario
+	 */
 	private void initPnlFormCenter() {
 		pnlFormCenter = new JPanel(new GridLayout(4, 1));
 		
@@ -85,6 +102,9 @@ public class VtnEliminarDocumento extends JDialog {
 		pnlCenter.add(pnlFormCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa el paner sur del formulario
+	 */
 	private void initPnlFormSouth() {
 		pnlFormSouth = new JPanel();
 		
@@ -96,6 +116,4 @@ public class VtnEliminarDocumento extends JDialog {
 		
 		pnlCenter.add(pnlFormSouth, BorderLayout.SOUTH);
 	}
-	
-	
 }

@@ -26,8 +26,15 @@ public class SubirDocumentoListener implements ActionListener {
 	private String extensionArchivo;
 	private JTextField txtUbicacionArchivo;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public SubirDocumentoListener() {}
 
+	/**
+	 * Constructor del escuchador de subir documento
+	 * @param txtUbicacionArchivo
+	 */
 	public SubirDocumentoListener(JTextField txtUbicacionArchivo) {
 		this.txtUbicacionArchivo = txtUbicacionArchivo;
 	}
@@ -61,6 +68,11 @@ public class SubirDocumentoListener implements ActionListener {
 		} 
 	}
 	
+	/**
+	 * Obtiene la extension del archivo
+	 * @param ruta recibe ruta
+	 * @return extension
+	 */
 	private String obtenerExtensionArchivo(String ruta) {
 		String extension = "";
 		int i = ruta.lastIndexOf('.');
@@ -71,6 +83,9 @@ public class SubirDocumentoListener implements ActionListener {
 		return extension;
 	}
 	
+	/**
+	 * valida el archivo
+	 */
 	private void validarArchivo() {
 		String extension = extensionArchivo.toLowerCase();
 		if(!extension.equals("pdf") && !extension.equals("jpg")) {

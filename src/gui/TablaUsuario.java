@@ -22,11 +22,16 @@ public class TablaUsuario extends JTable {
 	private Object data[][];
 	private DefaultTableModel modelo;
 	
-	
+	/**
+	 * Constructor de la tabla de usuarios
+	 */
 	public TablaUsuario() {
 		initComponents();
 	}
 	
+	/**
+	 * Inicializa la tabla de usuarios
+	 */
 	private void initComponents() {
 		modelo = new DefaultTableModel(null, cabecera);
 		cargarTabla();
@@ -36,6 +41,9 @@ public class TablaUsuario extends JTable {
 		getTableHeader().setEnabled(false);
 	}
 	
+	/**
+	 * Carga la tabla de Usuarios
+	 */
 	public void cargarTabla() {
 		modelo.setRowCount(0);
 		data = null;
