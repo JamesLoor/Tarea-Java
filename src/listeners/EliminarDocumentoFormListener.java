@@ -18,9 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import gui.VtnEliminarDocumento;
-import gui.VtnEliminarUsuario;
 import gui.VtnSistema;
-import modelo.BaseDatos;
 
 public class EliminarDocumentoFormListener implements ActionListener {
 	private JTextField txtCodigo;

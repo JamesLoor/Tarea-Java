@@ -16,13 +16,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import gui.VtnSistema;
 import modelo.BaseDatos;
-import modelo.Usuario;
 
 public class UsuarioFormListener implements ActionListener {
 	private JTextField txtNombreUsuario;

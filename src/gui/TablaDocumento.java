@@ -23,7 +23,6 @@ import modelo.Serializacion;
 import modelo.TipoDocumento;
 
 public class TablaDocumento extends JTable {
-	private static final long serialVersionUID = 1L;
 	private String cabecera[] = {"Codigo", "Titulo", "Emisor", "Receptor", "F. Creacion", "F. Caducidad", "Estado"};
 	private Object data[][];
 	private DefaultTableModel modelo;
