@@ -1,3 +1,14 @@
+/**
+ * Clase FondoBienvenida
+ * 
+ * Creado el 2 de septiembre, 2021, 14:38
+ * 
+ * @Author James Mendoza, Derian Paez
+ * 
+ * @Version POO SOF-S-NO-2-5 - 2021
+ * 
+ */
+
 package gui;
 
 import java.awt.Dimension;
@@ -13,7 +24,7 @@ public class FondoBienvenida extends JPanel{
 	@Override
 	public void paint(Graphics grafico) {
 		Dimension tamanoFondo = getSize();
-		ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/FondoTesting2.jpg")); 
+		ImageIcon Img = new ImageIcon(getClass().getResource("/imagenes/Background.jpg")); 
 		grafico.drawImage(Img.getImage(), 0, 0, tamanoFondo.width, tamanoFondo.height, this);
 		setOpaque(false);
 		super.paintComponent(grafico);

@@ -1,15 +1,15 @@
-package gui;
-
 /**
- * Clase de la ventana de bienvenida
+ * Clase VtnBienvenida
  * 
- * Creado el 2 de septiembre, 2021, 14:2
+ * Creado el 2 de septiembre, 2021, 14:38
  * 
  * @Author James Mendoza, Derian Paez
  * 
  * @Version POO SOF-S-NO-2-5 - 2021
  * 
  */
+
+package gui;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
