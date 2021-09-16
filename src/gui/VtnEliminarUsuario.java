@@ -34,16 +34,31 @@ public class VtnEliminarUsuario extends JDialog {
 	private JButton btnEliminar;
 	private VtnSistema vtnSistema;
 	
+	/**
+	 * Constructor por defecto
+	 */
+	public VtnEliminarUsuario() {}
+	
+	/**
+	 * Constructor de la ventana de eliminar usuario que recibe vtnSistema
+	 * @param vtnSistema
+	 */
 	public VtnEliminarUsuario(VtnSistema vtnSistema) {
 		this.vtnSistema = vtnSistema;
 		initComponents();
 		addListeners();
 	}
 	
+	/**
+	 * Evento escuchador
+	 */
 	private void addListeners() {
 		btnEliminar.addActionListener(new EliminarUsuarioFormListener(txtCodigo, txtNombreUsuario, this, vtnSistema));
 	}
 	
+	/**
+	 * Inicializa la ventana eliminar usuario
+	 */
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
@@ -56,6 +71,9 @@ public class VtnEliminarUsuario extends JDialog {
 		initPnlCenter();
 	}
 	
+	/**
+	 * Inicializa el panel del centro
+	 */
 	private void initPnlCenter() {
 		pnlCenter = new JPanel(new BorderLayout());
 		
@@ -65,6 +83,9 @@ public class VtnEliminarUsuario extends JDialog {
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa el panel centro del formulario
+	 */
 	private void initPnlFormCenter() {
 		pnlFormCenter = new JPanel(new GridLayout(4, 1));
 		
@@ -83,6 +104,9 @@ public class VtnEliminarUsuario extends JDialog {
 		pnlCenter.add(pnlFormCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa el panel sur del formulario
+	 */
 	private void initPnlFormSouth() {
 		pnlFormSouth = new JPanel();
 		

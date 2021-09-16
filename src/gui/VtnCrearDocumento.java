@@ -57,12 +57,19 @@ public class VtnCrearDocumento extends JDialog {
     private JButton btnAdjuntarDocumento;
     private JButton btnGuardarDocumento;
     
+    /**
+     * Constructor de la ventana de crea documentos que no recibe parametros
+     */
     public VtnCrearDocumento() {
     	this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
         initComponents();
         addListeners();
     }
    
+    /**
+     * Constructor de la ventana crear documento que recibe el parametro vtnSistema
+     * @param vtnSistema
+     */
     public VtnCrearDocumento(VtnSistema vtnSistema) {
     	this.vtnSistema = vtnSistema;
     	this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
@@ -70,11 +77,17 @@ public class VtnCrearDocumento extends JDialog {
         addListeners();
     }
 
+    /**
+     * Evento de escucha
+     */
     private void addListeners() {
     	btnGuardarDocumento.addActionListener(new DocumentoFormListener(txtTitulo, txtAreaDescripcion, txtPalabrasClaves, fechaCaducidad, txtReceptor, txtTipoDocumento, txtRutaArchivo, this, vtnSistema));
     	btnAdjuntarDocumento.addActionListener(new SubirDocumentoListener(txtRutaArchivo));
     }
     
+    /**
+     * Inicializa la ventana crear documento
+     */
     private void initComponents() {
         contentPane = new JPanel(new GridLayout());
         setContentPane(contentPane);
@@ -86,6 +99,9 @@ public class VtnCrearDocumento extends JDialog {
         initPnlCenter();
     }
     
+    /**
+     * Inicializa el panel del centro
+     */
     public void initPnlCenter() {
     	pnlCenter = new JPanel(new BorderLayout());
     	
@@ -95,6 +111,9 @@ public class VtnCrearDocumento extends JDialog {
     	contentPane.add(pnlCenter, BorderLayout.CENTER);
     }
     
+    /**
+     * Inicializa el panel del centro del Formulario
+     */
     public void initPnlFormCenter() {
     	pnlFormCenter = new JPanel(new GridLayout(8, 2, 40, 0));
         
@@ -158,6 +177,9 @@ public class VtnCrearDocumento extends JDialog {
         pnlCenter.add(pnlFormCenter, BorderLayout.CENTER);
     }
     
+    /**
+     * Inicializa el panel sur del formulario
+     */
     public void initPnlFormSouth() {
     	pnlFormSouth = new JPanel();
 		

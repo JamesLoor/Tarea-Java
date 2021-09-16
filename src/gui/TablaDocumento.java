@@ -27,10 +27,16 @@ public class TablaDocumento extends JTable {
 	private Object data[][];
 	private DefaultTableModel modelo;
 	
+	/**
+	 * Constructor de la tabla de documentos
+	 */
 	public TablaDocumento() {
 		initComponents();
 	}
 	
+	/**
+	 * Inicializa la tabla de documentos
+	 */
 	private void initComponents() {
 		modelo = new DefaultTableModel(null, cabecera);
 		cargarTabla();
@@ -40,6 +46,9 @@ public class TablaDocumento extends JTable {
 		getTableHeader().setEnabled(false);
 	}
 	
+	/**
+	 * Carga la tabla de documentos
+	 */
 	public void cargarTabla() {
 		modelo.setRowCount(0);
 		data = null;

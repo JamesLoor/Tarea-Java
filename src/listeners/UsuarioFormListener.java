@@ -30,8 +30,20 @@ public class UsuarioFormListener implements ActionListener {
 	private JDialog ventanaCrearUsuario;
 	private VtnSistema vtnSistema;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public UsuarioFormListener() {}
 	
+	/**
+	 * Constructor del escuchador del formulario de usuario
+	 * @param txtNombreUsuario nombre de usuario
+	 * @param txtContrasena contraseña
+	 * @param txtComprobarContrasena comprobar contraseña
+	 * @param ComboRol rol
+	 * @param ventanaCrearUsuario ventana crear usuario
+	 * @param vtnSistema ventana sistema
+	 */
 	public UsuarioFormListener(JTextField txtNombreUsuario, JTextField txtContrasena, 
 			JTextField txtComprobarContrasena, JComboBox<String> ComboRol, JDialog ventanaCrearUsuario, VtnSistema vtnSistema) {
 		this.txtNombreUsuario = txtNombreUsuario;
@@ -60,6 +72,12 @@ public class UsuarioFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * valida que se ingresen los datos
+	 * @param nombreDeUsuario recibe nombre de usuario
+	 * @param contrasena recibe contraseña
+	 * @param comprobarContrasena recibe comprobacion de contraseña
+	 */
 	private void validarFormUsuario(String nombreDeUsuario, String contrasena, String comprobarContrasena) {
 		if(nombreDeUsuario.isEmpty() && contrasena.isEmpty() && comprobarContrasena.isEmpty()) {
 			throw new RuntimeException("Debe ingresar nombre de usuario, contrasena y contrasena de comprobacion.");

@@ -14,10 +14,18 @@ package modelo;
 public class Empleado extends Usuario {
 	private final String rol = "Empleado";
 
+	/**
+	 * Constructor por defecto
+	 */
 	public Empleado() {
 		super();
 	}
 
+	/**
+	 * Constructor de empleado
+	 * @param nombreUsuario nombre de usuario
+	 * @param password contraseña
+	 */
 	public Empleado(String nombreUsuario, String password) {
 		super(nombreUsuario, password);
 	}

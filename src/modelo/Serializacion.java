@@ -20,6 +20,10 @@ import java.util.List;
 
 public class Serializacion {
 	
+	/**
+	 * Guarda lista de documentos
+	 * @param lstDocumento lista de documentos
+	 */
 	public static void guardarListaDocumento(List<Documento> lstDocumento) {
 		try {
 			ObjectOutputStream objSalida = new ObjectOutputStream(new FileOutputStream("src/documentos.dat"));
@@ -31,6 +35,10 @@ public class Serializacion {
 		}
 	}
 	
+	/**
+	 * Lee la lista de documentos
+	 * @return lstdocumeto
+	 */
 	public static List<Documento> leerListaDocumento() {
 		List<Documento> lstDocumento = null;
 		try {
@@ -45,6 +53,10 @@ public class Serializacion {
 		return lstDocumento;
 	}
 	
+	/**
+	 * Guadar lista de usuario
+	 * @param lstUsuario lista usuario
+	 */
 	public static void guardarListaUsuario(List<Usuario> lstUsuario) {
 		try {
 			ObjectOutputStream objSalida = new ObjectOutputStream(new FileOutputStream("src/usuarios.dat"));
@@ -55,6 +67,10 @@ public class Serializacion {
 		}
 	}
 	
+	/**
+	 * Lee lista de usuario
+	 * @return
+	 */
 	public static List<Usuario> leerListaUsuario() {
 		List<Usuario> lstUsuario = null;
 		try {

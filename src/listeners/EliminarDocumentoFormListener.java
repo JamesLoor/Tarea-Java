@@ -26,8 +26,18 @@ public class EliminarDocumentoFormListener implements ActionListener {
 	private VtnEliminarDocumento ventanaEliminarDocumento;
 	private VtnSistema vtnSistema;
 	
+	/**
+	 * Cosntructor por defecto
+	 */
 	public EliminarDocumentoFormListener() {}
 	
+	/**
+	 * Costructor del evento escuchador de eliminar un documento
+	 * @param txtCodigo
+	 * @param txtTitulo
+	 * @param ventanaEliminarDocumento
+	 * @param vtnSistema
+	 */
 	public EliminarDocumentoFormListener(JTextField txtCodigo, JTextField txtTitulo, VtnEliminarDocumento ventanaEliminarDocumento, VtnSistema vtnSistema) {
 		this.txtCodigo = txtCodigo;
 		this.txtTitulo = txtTitulo;
@@ -51,6 +61,11 @@ public class EliminarDocumentoFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * valida que se ingresen los datos
+	 * @param codigo recibe codigo
+	 * @param titulo recibe titulo
+	 */
 	private void validarFormEliminarUsuario(String codigo, String titulo) {
 		if(titulo.isEmpty() && codigo.isEmpty()) {
 			throw new RuntimeException("Debe ingresar el titulo y codigo del documento a eliminar.");

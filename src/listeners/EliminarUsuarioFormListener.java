@@ -27,6 +27,9 @@ public class EliminarUsuarioFormListener implements ActionListener {
 	private VtnEliminarUsuario ventanaEliminarUsuario;
 	private VtnSistema vtnSistema;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public EliminarUsuarioFormListener() {}
 	
 	public EliminarUsuarioFormListener(JTextField txtCodigo, JTextField txtNombreUsuario, VtnEliminarUsuario ventanaEliminarUsuario, VtnSistema vtnSistema) {
@@ -52,6 +55,11 @@ public class EliminarUsuarioFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * valida que se ingresen los datos
+	 * @param codigo recibe codigo
+	 * @param nombreDeUsuario recibe nombre de ususario
+	 */
 	private void validarFormEliminarUsuario(String codigo, String nombreDeUsuario) {
 		if(nombreDeUsuario.isEmpty() && codigo.isEmpty()) {
 			throw new RuntimeException("Debe ingresar el nombre de usuario y codigo del usuario a eliminar.");

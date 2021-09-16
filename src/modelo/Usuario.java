@@ -18,13 +18,25 @@ public abstract class Usuario implements Serializable {
 	protected String nombreUsuario;
 	protected String password;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public Usuario() {}
 
+	/**
+	 * Constructor de usuario
+	 * @param nombreUsuario nombre de usuario
+	 * @param password contraseña
+	 */
 	public Usuario(String nombreUsuario, String password) {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
 	}
 	
+	/**
+	 * genera codigo
+	 * @return numero
+	 */
 	private static String generarCodigo() {
 		return String.valueOf((int) (100 + Math.random() * 900));
 	}

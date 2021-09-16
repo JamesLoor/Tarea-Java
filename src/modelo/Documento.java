@@ -26,8 +26,22 @@ public abstract class Documento implements Serializable{
 	protected TipoDocumento tipo;
 	protected String ruta;
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public Documento() {}
 		
+	/**
+	 * Constructor de documento
+	 * @param titulo titulo
+	 * @param descripcion descripcion
+	 * @param palabrasClaves palabras claves
+	 * @param fechaCreacion fecha de creacion
+	 * @param fechaCaducidad fecha de caducidad
+	 * @param emisor emisor
+	 * @param tipo tipo
+	 * @param ruta ruta
+	 */
 	public Documento(String titulo, String descripcion, String[] palabrasClaves, 
 			String fechaCreacion, String fechaCaducidad, Usuario emisor, TipoDocumento tipo, String ruta) {
 		this.titulo = titulo;
@@ -40,6 +54,10 @@ public abstract class Documento implements Serializable{
 		this.ruta = ruta;
 	}
 	
+	/**
+	 * genera el codigo
+	 * @return numero
+	 */
 	private static String generarCodigo() {
 		return String.valueOf((int) (100 + Math.random() * 900));
 	}

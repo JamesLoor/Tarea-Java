@@ -52,10 +52,16 @@ public class VtnDocumento extends JFrame{
 	private JButton btnAceptar;
 	private JButton btnRechazar;
 	
+	/**
+	 * Constructor de la ventana de Documento
+	 */
 	public VtnDocumento() {
 		initComponents();
 	}
 	
+	/**
+	 * Inicializa la ventana de documento
+	 */
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
@@ -69,6 +75,9 @@ public class VtnDocumento extends JFrame{
 		initPnlSouth();
 	}
 	
+	/**
+	 * Incializa el panel del centro
+	 */
 	private void initPnlCenter() {
 		pnlCenter = new JPanel(new BorderLayout());
 		
@@ -82,6 +91,9 @@ public class VtnDocumento extends JFrame{
 		
 	}
 	
+	/**
+	 * Inicializa el panel norte de la informacion
+	 */
 	private void initPnlInfoNorth() {
 		pnlInfoNorth = new JPanel(new GridLayout(1, 2));
 		
@@ -97,6 +109,9 @@ public class VtnDocumento extends JFrame{
 		pnlCenter.add(pnlInfoNorth, BorderLayout.NORTH);
 	}
 	
+	/**
+	 * Inicializa el panel centro de la informacion
+	 */
 	private void initPnlInfoCenter() {
 		pnlInfoCenter = new JPanel(new BorderLayout());
 		pnlInfoCenter.setBorder(new EmptyBorder(30, 0, 10, 0));
@@ -117,6 +132,9 @@ public class VtnDocumento extends JFrame{
 		pnlCenter.add(pnlInfoCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Incializa el panel sur de la informacion
+	 */
 	private void initPnlInfoSouth() {
 		pnlInfoSouth = new JPanel(new GridLayout(6, 1));
 		
@@ -137,6 +155,9 @@ public class VtnDocumento extends JFrame{
 		pnlCenter.add(pnlInfoSouth, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Inicializa el panel sur
+	 */
 	private void initPnlSouth() {
 		pnlSouth = new JPanel(new GridLayout(1, 2));
 		pnlSouthWest = new JPanel();

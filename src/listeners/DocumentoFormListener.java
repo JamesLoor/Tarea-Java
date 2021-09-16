@@ -50,8 +50,23 @@ public class DocumentoFormListener implements ActionListener {
 	private EstadoDocumento estado;
 	private TipoDocumento tipo;
 	
+	/**
+	 * Constructor pro defecto
+	 */
 	public DocumentoFormListener() {}
 	
+	/**
+	 * Costructor del evento escuchador del formulario de documento
+	 * @param txtTitulo titulo
+	 * @param txtAreaDescripcion descripcion
+	 * @param txtPalabrasClaves palabras claves
+	 * @param fechaCaducidad fecha de caducidad
+	 * @param txtReceptor receptor
+	 * @param txtTipoDocumento tipo de documento
+	 * @param txtRutaArchivo ruta del archivo
+	 * @param ventanaCrearDocumento  ventana crear documento
+	 * @param vtnSistema ventana sistema
+	 */
 	public DocumentoFormListener(JTextField txtTitulo, JTextArea txtAreaDescripcion, 
 			JTextField txtPalabrasClaves, JDateChooser fechaCaducidad, JTextField txtReceptor, 
 			JTextField txtTipoDocumento, JTextField txtRutaArchivo, VtnCrearDocumento ventanaCrearDocumento, 
@@ -124,6 +139,18 @@ public class DocumentoFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * valida que se ingresen los datos
+	 * @param titulo recibe titulo
+	 * @param descripcion recibe descripcion
+	 * @param receptor recibe receptor
+	 * @param fechaCreacion recibe fecha de creacion
+	 * @param fechaCaducidad recibe fecha de caducidad
+	 * @param palabrasClaves recibe palabras claves
+	 * @param rutaArchivo recibe ruta del archvo
+	 * @param tipo recibe tipo
+	 * @throws ParseException
+	 */
 	private void validarFormDocumentoOficio(String titulo, String descripcion, String receptor, String fechaCreacion, String fechaCaducidad, String palabrasClaves, String rutaArchivo, TipoDocumento tipo) throws ParseException{
 		if(titulo.isEmpty() && descripcion.isEmpty() && receptor.isEmpty() && fechaCaducidad.isEmpty() && palabrasClaves.isEmpty()) {
 			throw new RuntimeException("Debe ingresar la informacion del documento a registrar.");
@@ -190,6 +217,17 @@ public class DocumentoFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Valisa que se ingresen los datos
+	 * @param titulo recibe titulo
+	 * @param descripcion recibe descripcion
+	 * @param fechaCreacion revibe fecha de creacion
+	 * @param fechaCaducidad recibe fecha de caducidad
+	 * @param palabrasClaves recibe palabras claves
+	 * @param rutaArchivo rescibe ruta archivo
+	 * @param tipo recibe tipo documento
+	 * @throws ParseException
+	 */
 	private void validarFormDocumentoInformativo(String titulo, String descripcion, String fechaCreacion, String fechaCaducidad, String palabrasClaves, String rutaArchivo, TipoDocumento tipo) throws ParseException{
 		if(titulo.isEmpty() && descripcion.isEmpty() && fechaCaducidad.isEmpty() && palabrasClaves.isEmpty()) {
 			throw new RuntimeException("Debe ingresar la informacion del documento a registrar.");
@@ -242,6 +280,11 @@ public class DocumentoFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Obtiene la extension del archivo
+	 * @param ruta recibe la ruta
+	 * @return extension
+	 */
 	private String obtenerExtensionArchivo(String ruta) {
 		String extension = "";
 		int i = ruta.lastIndexOf('.');
@@ -252,6 +295,12 @@ public class DocumentoFormListener implements ActionListener {
 		return extension;
 	}
 	
+	/**
+	 * Cuenta los caracteres
+	 * @param cadena recibe cadena
+	 * @param caracter recibe caracter
+	 * @return contador
+	 */
     public int contarCaracteres(String cadena, char caracter) {
         int posicion;
         int contador = 0;

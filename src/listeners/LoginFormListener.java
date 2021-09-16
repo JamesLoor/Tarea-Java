@@ -28,6 +28,17 @@ public class LoginFormListener implements ActionListener {
 	private JPasswordField pwContrasena;
 	private JFrame ventanaBienvenida;
 	
+	/**
+	 * Constructor por defecto
+	 */
+	public LoginFormListener() {}
+	
+	/**
+	 * Constructor del escuchador del login
+	 * @param txtNombreUsuario
+	 * @param pwContrasena
+	 * @param ventanaBienvenida
+	 */
 	public LoginFormListener(JTextField txtNombreUsuario, JPasswordField pwContrasena, JFrame ventanaBienvenida) {
 		this.txtNombreUsuario = txtNombreUsuario;
 		this.pwContrasena = pwContrasena;
@@ -51,6 +62,12 @@ public class LoginFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * valida que se ingresen los datos
+	 * @param nombreDeUsuario recibe nombre de ususario
+	 * @param pwContrasena recibe contraseña
+	 * @return
+	 */
 	private Usuario validarCredencial(String nombreDeUsuario, String pwContrasena) {
 		if(nombreDeUsuario.isEmpty() && pwContrasena.isEmpty()) {
 			throw new RuntimeException("Debe ingresar nombre de usuario y contrasena.");
@@ -68,6 +85,9 @@ public class LoginFormListener implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Limpia el formulario
+	 */
 	private void limpiarFormulario() {
 		txtNombreUsuario.setText("");
 		pwContrasena.setText("");

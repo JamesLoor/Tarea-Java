@@ -18,10 +18,26 @@ public class DocumentoOficio extends Documento {
 	private Usuario receptor; 
 	private EstadoDocumento estado; 
 	
+	/**
+	 * Constructor por defecto
+	 */
 	public DocumentoOficio() {
 		super();
 	}
 
+	/**
+	 * Constructor de documento de oficio
+	 * @param titulo titulo
+	 * @param descripcion descripcion
+	 * @param palabrasClaves palabras claves 
+	 * @param fechaCreacion fecha de creacion
+	 * @param fechaCaducidad fecha de caducidad
+	 * @param emisor emisor
+	 * @param receptor receptor
+	 * @param tipo tipo 
+	 * @param ruta ruta
+	 * @param estado estado
+	 */
 	public DocumentoOficio(String titulo, String descripcion, String palabrasClaves[], String fechaCreacion,
 			String fechaCaducidad, Usuario emisor, Usuario receptor, TipoDocumento tipo, String ruta, EstadoDocumento estado) {
 		super(titulo, descripcion, palabrasClaves, fechaCreacion, fechaCaducidad, emisor, tipo, ruta);

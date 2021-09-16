@@ -31,6 +31,9 @@ public class VtnSistema extends JFrame {
 	private TablaDocumento tablaDocumento;
 	private String rolLogeado;
 	
+	/**
+	 * Constructor de la ventana sistema
+	 */
 	public VtnSistema() {
 		super("Sistema -" + BaseDatos.getUsuarioLogeado().getNombreUsuario());
 		this.rolLogeado = BaseDatos.getUsuarioLogeado().getClass().getSimpleName();
@@ -38,10 +41,16 @@ public class VtnSistema extends JFrame {
 		addListeners();
 	}
 	
+	/**
+	 * Evento Escuchador
+	 */
 	private void addListeners() {
 		tablaDocumento.addMouseListener(new TablaDocumentoListener(tablaDocumento));
 	}
 	
+	/**
+	 * Inicializa la ventana sistema
+	 */
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
@@ -70,6 +79,9 @@ public class VtnSistema extends JFrame {
 		}
 	}
 	
+	/**
+	 * Inicializa la tabla de documentos
+	 */
 	private void initTablaDocumento() {
 		pnlNorth = new JPanel(new BorderLayout());
 		lblTablaDocumentos = new JLabel("Bandeja de entrada");
@@ -87,6 +99,9 @@ public class VtnSistema extends JFrame {
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa la tabla de usuarios
+	 */
 	private void initTablaUsuario() {
 		pnlNorth = new JPanel(new BorderLayout());
 		lblTablaUsuarios = new JLabel("Lista de usuarios");
@@ -104,12 +119,18 @@ public class VtnSistema extends JFrame {
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Limpia el panel norte
+	 */
 	public void cleanPnlNorth() {
 		pnlNorth.removeAll();
 		pnlNorth.revalidate();
 		pnlNorth.validate();
 	}
 	
+	/**
+	 * Limpia el panel centro
+	 */
 	public void cleanPnlCenter() {
 		pnlCenter.removeAll();
 		pnlCenter.revalidate();
