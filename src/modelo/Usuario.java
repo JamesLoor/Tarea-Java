@@ -1,17 +1,17 @@
-package modelo;
-
-import java.io.Serializable;
-
 /**
- * Clase 
+ * Clase Usuario
  * 
- * Creado el 2 de septiembre, 2021, 14:51
+ * Creado el 10 de septiembre, 2021, 15:00
  * 
  * @Author James Mendoza, Derian Paez
  * 
  * @Version POO SOF-S-NO-2-5 - 2021
  * 
  */
+
+package modelo;
+
+import java.io.Serializable;
 
 public abstract class Usuario implements Serializable {
 	protected final String CODIGO = generarCodigo();
