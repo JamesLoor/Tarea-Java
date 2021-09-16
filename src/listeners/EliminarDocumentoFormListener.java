@@ -45,7 +45,7 @@ public class EliminarDocumentoFormListener implements ActionListener {
 			
 			validarFormEliminarUsuario(codigo, titulo);
 			
-//			BaseDatos.eliminarUsuario(titulo);
+			BaseDatos.eliminarDocumento(codigo);
 			vtnSistema.getTablaDocumento().cargarTabla();
 			ventanaEliminarDocumento.dispose();
 		} catch (Exception error) {
@@ -62,16 +62,12 @@ public class EliminarDocumentoFormListener implements ActionListener {
 			throw new RuntimeException("Debe ingresar el codigo del documento a eliminar");
 		}
 		
-//		if(nombreDeUsuario.equals(BaseDatos.getUsuarioLogeado().getNombreUsuario())) {
-//			throw new RuntimeException("No puede eliminar un usuario que esta usando");
-//		}
-//		
-//		if(nombreDeUsuario.equals("administrador")) {
-//			throw new RuntimeException("El usuario a eliminar tiene privilegios extendidos");
-//		}
-//		
-//		if(BaseDatos.buscarUsuarioPorNombre(nombreDeUsuario) == null) {
-//			throw new RuntimeException("El usuario a eliminar no existe, porfavor ingrese un usuario ya registrado.");
-//		}
+		if(BaseDatos.buscarDocumentoPorID(codigo) == null) {
+			throw new RuntimeException("El documento a eliminar no existe, porfavor ingrese un codigo de documento ya registrado.");
+		}
+		
+		if(BaseDatos.buscarDocumentoPorID(codigo).getTitulo().equals(titulo)) {
+			throw new RuntimeException("El documento a eliminar no existe, porfavor ingrese un titulo de documento ya registrado.");
+		}
 	}
 }

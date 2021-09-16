@@ -18,17 +18,24 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+
+import listeners.DocumentoListener;
+import modelo.DocumentoInformativo;
+import modelo.DocumentoOficio;
+
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
-public class VtnDocumento extends JFrame{
+public class VtnDocumento extends JDialog {
 	private JPanel contentPane;
 	private JPanel pnlCenter;
 	private JPanel pnlInfoNorth;
@@ -52,41 +59,70 @@ public class VtnDocumento extends JFrame{
 	private JButton btnAceptar;
 	private JButton btnRechazar;
 	
+	private DocumentoOficio documentoOficio;
+	private DocumentoInformativo documentoInformativo;
+	private String documentoPresentar;
+	
 	public VtnDocumento() {
 		initComponents();
+		addListeners();
+	}
+	
+	public VtnDocumento(DocumentoOficio documentoOficio) {
+		this.documentoOficio = documentoOficio;
+		this.documentoPresentar = "DocumentoOficio";
+		initComponents();
+		addListeners();
+	}
+	
+	public VtnDocumento(DocumentoInformativo documentoInformativo) {
+		this.documentoInformativo = documentoInformativo;
+		this.documentoPresentar = "DocumentoInformativo";
+		initComponents();
+		addListeners();
+	}
+	
+	private void addListeners() {
+		if(documentoPresentar.equals("DocumentoOficio")) {
+			
+		} else if (documentoPresentar.equals("DocumentoInformativo")) {
+			
+		}
+		btnVolver.addActionListener(new DocumentoListener(this));
 	}
 	
 	private void initComponents() {
 		contentPane = new JPanel(new BorderLayout());
 		setContentPane(contentPane);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000, 600);
+		setSize(600, 500);
+		setModal(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		dispose();
 		
 		initPnlCenter();
-		initPnlSouth();
+		
+		if(documentoPresentar.equals("DocumentoOficio")) {
+			initPnlSouthOficio();			
+		} else if (documentoPresentar.equals("DocumentoInformativo")) {
+			initPnlSouthInformativo();
+		}
 	}
 	
 	private void initPnlCenter() {
 		pnlCenter = new JPanel(new BorderLayout());
-		
 		initPnlInfoNorth();
 		initPnlInfoCenter();
-		initPnlInfoSouth();
+		initPnlInfoSouth();			
 		
-		pnlCenter.setBorder(new EmptyBorder(30, 100, 0, 100));
-
+		pnlCenter.setBorder(new EmptyBorder(30, 10, 0, 10));
 		contentPane.add(pnlCenter, BorderLayout.CENTER);
-		
 	}
 	
 	private void initPnlInfoNorth() {
 		pnlInfoNorth = new JPanel(new GridLayout(1, 2));
 		
-		lblTitulo = new JLabel("Titulo del mensaje", SwingConstants.CENTER);
-		lblFecha = new JLabel("14/09/2021", SwingConstants.CENTER);
+		lblTitulo = new JLabel((documentoPresentar.equals("DocumentoOficio")) ? documentoOficio.getTitulo() : documentoInformativo.getTitulo(), SwingConstants.CENTER);
+		lblFecha = new JLabel((documentoPresentar.equals("DocumentoOficio")) ? documentoOficio.getFechaCreacion() : documentoInformativo.getFechaCreacion(), SwingConstants.CENTER);
 		
 		lblTitulo.setFont(new Font("Arial", Font.BOLD, 30));
 		lblFecha.setFont(new Font("Arial", Font.BOLD, 23));
@@ -107,7 +143,7 @@ public class VtnDocumento extends JFrame{
 		txtAreaDescripcion.setWrapStyleWord(true);
 		JScrollPane scrollTextArea = new JScrollPane(txtAreaDescripcion);
 		txtAreaDescripcion.setEditable(false);
-		txtAreaDescripcion.setText("Descripcion: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
+		txtAreaDescripcion.setText((documentoPresentar.equals("DocumentoOficio")) ? documentoOficio.getDescripcion() : documentoInformativo.getDescripcion());
 		
 		Border border = BorderFactory.createLineBorder(new Color(135, 140, 150));
 		txtAreaDescripcion.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -120,24 +156,26 @@ public class VtnDocumento extends JFrame{
 	private void initPnlInfoSouth() {
 		pnlInfoSouth = new JPanel(new GridLayout(6, 1));
 		
-		lblEmisor = new JLabel("De: John Doe");
-		lblFechaCaducidad = new JLabel("Enviado: 20/09/2021");
-		lblReceptor = new JLabel("Para: Administrador");
-		lblPalabrasClaves = new JLabel("Palabras Claves: hola, pepas, agua");
-		lblEstado = new JLabel("Estado: Pendiente");
-		lblTipoDocumento = new JLabel("Tipo de documento: Oficio");
+		lblEmisor = new JLabel("De: " + ((documentoPresentar.equals("DocumentoOficio")) ? documentoOficio.getEmisor().getNombreUsuario() : documentoInformativo.getEmisor().getNombreUsuario()));
+		lblReceptor = new JLabel("Para: " + (documentoPresentar.equals("DocumentoOficio") ? documentoOficio.getReceptor().getNombreUsuario() : "Todos los empleados"));
+		lblFechaCaducidad = new JLabel("Enviado: " + ((documentoPresentar.equals("DocumentoOficio")) ? documentoOficio.getFechaCreacion() : documentoInformativo.getFechaCreacion()));
+		lblPalabrasClaves = new JLabel("Palabras Claves: " + ((documentoPresentar.equals("DocumentoOficio")) ? Arrays.toString(documentoOficio.getPalabrasClaves()) : Arrays.toString(documentoInformativo.getPalabrasClaves())));
+		if(documentoPresentar.equals("DocumentoOficio")) {
+			lblEstado = new JLabel("Estado: " + documentoOficio.getEstado());
+			pnlInfoSouth.add(lblEstado);
+		}
+		lblTipoDocumento = new JLabel("Tipo de documento: " + ((documentoPresentar.equals("DocumentoOficio")) ? documentoOficio.getTipo().name() : documentoInformativo.getTipo().name()));
 		
 		pnlInfoSouth.add(lblEmisor);
-		pnlInfoSouth.add(lblFechaCaducidad);
 		pnlInfoSouth.add(lblReceptor);
+		pnlInfoSouth.add(lblFechaCaducidad);
 		pnlInfoSouth.add(lblPalabrasClaves);
-		pnlInfoSouth.add(lblEstado);
 		pnlInfoSouth.add(lblTipoDocumento);
 		
 		pnlCenter.add(pnlInfoSouth, BorderLayout.SOUTH);
 	}
 	
-	private void initPnlSouth() {
+	private void initPnlSouthOficio() {
 		pnlSouth = new JPanel(new GridLayout(1, 2));
 		pnlSouthWest = new JPanel();
 		pnlSouthEast = new JPanel();
@@ -159,6 +197,20 @@ public class VtnDocumento extends JFrame{
 		
 		pnlSouth.setBorder(new EmptyBorder(30, 0, 30, 0));
 		
+		contentPane.add(pnlSouth, BorderLayout.SOUTH);
+	}
+	
+	private void initPnlSouthInformativo() {
+		pnlSouth = new JPanel(new GridLayout(1, 1));
+		pnlSouthWest = new JPanel();
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setBackground(new Color(255, 255, 255));
+		
+		pnlSouthWest.add(btnVolver);
+		
+		pnlSouth.add(pnlSouthWest, BorderLayout.WEST);
+		pnlSouth.setBorder(new EmptyBorder(30, 0, 30, 0));
 		contentPane.add(pnlSouth, BorderLayout.SOUTH);
 	}
 }

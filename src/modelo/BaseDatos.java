@@ -81,11 +81,36 @@ public class BaseDatos {
 		return false;
 	}
 	
+	public static boolean eliminarDocumento(String ID) {
+		if(lstUsuario != null) {
+			for (Documento doc : lstDocumento) {
+				if(doc.getCodigo().equals(ID)) {
+					lstDocumento.remove(doc);
+					Serializacion.guardarListaDocumento(lstDocumento);
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 	public static Usuario buscarUsuario(String nombreDeUsuario, String contrasena) {
 		if(lstUsuario != null) {
 			for (Usuario usuario : lstUsuario) {
 				if(nombreDeUsuario.equals(usuario.getNombreUsuario()) && contrasena.equals(usuario.getPassword())) {
 					return usuario;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static Documento buscarDocumentoPorID(String ID) {
+		if(lstDocumento != null) {
+			for (Documento d : lstDocumento) {
+				if(d.getCodigo().equals(ID)) {
+					return d;
 				}
 			}
 		}
@@ -113,7 +138,6 @@ public class BaseDatos {
 		}
 		return null;
 	}
-	
 	
 	public static Usuario buscarUsuarioPorNombre(String nombreDeUsuario) {
 		if(lstUsuario != null) {
@@ -146,7 +170,6 @@ public class BaseDatos {
 			}
 		}
 	}
-	
 	
 
 	public static List<Documento> getLstDocumento() {
