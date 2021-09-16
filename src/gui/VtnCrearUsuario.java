@@ -22,7 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class VtnCrearUsuario extends JDialog {
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel pnlCenter;
 	private JPanel pnlFormCenter;

@@ -18,7 +18,6 @@ import modelo.Serializacion;
 import modelo.Usuario;
 
 public class TablaUsuario extends JTable {
-	private static final long serialVersionUID = 1L;
 	private String cabecera[] = {"ID", "Nombre", "Contraseña", "Rol"};
 	private Object data[][];
 	private DefaultTableModel modelo;

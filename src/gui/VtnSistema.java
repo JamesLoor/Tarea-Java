@@ -21,7 +21,6 @@ import listeners.TablaDocumentoListener;
 import modelo.BaseDatos;
 
 public class VtnSistema extends JFrame {
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel pnlNorth;
 	private JLabel lblTablaUsuarios;

@@ -18,7 +18,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -30,7 +29,6 @@ import modelo.DocumentoInformativo;
 import modelo.DocumentoOficio;
 import modelo.EstadoDocumento;
 import modelo.TipoDocumento;
-import modelo.Usuario;
 
 public class DocumentoFormListener implements ActionListener {
 	private VtnCrearDocumento ventanaCrearDocumento;

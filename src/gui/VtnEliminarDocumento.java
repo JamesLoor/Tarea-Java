@@ -25,7 +25,6 @@ import javax.swing.border.EmptyBorder;
 import listeners.EliminarDocumentoFormListener;
 
 public class VtnEliminarDocumento extends JDialog {
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel pnlCenter;
 	private JPanel pnlFormCenter;

@@ -19,7 +19,6 @@ import listeners.MenuListener;
 import modelo.BaseDatos;
 
 public class MenuBarra extends JMenuBar {
-	private static final long serialVersionUID = 1L;
 	private VtnSistema vtnSistema;
 	private String rolLogeado;
 	private JMenu menuUsuario;

@@ -13,7 +13,6 @@ package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,7 +21,6 @@ import javax.swing.JTextField;
 
 import gui.VtnSistema;
 import modelo.BaseDatos;
-import modelo.Serializacion;
 import modelo.Usuario;
 
 public class LoginFormListener implements ActionListener {
