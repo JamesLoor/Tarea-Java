@@ -19,6 +19,7 @@ import javax.swing.JTextField;
 
 import gui.VtnEliminarDocumento;
 import gui.VtnSistema;
+import modelo.BaseDatos;
 
 public class EliminarDocumentoFormListener implements ActionListener {
 	private JTextField txtCodigo;

@@ -5,7 +5,6 @@ import java.awt.event.MouseListener;
 
 import gui.TablaDocumento;
 import gui.VtnDocumento;
-import gui.VtnSistema;
 import modelo.BaseDatos;
 import modelo.DocumentoOficio;
 
