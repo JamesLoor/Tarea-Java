@@ -8,8 +8,15 @@ import gui.VtnDocumento;
 public class DocumentoListener implements ActionListener {
 	private VtnDocumento vtnDocumento;
 
+	/**
+	 * Constructor de DocumentoListener por defecto
+	 */
 	public DocumentoListener() {}
-
+	
+	/**
+	 * Constructor de DocumentoListener 
+	 * @param vtnDocumento 
+	 */
 	public DocumentoListener(VtnDocumento vtnDocumento) {
 		this.vtnDocumento = vtnDocumento;
 	}
